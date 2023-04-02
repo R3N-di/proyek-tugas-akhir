@@ -8,7 +8,11 @@
 </p>
 
 ## About This Project
-
+- Judul Project ini adalah "Website Absen Siswa"
+- Anggota Kelompok :
+    1. Mun'im
+    2. Cakra
+    3. Rendi
 
 ## License
 
