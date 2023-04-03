@@ -11,11 +11,11 @@
     <body>
         <div class="container-fluid p-0">
             @include('component.pesan')
-            <div class="d-flex">
-                <div class="sidebar">
+            <div class="d-flex h-5">
+                <div class="">
                     @include('component.sidebar')
                 </div>
-                <div>
+                <div class="flex-fill p-5">
                     @yield('konten')
                 </div>
             </div>

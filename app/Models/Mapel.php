@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mapel extends Model
 {
+    protected $data = "mapel";
+    protected $fillable = [
+        'mapel'
+    ];
     use HasFactory;
 }
