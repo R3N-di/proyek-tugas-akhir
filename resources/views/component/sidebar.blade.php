@@ -1,4 +1,4 @@
-<div class="flex-shrink-0 p-3 bg-primary"style="width: 213px;">
+<div class="flex-fill p-3 bg-primary sticky-top "style="width: 213px; height: 600px;">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-5 fw-semibold">Collapsible</span>
@@ -25,7 +25,7 @@
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Overview</a></li>
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Weekly</a></li>
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Monthly</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li>
+            {{-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Annually</a></li> --}}
           </ul>
         </div>
       </li>
@@ -38,7 +38,7 @@
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New</a></li>
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Processed</a></li>
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Shipped</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Returned</a></li>
+            {{-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Returned</a></li> --}}
           </ul>
         </div>
       </li>
@@ -52,7 +52,7 @@
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">New...</a></li>
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Profile</a></li>
             <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Settings</a></li>
-            <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li>
+            {{-- <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sign out</a></li> --}}
           </ul>
         </div>
       </li>
