@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Jurusan extends Model
 {
     protected $table="jurusan";
+    protected $fillabel = [
+        'jurusan',
+        'nama',
+    ];
     use HasFactory;
 }

@@ -15,7 +15,7 @@ class Mengajar extends Model
         "hari",
         "idkelas",
         "idjurusan",
-        "idjurusan"
+        "idguru"
     ];
     use HasFactory;
 }
