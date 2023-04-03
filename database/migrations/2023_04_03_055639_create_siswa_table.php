@@ -18,7 +18,7 @@ return new class extends Migration
          $table->string('password', 10);
          $table->enum('jk', ['L','P']);
          $table->string('gambar', 5);
-         $table->string('idkelas', 11);
+         $table->string('idkelas', 11)->references('kelas')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
          $table->string('idjurusan', 11);
          $table->timestamps();
         });
