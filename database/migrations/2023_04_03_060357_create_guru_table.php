@@ -17,9 +17,8 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->string('password', 10);
             $table->enum('jk', ['L','P']);
-            $table->string('gambar', 5);
-            $table->integer('nip', 18);
-            $table->integer('nip', 18);
+            $table->string('gambar', 50);
+            $table->string('idmapel', 11);
             $table->timestamps();
         });
     }
