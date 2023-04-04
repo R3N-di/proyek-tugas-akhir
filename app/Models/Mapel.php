@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Guru;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,7 +14,7 @@ class Mapel extends Model
     ];
 
     public function guru(){
-        return hasOne(guru::class, 'mapel');
+        return hasOne(Guru::class, 'mapel');
     }
     
     use HasFactory;
