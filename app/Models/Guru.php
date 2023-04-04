@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Mapel;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Guru extends Model
 {
@@ -17,6 +18,10 @@ class Guru extends Model
         'gambar',
         'idmapel',
     ];
+
+    public function mapel(){
+        return $this->belongsTo(Mapel::class, 'idmapel');
+    }
 
     use HasFactory;
 }

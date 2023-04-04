@@ -11,5 +11,10 @@ class Mapel extends Model
     protected $fillable = [
         'mapel'
     ];
+
+    public function guru(){
+        return hasOne(guru::class, 'mapel');
+    }
+    
     use HasFactory;
 }
