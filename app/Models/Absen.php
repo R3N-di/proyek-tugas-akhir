@@ -18,7 +18,12 @@ class Absen extends Model
     ];
 
     public function Mengajar(){
-        return $this->belongsTo(Mengajar::class,'id');
+        return $this->belongsTo(Mengajar::class,'idmengajar');
     }
+
+    public function siswa(){
+        return $this->belongsToMany(Mengajar::class, 'idsiswa');
+    }
+    
     use HasFactory;
 }

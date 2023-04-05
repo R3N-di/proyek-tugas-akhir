@@ -23,19 +23,19 @@ class Mengajar extends Model
     ];
 
     public function kelas(){
-        return $this->belongsTo(Kelas::class,'kelas');
+        return $this->belongsTo(Kelas::class,'idkelas');
     }
 
     public function jurusan(){
-        return $this->belongsTo(Jurusan::class,'jurusan');
+        return $this->belongsTo(Jurusan::class,'idjurusan');
     }
 
     public function guru(){
-        return $this->belongsTo(Guru::class,'id');
+        return $this->belongsToMany(Guru::class,'idguru');
     }
 
     public function absen(){
-        return hasOne(Absen::class,'idmengajar');
+        return hasOne(Absen::class);
     }
     use HasFactory;
 }

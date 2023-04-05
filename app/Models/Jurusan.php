@@ -16,11 +16,11 @@ class Jurusan extends Model
     ];
 
     public function siswa(){
-        return hasOne(Siswa::class,'idjurusan');
+        return hasOne(Siswa::class);
     }
 
     public function mengajar(){
-        return hasOne(Mengajar::class,'idjurusan');
+        return hasOne(Mengajar::class);
     }
     use HasFactory;
 }

@@ -17,10 +17,10 @@ class Kelas extends Model
     ];
 
     public function siswa(){
-        return hasOne(Siswa::class, 'idkelas');
+        return hasOne(Siswa::class);
     }
 
     public function mengajar() {
-        return hasOne(Mengajar::class,'idkelas');
+        return hasOne(Mengajar::class);
     }
 }

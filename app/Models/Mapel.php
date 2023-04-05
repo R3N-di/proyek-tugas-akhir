@@ -14,7 +14,7 @@ class Mapel extends Model
     ];
 
     public function guru(){
-        return hasOne(Guru::class, 'mapel');
+        return hasOne(Guru::class);
     }
     
     use HasFactory;

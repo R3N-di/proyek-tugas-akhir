@@ -25,7 +25,7 @@ class Guru extends Model
     }
 
     public function mengajar(){
-        return hasOne(Mengajar::class,'idguru');
+        return hasMany(Mengajar::class);
     }
     use HasFactory;
 }

@@ -20,11 +20,15 @@ class Siswa extends Model
         'idkelas',
         'idjurusan',
     ];
-    public function kelas () {
+    public function kelas() {
         return $this->belongsTo(Kelas::class, 'kelas');
     }
     public function jurusan() {
         return $this->belongsTo(Jurusan::class, 'jurusan');
+    }
+
+    public function absen(){
+        return $this->hasMany(Absen::class);
     }
     use HasFactory;
 }
