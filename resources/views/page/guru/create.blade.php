@@ -1,16 +1,17 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="#" role="button"><< Kembali</a>
-    <form action="">
+<a class="btn btn-secondary" href="{{ url()->previous() }}" role="button"><< Kembali</a>
+    <form action="/guru" method="post" enctype="multipart/form-data">
+        @csrf
         <h3>Tambah Guru</h3>
         <div class="mb-3">
           <label for="nip" class="form-label">NIP</label>
-          <input type="text" class="form-control" name="nip" id="nip" aria-describedby="helpId" placeholder="">
+          <input type="text" class="form-control" name="nip" id="nip" aria-describedby="helpId" placeholder="Masukan NIS...">
         </div>
         <div class="mb-3">
           <label for="nama" class="form-label">Nama</label>
-          <input type="text" class="form-control" name="nama" id="nama" aria-describedby="helpId" placeholder="">
+          <input type="text" class="form-control" name="nama" id="nama" aria-describedby="helpId" placeholder="Masukan Nama...">
         </div>
         <div class="mb-3">
           <label for="nis" class="form-label">Jenis Kelamin</label>
@@ -37,10 +38,9 @@
             <div class="mb-3">
               <label for="mapel" class="form-label">Mapel :</label>
                     <select name="mapel" id="mapel">
-                        <option value="volvo">Matematika</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                        @foreach ($dataMapel as $data) 
+                            <option value="{{ $data->mapel }}">{{ $data->mapel }}</option>
+                        @endforeach
                     </select>
             </div>
             {{-- <div class="mb-3">

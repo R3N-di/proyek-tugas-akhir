@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('konten')
+<a class="btn btn-success" href="{{ url('/guru/create') }}" role="button">Tambah ++</a>
 <table class="table">
     <thead>
       <tr>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 
 class GuruController extends Controller
@@ -19,7 +21,8 @@ class GuruController extends Controller
      */
     public function create()
     {
-        return view('page.guru.create');
+        $dataMapel = Mapel::all();
+        return view('page.guru.create', compact('dataMapel'));
     }
 
     /**
@@ -27,7 +30,26 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nip' => 'required|integer|size:18',
+            'nama' => 'required|string',
+            'jk' => 'required',
+            'mapel' => 'required'
+        ], [
+            'nip.required' => 'NIP harus dimasukan',
+            'nip.integer' => 'NIP harus berupa nomor',
+            'nip.size' => 'NIP harus memiliki 18 huruf',
+            'nama.required' => 'Nama harus dimasukan',
+            'nama.string' => 'Nama harus berbentuk huruf',
+            'jk.required' => 'Jenis Kelamin harus diisi',
+            'mapel' => 'Mapel harus diisi'
+        ]);
+
+        $data = [
+            'nip' => $request->nip,
+            'nama' => $request->nama,
+        ];
+        
     }
 
     /**
