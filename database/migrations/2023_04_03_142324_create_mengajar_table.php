@@ -20,9 +20,9 @@ return new class extends Migration
            $table->string('idjurusan', 11);
            $table->string('idkelas', 11);
            $table->string('idguru', 11);
-           $table->foreign('idjurusan')->referances('id')->on('jurusan')->cascadeOnUpdate()->cascadeOnDelete();
-           $table->foreign('idkelas')->referances('id')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
-           $table->foreign('idguru')->referances('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->foreign('idjurusan')->references('jurusan')->on('jurusan')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->foreign('idkelas')->references('kelas')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->foreign('idguru')->references('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
            $table->timestamps();
         });
     }

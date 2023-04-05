@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('absen', function (Blueprint $table) {
             //$table->id();
             $table->string('id',11)->unique();
-            $table->string('idsiswa', 11);
-            $table->string('idguru', 11);
-            $table->foreign('idsiswa')->referances('id')->on('siswa')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('idguru')->referances('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
             $table->enum('status',['hadir','alpha','izin']);
             $table->date('tanggal');
+            $table->string('idsiswa', 11);
+            $table->string('idguru', 11);
+            $table->foreign('idsiswa')->references('id')->on('siswa')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('idguru')->references('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
