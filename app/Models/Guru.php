@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Mapel;
+use App\Models\Mengajar;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -23,5 +24,8 @@ class Guru extends Model
         return $this->belongsTo(Mapel::class, 'idmapel');
     }
 
+    public function mengajar(){
+        return hasOne(Mengajar::class,'idguru');
+    }
     use HasFactory;
 }

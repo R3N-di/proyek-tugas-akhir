@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Kelas;
+use App\Models\Jurusan;
+use App\Models\Guru;
+use App\Models\Absen;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,5 +21,21 @@ class Mengajar extends Model
         "idjurusan",
         "idguru"
     ];
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class,'kelas');
+    }
+
+    public function jurusan(){
+        return $this->belongsTo(Jurusan::class,'jurusan');
+    }
+
+    public function guru(){
+        return $this->belongsTo(Guru::class,'id');
+    }
+
+    public function absen(){
+        return hasOne(Absen::class,'idmengajar');
+    }
     use HasFactory;
 }
