@@ -16,11 +16,11 @@ class SiswaSeeder extends Seeder
         $faker = Faker::create('id_ID');
         for($i=1;$i<=10;$i++){
             DB::table('siswa')->insert([
-                "id"=>$faker->regexify('[A-Z._%+-]+@[A-Z.-]+\.[A-Z]{2,4}'),
+                "id"=>$faker->regexify('[A-Z]+[A-Z]+[A-Z]'),
                 "nis"=>$faker->numerify('1212####'),
                 "nama"=>$faker->name,
-                "password"=>$faker->regexify('[A-Z._%+-]+@[A-Z.-]+\.[A-Z]{2,4}'),
-                "jk"=>$faker->randomElement($array = array ('l','p')),
+                "password"=>$faker->regexify('[A-Z]+[A-Z]+[A-Z]'),
+                "jk"=>$faker->randomElement($array = array ('L','P')),
                 "gambar"=>"default_gambar.png",
                 "idkelas"=>"",
                 "idjurusan"=>""
