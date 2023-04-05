@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Guru;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 class GuruController extends Controller
 {
@@ -30,6 +31,7 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+        $faker = Faker::create('id_ID');
         $request->validate([
             'nip' => 'required|integer|size:18',
             'nama' => 'required|string',
@@ -46,9 +48,15 @@ class GuruController extends Controller
         ]);
 
         $data = [
+            'id' => $faker->regexify('[A-Z]{11}'),
             'nip' => $request->nip,
             'nama' => $request->nama,
+            'password' => $faker->regexify('[A-Z]{10}'),
+            'jk' => $request->jk,
+            'idmapel' => $request->mapel
         ];
+
+        // if($request->has('gambar'))
         
     }
 
