@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\SiswaController;
+use App\Http\Controllers\SiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +14,4 @@ use App\Models\SiswaController;
 |
 */
 
-Route::get('/',[SiswaController::class,'index']);
+Route::resource('/siswa', SiswaController::class);
