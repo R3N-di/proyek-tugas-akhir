@@ -14,8 +14,8 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $data=Guru::all();
-        return view('page.guru.index')->with('data',$data);
+        $dataGuru=Guru::all();
+        return view('page.guru.index')->with('dataGuru',$dataGuru);
     }
 
     /**

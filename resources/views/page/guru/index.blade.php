@@ -14,13 +14,13 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($data as $data)
+      @foreach($dataGuru as $data)
       <tr>
         <th scope="row">1</th>
-        <td>{{$data='nip'}}</td>
-        <td>{{$data='nama'}}</td>
-        <td>{{$data='jk'}}</td>
-        <td>{{$data='password'}}</td>
+        <td>{{$data->nip}}</td>
+        <td>{{$data->nama}}</td>
+        <td>{{$data->jk}}</td>
+        <td>{{$data->password}}</td>
         <td>Detail || Edit || Pass || Delete</td>
       </tr>
       @endforeach
