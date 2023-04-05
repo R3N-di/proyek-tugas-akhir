@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('password', 10);
             $table->enum('jk', ['L','P']);
             $table->string('gambar', 50);
-            $table->string('idmapel', 11);
+            $table->string('idmapel', 50);
             $table->foreign('idmapel')->references('mapel')->on('mapel')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

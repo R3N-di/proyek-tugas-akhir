@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('mapel', function (Blueprint $table) {
-            $table->string('mapel', 11)->unique();
+            $table->string('mapel', 50)->unique();
             $table->timestamps();
         });
     }
