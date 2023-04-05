@@ -13,14 +13,17 @@ return new class extends Migration
     {
         Schema::create('mengajar', function (Blueprint $table) {
            // $table->id();
-            $table->string('id',11)->unique();
-            $table->time('masuk');
-            $table->time('selesai');
-            $table->enum('hari',['sunday','monday','tuesday','wednesday','thursday','friday','saturday']);
-            $table->foreign('idjurusan')->referances('id')->on('jurusan')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('idkelas')->referances('id')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('idguru')->referances('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->timestamps();
+           $table->string('id',11)->unique();
+           $table->time('masuk');
+           $table->time('selesai');
+           $table->enum('hari',['sunday','monday','tuesday','wednesday','thursday','friday','saturday']);
+           $table->string('idjurusan', 11);
+           $table->string('idkelas', 11);
+           $table->string('idguru', 11);
+           $table->foreign('idjurusan')->referances('id')->on('jurusan')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->foreign('idkelas')->referances('id')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->foreign('idguru')->referances('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->timestamps();
         });
     }
 
