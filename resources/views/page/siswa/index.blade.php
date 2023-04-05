@@ -5,9 +5,11 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">NIS</th>
+        <th scope="col">Nama</th>
+        <th scope="col">JK</th>
+        <th scope="col">Password</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
@@ -16,17 +18,8 @@
         <td>Mark</td>
         <td>Otto</td>
         <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+        <td>@mdo</td>
+        <td>Detail || Edit || Pass || Delete</td>
       </tr>
       <tr>
     </tbody>
