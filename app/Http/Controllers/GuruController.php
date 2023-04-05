@@ -19,7 +19,7 @@ class GuruController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.guru.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class GuruController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('page.guru.edit');
     }
 
     /**

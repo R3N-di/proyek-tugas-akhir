@@ -19,7 +19,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('page.siswa.create');
     }
 
     /**
@@ -43,7 +43,7 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view(page.siswa.edit);
     }
 
     /**
