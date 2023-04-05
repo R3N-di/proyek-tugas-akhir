@@ -14,14 +14,16 @@
       </tr>
     </thead>
     <tbody>
+      @foreach($data as $data)
       <tr>
         <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-        <td>@mdo</td>
+        <td>{{$data='nip'}}</td>
+        <td>{{$data='nama'}}</td>
+        <td>{{$data='jk'}}</td>
+        <td>{{$data='password'}}</td>
         <td>Detail || Edit || Pass || Delete</td>
       </tr>
+      @endforeach
       <tr>
     </tbody>
   </table>
