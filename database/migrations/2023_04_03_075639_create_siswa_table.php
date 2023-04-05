@@ -17,7 +17,7 @@ return new class extends Migration
          $table->string('nama', 50);
          $table->string('password', 10);
          $table->enum('jk', ['L','P']);
-         $table->string('gambar', 5);
+         $table->string('gambar', 50);
          $table->string('idkelas', 11);
          $table->string('idjurusan', 11);
          $table->foreign('idkelas')->references('kelas')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
