@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class GuruSeeder extends Seeder
 {
@@ -13,16 +14,29 @@ class GuruSeeder extends Seeder
      */
     public function run(): void
     {
-        $feker=Faker::create('id_ID');
-        for($i=1;$i<=10;$i++){
+        $faker=Faker::create('id_ID');
+        for($i=1;$i<=5;$i++){
             DB::table('guru')->insert([
-                "id"=>$feker->regexify('[A-Z._%+-]+@[A-Z.-]+\.[A-Z]{2,4}'),
-                "nip"=>$feker->numerify('##################'),
-                "nama"=>$feker->name(),
-                "password"=>$feker->regexify('[A-Z._%+-]+@[A-Z.-]+\.[A-Z]{2,4}'),
-                "jk"=>$feker->randomElement($array = array ('L','P')),
+                "id"=>$faker->regexify('[A-Z]{11}'),
+                "nip"=>$faker->numerify('##################'),
+                "nama"=>$faker->name(),
+                "password"=>$faker->regexify('[A-Z]{10}'),
+                "jk"=>$faker->randomElement($array = array ('L','P')),
                 "gambar"=>"default_gambar.png",
-                "idmapel"=>""
+                "idmapel"=> $faker-> randomElement($array = array (
+                    'Matematika',
+                    'Pendidikan Agama Islam',
+                    'Pendidikan Pancasila dan Kewarganegaraan',
+                    'Pemrograman Berorientasi Objek',
+                    'Pendidikan Jasmani Olahraga dan Kesehatan',
+                    'Bahasa Inggris',
+                    'Bahasa Indonesia',
+                    'Pemograman Website',
+                    'Fisika',
+                    'Kimia',
+                    'Basis Data',
+                    'Bimbingan Konseling',
+                )),
             ]);
         }
     }

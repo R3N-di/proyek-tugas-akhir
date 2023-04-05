@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class SiswaSeeder extends Seeder
 {
@@ -16,14 +17,30 @@ class SiswaSeeder extends Seeder
         $faker = Faker::create('id_ID');
         for($i=1;$i<=10;$i++){
             DB::table('siswa')->insert([
-                "id"=>$faker->regexify('[A-Z]+[A-Z]+[A-Z]'),
+                "id"=>$faker->regexify('[A-Z]{11}'),
                 "nis"=>$faker->numerify('1212####'),
                 "nama"=>$faker->name,
-                "password"=>$faker->regexify('[A-Z]+[A-Z]+[A-Z]'),
+                "password"=>$faker->regexify('[A-Z]{10}'),
                 "jk"=>$faker->randomElement($array = array ('L','P')),
                 "gambar"=>"default_gambar.png",
-                "idkelas"=>"",
-                "idjurusan"=>""
+                "idkelas"=> $faker-> randomElement($array = array (
+                    '10',
+                    '11',
+                    '12',
+                    '13'
+                )),
+                "idjurusan"=>$faker-> randomElement($array = array (
+                    'RPL1',
+                    'RPL2',
+                    'TKJ1',
+                    'TKJ2',
+                    'TKR1',
+                    'TKR2',
+                    'TKR3',
+                    'TKR4',
+                    'TOI1',
+                    'TOI2'
+                )),
             ]);
         }
     }
