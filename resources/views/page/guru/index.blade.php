@@ -21,10 +21,14 @@
         <td>{{$data->nama}}</td>
         <td>{{$data->jk}}</td>
         <td>{{$data->password}}</td>
-        <td>Detail || Edit || Pass || Delete</td>
+        <td><a class="btn btn-primary btn-sm" href="/detail/{{ $data->id }}" role="button">Detail</a> 
+            <a class="btn btn-warning btn-sm" href="/edit/{{ $data->id }}" role="button">Edit</a> 
+            <a class="btn btn-danger btn-sm" href="/delete/{{ $data->id }}" role="button">delete</a> 
+        </td>
       </tr>
       @endforeach
       <tr>
     </tbody>
   </table>
+  {{$dataGuru->links()}}
 @endsection

@@ -14,7 +14,7 @@ class GuruController extends Controller
      */
     public function index()
     {
-        $dataGuru=Guru::all();
+        $dataGuru=Guru::paginate(5);
         return view('page.guru.index')->with('dataGuru',$dataGuru);
     }
 
