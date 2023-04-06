@@ -57,7 +57,15 @@ class GuruController extends Controller
             'idmapel' => $request->mapel
         ];
 
-        // if($request->has('gambar'))
+        if($request->has('gambar')){
+            $file_gambar = $request->file('gambar');
+            $gambar_ekstensi = $file_gambar->extension();
+            $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
+            $file_gambar->move(public_path('gambar'), $gambar_nama);
+        }
+        else{
+            
+        }
 
     }
 
