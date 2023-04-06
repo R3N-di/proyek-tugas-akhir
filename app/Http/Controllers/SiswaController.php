@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -11,7 +12,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        return view("page.siswa.index");
+        $dataSiswa=Siswa::paginate(5);
+        return view('page.siswa.index')->with('dataSiswa',$dataSiswa);
     }
 
     /**
@@ -27,7 +29,32 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nis' => 'required|numeric|size:18',
+            'nama' => 'required|string',
+            'jk' => 'required',
+        ], [
+            'nis.required' => 'NIS Harus Diisi',
+            'nis.numeric' => 'NIS Harus Berupa Angka',
+            'nip.size' => 'NIS Harus Memiliki 18 Angka',
+            'nama.required' => 'Nama Harus Diisi',
+            'nama.string' => 'Nama Harus Berbentuk Huruf',
+            'jk.required' => 'Jenis Kelamin Harus Diisi',
+        ]);
+
+        $data = [
+            'id' => $request->id,
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'password' => $request->password,
+            'jk' => $request->jk,
+            'idkelas' => $request->idkelas,
+            'idjurusan' => $request->idjurusan
+
+        ];
+
+        // if($request->has('gambar'))
+
     }
 
     /**

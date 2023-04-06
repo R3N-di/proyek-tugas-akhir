@@ -14,6 +14,5 @@ use App\Http\Controllers\SiswaController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::resource('/siswa', SiswaController::class);
+Route::resource('/siswa',SiswaController::class);
 Route::resource('/guru', GuruController::class);

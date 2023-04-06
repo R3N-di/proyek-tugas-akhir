@@ -27,5 +27,6 @@ class Guru extends Model
     public function mengajar(){
         return hasMany(Mengajar::class);
     }
+    
     use HasFactory;
 }

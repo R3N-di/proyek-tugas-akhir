@@ -58,7 +58,7 @@ class GuruController extends Controller
         ];
 
         // if($request->has('gambar'))
-        
+
     }
 
     /**
