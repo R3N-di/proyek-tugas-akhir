@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="#" role="button"><< Kembali</a>
+<a class="btn btn-secondary" href="{{ url()->previous() }}" role="button"><< Kembali</a>
     <form action="">
         <h3>Edit Siswa</h3>
         <div class="mb-3">
