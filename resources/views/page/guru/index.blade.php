@@ -22,10 +22,10 @@
         <td>{{$data->jk}}</td>
         <td>{{$data->password}}</td>
         <td>
-            <a class="btn btn-primary btn-sm" href="/guru/{{ $data->id }}" role="button">Detail</a>
-            <a class="btn btn-warning btn-sm" href="/guru/{{ $data->id }}/edit" role="button">Edit</a>
+            <a class="btn btn-primary btn-sm" href="{{ url('guru/'.$data->idguru) }}" role="button">Detail</a>
+            <a class="btn btn-warning btn-sm" href="/guru/{{ $data->idguru }}/edit" role="button">Edit</a>
             {{-- <a class="btn btn-danger btn-sm" href="/guru/{{ $data->id }}" role="button">delete</a>  --}}
-            <form action="{{ '/guru/'.$data->id }}" method="post">
+            <form action="{{ '/guru/'.$data->idguru }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>

@@ -50,7 +50,7 @@ class GuruController extends Controller
         ]);
 
         $data = [
-            'id' => $faker->regexify('[A-Z]{11}'),
+            'idguru' => $faker->regexify('[A-Z]{11}'),
             'nip' => $request->nip,
             'nama' => $request->nama,
             'password' => $faker->regexify('[A-Z]{10}'),
@@ -85,7 +85,10 @@ class GuruController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dataGuru = Guru::where('idguru', $id)->first();
+        return view('page.guru.detail', [
+            'dataGuru' => $dataGuru
+        ]);
     }
 
     /**
