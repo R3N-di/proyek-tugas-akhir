@@ -33,6 +33,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $faker = Faker::create('id_ID');
         $request->validate([
             'nis' => 'required|numeric|size:8',
             'nama' => 'required|string',
@@ -40,24 +41,40 @@ class SiswaController extends Controller
         ], [
             'nis.required' => 'NIS Harus Diisi',
             'nis.numeric' => 'NIS Harus Berupa Angka',
-            'nip.size' => 'NIS Harus Memiliki 8 Angka',
+            'nis.size' => 'NIS Harus Memiliki 8 Angka',
             'nama.required' => 'Nama Harus Diisi',
             'nama.string' => 'Nama Harus Berbentuk Huruf',
             'jk.required' => 'Jenis Kelamin Harus Diisi',
         ]);
 
         $data = [
-            'id' => $request->id,
+            'idsiswa' => $faker->regexify('[A-Z]{11}'),
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'password' => $request->password,
+            'password' => $faker->regexify('[A-Z]{10}'),
             'jk' => $request->jk,
             'idkelas' => $request->idkelas,
             'idjurusan' => $request->idjurusan
 
         ];
 
-        // if($request->has('gambar'))
+        if($request->has('gambar')){
+            $request->validate([
+                'gambar' => 'mimes:png,jpg,jpeg'
+            ], [
+                'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
+            ]);
+
+            $file_gambar = $request->file('gambar');
+            $gambar_ekstensi = $file_gambar->extension();
+            $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
+            $file_gambar->move(public_path('gambar'), $gambar_nama);
+
+            $data['gambar'] = $gambar_nama;
+        }
+
+        Siswa::create($data);
+        return redirect('/siswa')->withInfo('Berhasil Menambahkan ' . $request->nama);
 
     }
 
@@ -85,6 +102,27 @@ class SiswaController extends Controller
     {
         $dataSiswa = Siswa::findOrFail($idsiswa);
 
+        $request->validate([
+            'nis'=> 'required|numeric|size:8',
+            'nama' => 'required',
+            'jk'=> 'required',
+            'idkelas' => 'required',
+            'idjurusan' => 'required'
+
+        ],
+        [
+            'nis.required' => 'Nisa Harus Diisi',
+            'nis.numeric' => 'Nis Harus Berupa Angka',
+            'nis.size' => 'Nis Harus 8 Angka',
+            'nama.required' => 'Nama Harus Diisi',
+            'jk.required' => 'Jenis Kelamin Harus Diisi',
+            'idjurusan.required' => 'Jurusan Harus Diisi',
+            'idkelas.required' => 'Kelas Harus Diisi',
+
+        ]
+
+        );
+
         $data = [
             'idsiswa' => $request->idsiswa,
             'nis' => $request->nis,
@@ -98,6 +136,9 @@ class SiswaController extends Controller
 
         $dataSiswa -> update($data);
         return redirect('/siswa');
+
+        // Siswa::where('idsiswa', $idsiswa)->update($data);
+        // return redirect('/siswa')->with('success', 'Berhasil mengubah data');
 
 
     }

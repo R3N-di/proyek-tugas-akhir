@@ -32,12 +32,12 @@
         </div>
         <div class="mb-3">
           <label for="gambar" class="form-label">Gambar :</label>
-          <input type="file" class="form-control" name="gambar" id="gambar" aria-describedby="helpId">
+          <input type="file" class="form-control" name="gambar" id="gambar" value="{{$dataSiswa->gambar}}" aria-describedby="helpId">
         </div>
         <div class="d-flex gap-3">
             <div class="mb-3">
               <label for="kelas" class="form-label">Kelas :</label>
-                    <select name="kelas" id="kelas">
+                    <select name="kelas" id="kelas" value={{$dataSiswa->idkelas}}>
                         <option value="10">X</option>
                         <option value="11">XI</option>
                         <option value="12">XII</option>
@@ -46,7 +46,7 @@
             </div>
             <div class="mb-3">
                 <label for="jurusan" class="form-label">Jurusan</label>
-                    <select name="jurusan" id="jurusan">
+                    <select name="jurusan" id="jurusan" value={{$dataSiswa->idjurusan}}>
                         <option value="RPL1">Rekayasa Perangkat Lunak 1</option>
                         <option value="RPL2">Rekayasa Perangkat Lunak 2</option>
                         <option value="TKJ1">Teknik Komputer Jaringan 1</option>
