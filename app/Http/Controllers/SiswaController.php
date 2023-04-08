@@ -58,23 +58,7 @@ class SiswaController extends Controller
 
         ];
 
-        if($request->has('gambar')){
-            $request->validate([
-                'gambar' => 'mimes:png,jpg,jpeg'
-            ], [
-                'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
-            ]);
 
-            $file_gambar = $request->file('gambar');
-            $gambar_ekstensi = $file_gambar->extension();
-            $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
-            $file_gambar->move(public_path('gambar'), $gambar_nama);
-
-            $data['gambar'] = $gambar_nama;
-        }
-
-        Siswa::create($data);
-        return redirect('/siswa')->withInfo('Berhasil Menambahkan ' . $request->nama);
 
     }
 
@@ -134,11 +118,22 @@ class SiswaController extends Controller
 
         ];
 
-        $dataSiswa -> update($data);
-        return redirect('/siswa');
+        if($request->has('gambar')){
+            $request->validate([
+                'gambar' => 'mimes:png,jpg,jpeg'
+            ], [
+                'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
+            ]);
 
-        // Siswa::where('idsiswa', $idsiswa)->update($data);
-        // return redirect('/siswa')->with('success', 'Berhasil mengubah data');
+            $file_gambar = $request->file('gambar');
+            $gambar_ekstensi = $file_gambar->extension();
+            $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
+            $file_gambar->move(public_path('gambar'), $gambar_nama);
+
+            $data['gambar'] = $gambar_nama;
+        }
+        Siswa::update($data);
+        return redirect('/siswa')->withinfo('Berhasil Mengubah Data');
 
 
     }
