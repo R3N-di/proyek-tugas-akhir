@@ -57,7 +57,6 @@ class SiswaController extends Controller
             'idjurusan' => $request->idjurusan
 
         ];
-
         if($request->has('gambar')){
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
@@ -72,10 +71,12 @@ class SiswaController extends Controller
 
             $data['gambar'] = $gambar_nama;
         }
+        else{
+            $data['gambar'] = "default_gambar.png";
+        }
 
         Siswa::create($data);
         return redirect('/siswa')->withInfo('Berhasil Menambahkan ' . $request->nama);
-
     }
 
     /**
