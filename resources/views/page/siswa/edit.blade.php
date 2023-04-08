@@ -1,9 +1,10 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="{{ url()->previous() }}" role="button"><< Kembali</a>
-    <form action="/siswa/{{$data->idsiswa}}" method="POST">
-        @csrf @method('PUT')
+<a class="btn btn-secondary" href="{{ url('siswa/') }}" role="button"><< Kembali</a>
+    <form action="/siswa/{{ $dataSiswa->idsiswa }}" method="POST" enctype="multipart/form-data">
+        @csrf 
+        @method('PUT')
         <h3>Edit Siswa</h3>
         <div class="mb-3">
           <label for="nis" class="form-label">NIS</label>
@@ -17,13 +18,13 @@
           <label for="nis" class="form-label">Jenis Kelamin</label>
           <div class="d-flex gap-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="jk" id="L" value="{{$dataSiswa->jk == L ? 'checked' == ''}}">
+                <input class="form-check-input" type="radio" name="jk" id="L" value="{{$dataSiswa->jk == 'L' ? 'checked' : ''}}">
                 <label class="form-check-label" for="L">
                   Laki - Laki
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="jk" id="P" value="{{$dataSiswa->jk == P ? 'checked' == ''}}">
+                <input class="form-check-input" type="radio" name="jk" id="P" value="{{$dataSiswa->jk == 'P' ? 'checked' : ''}}">
                 <label class="form-check-label" for="P">
                   Perempuan
                 </label>
@@ -36,27 +37,19 @@
         </div>
         <div class="d-flex gap-3">
             <div class="mb-3">
-              <label for="kelas" class="form-label">Kelas :</label>
-                    <select name="kelas" id="kelas" value={{$dataSiswa->idkelas}}>
-                        <option value="10">X</option>
-                        <option value="11">XI</option>
-                        <option value="12">XII</option>
-                        <option value="13">XIII</option>
+              <label for="idkelas" class="form-label">Kelas :</label>
+                    <select name="idkelas" id="idkelas" value={{$dataSiswa->idkelas}}>
+                        @foreach ($dataKelas as $data)
+                            <option value="{{ $data->kelas }}">{{ $data->kelas }}</option>
+                        @endforeach
                     </select>
             </div>
             <div class="mb-3">
-                <label for="jurusan" class="form-label">Jurusan</label>
-                    <select name="jurusan" id="jurusan" value={{$dataSiswa->idjurusan}}>
-                        <option value="RPL1">Rekayasa Perangkat Lunak 1</option>
-                        <option value="RPL2">Rekayasa Perangkat Lunak 2</option>
-                        <option value="TKJ1">Teknik Komputer Jaringan 1</option>
-                        <option value="TKJ2">Teknik Komputer Jaringan 2</option>
-                        <option value="TKR1">Teknik Kendaraan Ringan 1</option>
-                        <option value="TKR2">Teknik Kendaraan Ringan 2</option>
-                        <option value="TKR3">Teknik Kendaraan Ringan 3</option>
-                        <option value="TKR4">Teknik Kendaraan Ringan 4</option>
-                        <option value="TOI1">Teknik Otomasi Industri 1</option>
-                        <option value="TOI2">Teknik Otomasi Industri 2</option>
+                <label for="idjurusan" class="form-label">Jurusan</label>
+                    <select name="idjurusan" id="idjurusan" value={{$dataSiswa->idjurusan}}>
+                        @foreach ($dataJurusan as $data)
+                            <option value="{{ $data->jurusan }}">{{ $data->nama }}</option>
+                        @endforeach
                     </select>
             </div>
         </div>

@@ -92,10 +92,12 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $idsiswa)
+    public function edit(string $id)
     {
-        $dataSiswa  = Siswa::findOrFail($idsiswa);
-        return view('page.siswa.edit', compact('dataSiswa'));
+        $dataSiswa  = Siswa::where('idsiswa', $id)->first();
+        $dataKelas = Kelas::all();
+        $dataJurusan = Jurusan::all();
+        return view('page.siswa.edit', compact('dataSiswa', 'dataKelas', 'dataJurusan'));
     }
 
     /**
@@ -122,15 +124,13 @@ class SiswaController extends Controller
             'idjurusan.required' => 'Jurusan Harus Diisi',
             'idkelas.required' => 'Kelas Harus Diisi',
 
-        ]
-
-        );
+        ]);
 
         $data = [
-            'idsiswa' => $request->idsiswa,
+            // 'idsiswa' => $request->idsiswa,
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'password' => $request->password,
+            // 'password' => $request->password,
             'jk' => $request->jk,
             'idkelas' => $request->idkelas,
             'idjurusan' => $request->idjurusan
