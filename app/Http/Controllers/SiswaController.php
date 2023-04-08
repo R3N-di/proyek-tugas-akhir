@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Siswa;
+use App\Models\Kelas;
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -21,7 +23,9 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('page.siswa.create');
+        $dataKelas = Kelas::all();
+        $dataJurusan = Jurusan::all();
+        return view('page.siswa.create', compact('dataKelas','dataJurusan'));
     }
 
     /**

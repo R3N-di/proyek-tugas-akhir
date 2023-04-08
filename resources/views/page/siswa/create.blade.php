@@ -1,8 +1,8 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="{{ url()->previous() }}" role="button"><< Kembali</a>
-    <form action="">
+<a class="btn btn-secondary" href="{{ url('/siswa') }}" role="button"><< Kembali</a>
+    <form action="/siswa" method="post" enctype="multipart/form-data">
         <h3>Tambah Siswa</h3>
         <div class="mb-3">
           <label for="nis" class="form-label">NIS</label>
