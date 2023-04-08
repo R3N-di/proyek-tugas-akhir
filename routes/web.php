@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\SiswaController;
 
 /*
@@ -20,3 +21,7 @@ Route::resource('/siswa',SiswaController::class);
 
 //Route guru
 Route::resource('/guru', GuruController::class);
+
+// Route Absen
+Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa']);
+Route::get('/absen/guru', [AbsenController::class, 'absen_guru']);
