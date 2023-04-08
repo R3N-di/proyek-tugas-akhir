@@ -39,7 +39,7 @@
               <label for="idmapel" class="form-label">Mapel :</label>
                     <select name="idmapel" id="idmapel">
                         @foreach ($dataMapel as $data) 
-                            <option name="idmapel" value="{{ $data->mapel }}">{{ $data->mapel }}</option>
+                            <option value="{{ $data->mapel }}">{{ $data->mapel }}</option>
                         @endforeach
                     </select>
             </div>
