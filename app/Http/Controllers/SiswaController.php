@@ -34,13 +34,13 @@ class SiswaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nis' => 'required|numeric|size:18',
+            'nis' => 'required|numeric|size:8',
             'nama' => 'required|string',
             'jk' => 'required',
         ], [
             'nis.required' => 'NIS Harus Diisi',
             'nis.numeric' => 'NIS Harus Berupa Angka',
-            'nip.size' => 'NIS Harus Memiliki 18 Angka',
+            'nip.size' => 'NIS Harus Memiliki 8 Angka',
             'nama.required' => 'Nama Harus Diisi',
             'nama.string' => 'Nama Harus Berbentuk Huruf',
             'jk.required' => 'Jenis Kelamin Harus Diisi',
@@ -72,17 +72,34 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $idsiswa)
     {
-        return view(page.siswa.edit);
+        $dataSiswa  = Siswa::findOrFail($idsiswa);
+        return view('page.siswa.edit', compact('dataSiswa'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $idsiswa)
     {
-        //
+        $dataSiswa = Siswa::findOrFail($idsiswa);
+
+        $data = [
+            'idsiswa' => $request->idsiswa,
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'password' => $request->password,
+            'jk' => $request->jk,
+            'idkelas' => $request->idkelas,
+            'idjurusan' => $request->idjurusan
+
+        ];
+
+        $dataSiswa -> update($data);
+        return redirect('/siswa');
+
+
     }
 
     /**
