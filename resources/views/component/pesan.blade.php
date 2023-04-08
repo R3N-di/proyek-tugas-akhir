@@ -1,12 +1,12 @@
 @if ($errors->any())
-    @foreach ($errors->all() as $error)
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                <strong>Terjadi Kesalahan!</strong>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            <strong>Terjadi Kesalahan!</strong>
+            @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
-            </ul>
-        </div>
-    @endforeach
+            @endforeach
+        </ul>
+    </div>
 @endif
 
 @if (Session::get('info'))
