@@ -2,7 +2,7 @@
 
 @section('konten')
 <a class="btn btn-secondary" href="{{ url()->previous() }}" role="button"><< Kembali</a>
-    <form action="">
+    <form action="/guru" method="post" enctype="multipart/form-data">
         <h3>Edit Guru</h3>
         <div class="mb-3">
           <label for="nip" class="form-label">NIP</label>

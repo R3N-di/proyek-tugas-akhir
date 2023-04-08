@@ -3,6 +3,7 @@
 @section('konten')
 <a class="btn btn-secondary" href="{{ url('/siswa') }}" role="button"><< Kembali</a>
     <form action="/siswa" method="post" enctype="multipart/form-data">
+        @csrf
         <h3>Tambah Siswa</h3>
         <div class="mb-3">
           <label for="nis" class="form-label">NIS</label>
@@ -37,7 +38,7 @@
             <div class="mb-3">
               <label for="idkelas" class="form-label">Kelas :</label>
                     <select name="idkelas" id="idkelas">
-                        @foreach ($dataKelas as $data) 
+                        @foreach ($dataKelas as $data)
                             <option value="{{ $data->kelas }}">{{ $data->kelas }}</option>
                         @endforeach
                     </select>
@@ -45,7 +46,7 @@
             <div class="mb-3">
                 <label for="idjurusan" class="form-label">Jurusan</label>
                     <select name="idjurusan" id="idjurusan">
-                        @foreach ($dataJurusan as $data) 
+                        @foreach ($dataJurusan as $data)
                             <option value="{{ $data->jurusan }}">{{ $data->nama }}</option>
                         @endforeach
                     </select>

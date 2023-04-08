@@ -6,6 +6,7 @@ use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Faker\Factory as Faker;
 
 class SiswaController extends Controller
 {
@@ -35,13 +36,14 @@ class SiswaController extends Controller
     {
         $faker = Faker::create('id_ID');
         $request->validate([
-            'nis' => 'required|numeric|size:8',
+            'nis' => 'required|integer|min_digits:8|unique:siswa,nis',
             'nama' => 'required|string',
             'jk' => 'required',
         ], [
             'nis.required' => 'NIS Harus Diisi',
-            'nis.numeric' => 'NIS Harus Berupa Angka',
-            'nis.size' => 'NIS Harus Memiliki 8 Angka',
+            'nis.integer' => 'NIS Harus Berupa Angka',
+            'nis.min_digits' => 'NIS Harus Memiliki 8 Angka',
+            'nis.unique' => 'NIS Sudah pernah digunakan',
             'nama.required' => 'Nama Harus Diisi',
             'nama.string' => 'Nama Harus Berbentuk Huruf',
             'jk.required' => 'Jenis Kelamin Harus Diisi',
@@ -57,9 +59,26 @@ class SiswaController extends Controller
             'idjurusan' => $request->idjurusan
 
         ];
+        if($request->has('gambar')){
+            $request->validate([
+                'gambar' => 'mimes:png,jpg,jpeg'
+            ], [
+                'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
+            ]);
 
+            $file_gambar = $request->file('gambar');
+            $gambar_ekstensi = $file_gambar->extension();
+            $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
+            $file_gambar->move(public_path('gambar'), $gambar_nama);
 
+            $data['gambar'] = $gambar_nama;
+        }
+        else{
+            $data['gambar'] = "default_gambar.png";
+        }
 
+        Siswa::create($data);
+        return redirect('/siswa')->withInfo('Berhasil Menambahkan ' . $request->nama);
     }
 
     /**
