@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\Mapel;
-use Illuminate\Http\Request;
 use Faker\Factory as Faker;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class GuruController extends Controller
 {
@@ -112,6 +113,13 @@ class GuruController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dataGuru = Guru::where('idguru', $id)->first();
+
+        if($dataGuru->gambar != "default_gambar.png"){
+            File::delete(public_path('gambar/') . $dataGuru->gambar);
+        }
+
+        Guru::where('idguru', $id)->delete();
+        return redirect('/guru')->withInfo('Berhasil menghapus Data');
     }
 }
