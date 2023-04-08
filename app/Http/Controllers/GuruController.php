@@ -34,18 +34,19 @@ class GuruController extends Controller
     {
         $faker = Faker::create('id_ID');
         $request->validate([
-            'nip' => 'required|integer|size:18',
+            'nip' => 'required|integer|min_digits:18|unique:guru,nip',
             'nama' => 'required|string',
             'jk' => 'required',
-            'mapel' => 'required'
+            'idmapel' => 'required'
         ], [
             'nip.required' => 'NIP harus dimasukan',
             'nip.integer' => 'NIP harus berupa nomor',
-            'nip.size' => 'NIP harus memiliki 18 huruf',
+            'nip.min_digits' => 'NIP harus memiliki 18 angka',
+            'nip.unique' => 'NIP sudah pernah digunakan',
             'nama.required' => 'Nama harus dimasukan',
             'nama.string' => 'Nama harus berbentuk huruf',
             'jk.required' => 'Jenis Kelamin harus diisi',
-            'mapel' => 'Mapel harus diisi'
+            'idmapel' => 'Mapel harus diisi'
         ]);
 
         $data = [
@@ -54,19 +55,29 @@ class GuruController extends Controller
             'nama' => $request->nama,
             'password' => $faker->regexify('[A-Z]{10}'),
             'jk' => $request->jk,
-            'idmapel' => $request->mapel
+            'idmapel' => $request->idmapel
         ];
 
         if($request->has('gambar')){
+            $request->validate([
+                'gambar' => 'mimes:png,jpg,jpeg'
+            ], [
+                'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
+            ]);
+
             $file_gambar = $request->file('gambar');
             $gambar_ekstensi = $file_gambar->extension();
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
             $file_gambar->move(public_path('gambar'), $gambar_nama);
+
+            $data['gambar'] = $gambar_nama;
         }
         else{
-            
+            $data['gambar'] = "default_gambar.png";
         }
 
+        Guru::create($data);
+        return redirect('/guru')->withInfo('Berhasil Menambahkan ' . $request->nama);
     }
 
     /**
