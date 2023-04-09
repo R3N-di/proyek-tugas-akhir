@@ -86,7 +86,10 @@ class SiswaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dataSiswa = Siswa::where('idsiswa', $id)->first();
+        return view('page.siswa.detail', [
+            'dataSiswa' => $dataSiswa
+        ]);
     }
 
     /**
