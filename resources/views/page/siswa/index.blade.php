@@ -9,7 +9,7 @@
             <select name="idmapel" id="idmapel">
                 <option value="Coba">Coba</option>
             </select>
-            
+
             <label for="idjurusan" class="form-label">Jurusan :</label>
             <select name="idjurusan" id="idmapel">
                 <option value="Coba">Coba</option>
@@ -47,7 +47,7 @@
                 <a class="btn btn-primary btn-sm" href="/siswa/{{ $data->idsiswa }}" role="button">Detail</a>
                 <a class="btn btn-warning btn-sm" href="/siswa/{{ $data->idsiswa }}/edit" role="button">Edit</a>
                 {{-- <a class="btn btn-danger btn-sm" href="/guru/{{ $data->id }}" role="button">delete</a>  --}}
-                <form action="{{ '/siswa/'.$data->idsiswa }}" method="post">
+                <form onsubmit="return confirm('Yakin Ingin Hapus Data?')" action="{{ url('siswa/'.$data->idsiswa) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>

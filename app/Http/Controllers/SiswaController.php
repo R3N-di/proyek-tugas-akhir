@@ -165,6 +165,13 @@ class SiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dataSiswa = Siswa::where('idsiswa', $id)->first();
+
+        if($dataSiswa->gambar != "default_gambar.png"){
+            File::delete(public_path('gambar/') . $dataSiswa->gambar);
+        }
+
+        Siswa::where('idsiswa', $id)->delete();
+        return redirect('/siswa')->withInfo('Berhasil menghapus Data');
     }
 }
