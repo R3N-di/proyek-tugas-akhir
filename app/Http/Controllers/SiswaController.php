@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Jurusan;
+use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -33,33 +34,8 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nis' => 'required|numeric|size:8',
-            'nama' => 'required|string',
-            'jk' => 'required',
-        ], [
-            'nis.required' => 'NIS Harus Diisi',
-            'nis.numeric' => 'NIS Harus Berupa Angka',
-            'nip.size' => 'NIS Harus Memiliki 8 Angka',
-            'nama.required' => 'Nama Harus Diisi',
-            'nama.string' => 'Nama Harus Berbentuk Huruf',
-            'jk.required' => 'Jenis Kelamin Harus Diisi',
-        ]);
-
-        $data = [
-            'id' => $request->id,
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'password' => $request->password,
-            'jk' => $request->jk,
-            'idkelas' => $request->idkelas,
-            'idjurusan' => $request->idjurusan
-
-        ];
-
         // if($request->has('gambar'))
-        
-        $faker= Faker::create(id_ID);
+        $faker= Faker::create('id_ID');
         $request->validate([
             'nis' => 'required|numeric|size:8',
             'nama' => 'required|string',
@@ -67,7 +43,7 @@ class SiswaController extends Controller
         ], [
             'nis.required' => 'NIS Harus Diisi',
             'nis.numeric' => 'NIS Harus Berupa Angka',
-            'nip.size' => 'NIS Harus Memiliki 8 Angka',
+            'nis.min_digits' => 'NIS Harus Memiliki 8 Angka',
             'nama.required' => 'Nama Harus Diisi',
             'nama.string' => 'Nama Harus Berbentuk Huruf',
             'jk.required' => 'Jenis Kelamin Harus Diisi',

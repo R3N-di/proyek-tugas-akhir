@@ -3,6 +3,7 @@
 @section('konten')
 <a class="btn btn-secondary" href="{{ url('/siswa') }}" role="button"><< Kembali</a>
     <form action="/siswa" method="post" enctype="multipart/form-data">
+      @csrf
         <h3>Tambah Siswa</h3>
         <div class="mb-3">
           <label for="nis" class="form-label">NIS</label>

@@ -95,9 +95,10 @@ class GuruController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $idguru)
     {
-        return view('page.guru.edit');
+        $dataguru = Guru::findOrFail($idguru);
+        return view('page.guru.edit',compact('dataguru'));
     }
 
     /**
