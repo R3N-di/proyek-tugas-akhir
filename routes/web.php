@@ -5,6 +5,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\MengajarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,3 +30,6 @@ Route::get('/absen/guru', [AbsenController::class, 'absen_guru']);
 
 // Route Login
 Route::get('/login', [SessionController::class, 'index']);
+
+// Route Mengajar
+Route::resource('/mengajar', MengajarController::class);
