@@ -3,11 +3,18 @@
 @section('konten')
 <div class="d-flex justify-content-between">
     <div>
-        <label for="idmapel" class="form-label">Mapel :</label>
-        <select name="idmapel" id="idmapel">
-            <option value="Coba">Coba</option>
-            <option value="Coba2">Coba2</option>
-        </select>
+        <form action="" method="">
+            <label for="idmapel" class="form-label">Kelas :</label>
+            <select name="idmapel" id="idmapel">
+                <option value="Coba">Coba</option>
+            </select>
+            
+            <label for="idmapel" class="form-label">Jurusan :</label>
+            <select name="idmapel" id="idmapel">
+                <option value="Coba">Coba</option>
+            </select>
+            <a class="btn btn-primary btn-sm" href="#" role="button">Cari</a>
+        </form>
     </div>
     <div>
         <form class="d-flex" action="/absen" method="post">

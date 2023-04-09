@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,6 @@ Route::resource('/guru', GuruController::class);
 // Route Absen
 Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa']);
 Route::get('/absen/guru', [AbsenController::class, 'absen_guru']);
+
+// Route Login
+Route::get('/login', [SessionController::class, 'index']);
