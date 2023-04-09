@@ -2,6 +2,24 @@
 
 @section('konten')
 <a class="btn btn-success" href="{{ url('/guru/create') }}" role="button">Tambah ++</a>
+
+<div class="d-flex justify-content-between">
+    <div>
+        <form action="" method="">
+            <label for="idmapel" class="form-label">Mapel :</label>
+            <select name="idmapel" id="idmapel">
+                <option value="Coba">Coba</option>
+            </select>
+            <a class="btn btn-primary btn-sm" href="#" role="button">Cari</a>
+        </form>
+    </div>
+    <div>
+        <form class="d-flex" action="/absen" method="post">
+            <input class="form-control" type="search" name="cari">
+            <a class="btn btn-primary" href="#" role="button">Cari</a>
+        </form>
+    </div>
+</div>
 <table class="table">
     <thead>
       <tr>
