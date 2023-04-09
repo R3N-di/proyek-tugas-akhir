@@ -17,7 +17,8 @@ class MengajarController extends Controller
      */
     public function index()
     {
-        return view('page.mengajar.index');
+        $datamengajar=Mengajar::all();
+        return view('page.mengajar.index')->with('datamengajar',$datamengajar);
     }
 
     /**
@@ -95,6 +96,9 @@ class MengajarController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dataMengajar = Mengajar::where('idmengajar', $id)->first();
+
+        Mengajar::where('idmengajar', $id)->delete();
+        return redirect('/mengajar')->withInfo('Berhasil Menghapus Data');
     }
 }
