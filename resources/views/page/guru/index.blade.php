@@ -34,7 +34,7 @@
     <tbody>
       @foreach($dataGuru as $data)
       <tr>
-        <th scope="row">1</th>
+        <th scope="row">{{++$i}}</th>
         <td>{{$data->nip}}</td>
         <td>{{$data->nama}}</td>
         <td>{{$data->jk}}</td>

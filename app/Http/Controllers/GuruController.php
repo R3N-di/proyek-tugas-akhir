@@ -13,10 +13,11 @@ class GuruController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $dataGuru=Guru::paginate(5);
-        return view('page.guru.index')->with('dataGuru',$dataGuru);
+        $pagination = 5;
+        return view('page.guru.index')->with('dataGuru',$dataGuru)->with('i', ($request->input('page', 1)-1)*$pagination);
     }
 
     /**

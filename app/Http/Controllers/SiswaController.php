@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
 use App\Models\Kelas;
+use App\Models\Siswa;
 use App\Models\Jurusan;
-use Illuminate\Http\Request;
 use Faker\Factory as Faker;
+use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $dataSiswa=Siswa::paginate(5);
-        return view('page.siswa.index')->with('dataSiswa',$dataSiswa);
+        $pagination = 5;
+        return view('page.siswa.index')->with('dataSiswa',$dataSiswa)->with('i', ($request->input('page', 1)-1)*$pagination);
     }
 
     /**
@@ -65,7 +66,6 @@ class SiswaController extends Controller
             ], [
                 'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
             ]);
-
             $file_gambar = $request->file('gambar');
             $gambar_ekstensi = $file_gambar->extension();
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
@@ -95,23 +95,25 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $idsiswa)
     {
-        $dataSiswa  = Siswa::where('idsiswa', $id)->first();
+        $dataSiswa  = Siswa::where('idsiswa', $idsiswa)->first();
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
+
         return view('page.siswa.edit', compact('dataSiswa', 'dataKelas', 'dataJurusan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $idsiswa)
+    public function update(Request $request, String $idsiswa)
     {
+
         $dataSiswa = Siswa::findOrFail($idsiswa);
 
         $request->validate([
-            'nis'=> 'required|numeric|size:8',
+            'nis'=> 'required|numeric|min_digits:8',
             'nama' => 'required',
             'jk'=> 'required',
             'idkelas' => 'required',
@@ -121,7 +123,7 @@ class SiswaController extends Controller
         [
             'nis.required' => 'Nisa Harus Diisi',
             'nis.numeric' => 'Nis Harus Berupa Angka',
-            'nis.size' => 'Nis Harus 8 Angka',
+            'nis.min_digits' => 'Nis Harus 8 Angka',
             'nama.required' => 'Nama Harus Diisi',
             'jk.required' => 'Jenis Kelamin Harus Diisi',
             'idjurusan.required' => 'Jurusan Harus Diisi',
@@ -130,10 +132,10 @@ class SiswaController extends Controller
         ]);
 
         $data = [
-            // 'idsiswa' => $request->idsiswa,
+            'idsiswa' => $request->idsiswa,
             'nis' => $request->nis,
             'nama' => $request->nama,
-            // 'password' => $request->password,
+            'password' => $request->password,
             'jk' => $request->jk,
             'idkelas' => $request->idkelas,
             'idjurusan' => $request->idjurusan
@@ -154,7 +156,8 @@ class SiswaController extends Controller
 
             $data['gambar'] = $gambar_nama;
         }
-        Siswa::update($data);
+
+        $dataSiswa->update($data);
         return redirect('/siswa')->withinfo('Berhasil Mengubah Data');
 
 
@@ -172,6 +175,6 @@ class SiswaController extends Controller
         }
 
         Siswa::where('idsiswa', $id)->delete();
-        return redirect('/siswa')->withInfo('Berhasil menghapus Data');
+        return redirect('/siswa')->withInfo('Berhasil Menghapus Data');
     }
 }

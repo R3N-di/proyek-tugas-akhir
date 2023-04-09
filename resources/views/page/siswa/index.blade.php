@@ -36,9 +36,12 @@
       </tr>
     </thead>
     <tbody>
+
         @foreach ( $dataSiswa as $data )
         <tr>
-            <th scope="row">1</th>
+            <th scope="row">
+                {{++$i }}
+           </th>
             <td>{{$data->nis}}</td>
             <td>{{$data->nama}}</td>
             <td>{{$data->jk}}</td>
