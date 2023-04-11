@@ -13,11 +13,22 @@ class SiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $dataSiswa=Siswa::paginate(5);
-        $pagination = 5;
-        return view('page.siswa.index')->with('dataSiswa',$dataSiswa)->with('i', ($request->input('page', 1)-1)*$pagination);
+        // $dataSiswa=Siswa::paginate(5);
+        // $pagination = 5;
+        // return view('page.siswa.index')->with('dataSiswa',$dataSiswa)->with('i', ($request->input('page', 1)-1)*$pagination);
+
+        if(request('cari')){
+            $dataSiswa = Siswa::where('nama', 'like', '%'.request('cari').'%')->paginate(5);
+        }
+        else{
+            $dataSiswa = Siswa::paginate(5);
+        }
+
+        return view('page.siswa.index', [
+            'dataSiswa' => $dataSiswa
+        ]);
     }
 
     /**

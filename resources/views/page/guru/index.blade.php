@@ -14,10 +14,13 @@
         </form>
     </div>
     <div>
-        <form class="d-flex" action="/absen" method="post">
-            <input class="form-control" type="search" name="cari">
-            <a class="btn btn-primary" href="#" role="button">Cari</a>
+        <form class="d-flex" action="/guru" method="get">
+            <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off">
+            <input class="btn btn-primary" type="submit" value="Cari">
         </form>
+    </div>
+    <div>
+        <a href="/guru" class="btn btn-warning">Daftar Guru</a>
     </div>
 </div>
 <table class="table">
@@ -32,9 +35,9 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($dataGuru as $data)
+      @foreach($dataGuru as $key => $data)
       <tr>
-        <th scope="row">{{++$i}}</th>
+        <th scope="row">{{$dataGuru -> firstitem() + $key}}</th>
         <td>{{$data->nip}}</td>
         <td>{{$data->nama}}</td>
         <td>{{$data->jk}}</td>

@@ -18,10 +18,13 @@
         </form>
     </div>
     <div>
-        <form class="d-flex" action="/absen" method="post">
-            <input class="form-control" type="search" name="cari">
-            <a class="btn btn-primary" href="#" role="button">Cari</a>
+        <form class="d-flex" action="/siswa" method="get">
+            <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari siswa..." autocomplete="off">
+            <input class="btn btn-primary" type="submit" value="Cari">
         </form>
+    </div>
+    <div>
+        <a href="/siswa" class="btn btn-warning">Daftar Siswa</a>
     </div>
 </div>
 <table class="table">
@@ -37,10 +40,10 @@
     </thead>
     <tbody>
 
-        @foreach ( $dataSiswa as $data )
+        @foreach ( $dataSiswa as $key => $data )
         <tr>
             <th scope="row">
-                {{++$i }}
+                {{ $dataSiswa->firstitem() + $key }}
            </th>
             <td>{{$data->nis}}</td>
             <td>{{$data->nama}}</td>

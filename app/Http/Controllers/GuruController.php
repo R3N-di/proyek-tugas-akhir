@@ -15,9 +15,16 @@ class GuruController extends Controller
      */
     public function index(Request $request)
     {
-        $dataGuru=Guru::paginate(5);
-        $pagination = 5;
-        return view('page.guru.index')->with('dataGuru',$dataGuru)->with('i', ($request->input('page', 1)-1)*$pagination);
+        if(request('cari')){
+            $dataGuru = Guru::where('nama', 'like', '%'.request('cari').'%')->paginate(5);
+        }
+        else{
+            $dataGuru = Guru::paginate(5);
+        }
+
+        return view('page.guru.index', [
+            'dataGuru' => $dataGuru
+        ]);
     }
 
     /**
