@@ -8,14 +8,15 @@
   </head>
   <body>
     <div class="container">
-        <form action="" method="post">
+        <form action="/login" method="post">
+            @csrf
             <div class="mb-3">
-              <label for="" class="form-label">Name</label>
-              <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+              <label for="nis" class="form-label">NIS</label>
+              <input type="text" class="form-control" name="nis" aria-describedby="helpId" placeholder="Masukan NIS...">
             </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
-              <input type="text" class="form-control" name="password" id="password" aria-describedby="helpId" placeholder="Masukan Password">
+              <input type="text" class="form-control" name="password" aria-describedby="helpId" placeholder="Masukan Password">
             </div>
             <button type="submit" class="btn btn-primary">Login</button>
         </form>

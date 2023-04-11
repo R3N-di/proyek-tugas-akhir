@@ -6,9 +6,14 @@ use App\Models\Kelas;
 use App\Models\Jurusan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class Siswa extends Model
+class Siswa extends Authenticatable
 {
+    use HasApiTokens, HasFactory, Notifiable;
+    
     protected $table="siswa";
     protected $primaryKey="idsiswa";
     protected $fillable = [
@@ -31,5 +36,4 @@ class Siswa extends Model
     public function absen(){
         return $this->hasMany(Absen::class);
     }
-    use HasFactory;
 }

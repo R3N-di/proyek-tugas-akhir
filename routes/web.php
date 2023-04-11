@@ -29,8 +29,9 @@ Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa']);
 Route::get('/absen/guru', [AbsenController::class, 'absen_guru']);
 
 // Route Login
-Route::post('/login/', [SessionController::class, 'index']);
-Route::get('/beranda', [SessionController::class, 'beranda']);
+Route::get('/coba/', [SessionController::class, 'index']);
+Route::post('login/', [SessionController::class, 'login']);
+// Route::get('/beranda', [SessionController::class, 'beranda']);
 
 // Route Mengajar
 Route::resource('/mengajar', MengajarController::class);
