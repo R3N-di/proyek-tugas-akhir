@@ -12,8 +12,9 @@ use Illuminate\Database\Eloquent\Model;
 class Mengajar extends Model
 {
     protected $table="mengajar";
+    protected $primaryKey="idmengajar";
     protected $fillable = [
-        "id",
+        "idmengajar",
         "masuk",
         "selesai",
         "hari",

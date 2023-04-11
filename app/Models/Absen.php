@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Absen extends Model
 {
     protected $table="absen";
+    protected $primaryKey="idabsen";
     protected $fillable = [
-        "id",
+        "idabsen",
         "idsiswa",
         "idmengajar",
         "status",
@@ -24,6 +25,6 @@ class Absen extends Model
     public function siswa(){
         return $this->belongsToMany(Mengajar::class, 'idsiswa');
     }
-    
+
     use HasFactory;
 }

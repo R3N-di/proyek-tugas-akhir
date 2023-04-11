@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Guru extends Model
 {
     protected $table= "guru";
+    protected $primaryKey="idguru";
     protected $fillable = [
         'idguru',
         'nip',
@@ -27,6 +28,6 @@ class Guru extends Model
     public function mengajar(){
         return hasMany(Mengajar::class);
     }
-    
+
     use HasFactory;
 }
