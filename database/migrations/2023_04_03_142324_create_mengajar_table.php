@@ -22,7 +22,7 @@ return new class extends Migration
            $table->string('idguru', 11);
            $table->foreign('idjurusan')->references('jurusan')->on('jurusan')->cascadeOnUpdate()->cascadeOnDelete();
            $table->foreign('idkelas')->references('kelas')->on('kelas')->cascadeOnUpdate()->cascadeOnDelete();
-           $table->foreign('idguru')->references('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
+           $table->foreign('idguru')->references('idguru')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
            $table->timestamps();
         });
     }

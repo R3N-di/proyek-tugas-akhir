@@ -18,8 +18,8 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('idsiswa', 11);
             $table->string('idguru', 11);
-            $table->foreign('idsiswa')->references('id')->on('siswa')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreign('idguru')->references('id')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('idsiswa')->references('idsiswa')->on('siswa')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('idguru')->references('idguru')->on('guru')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }
