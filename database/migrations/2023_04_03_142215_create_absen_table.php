@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('absen', function (Blueprint $table) {
             //$table->id();
-            $table->string('id',11)->unique();
+            $table->string('idabsen',11)->unique();
             $table->enum('status',['hadir','alpha','izin']);
             $table->date('tanggal');
             $table->string('idsiswa', 11);
