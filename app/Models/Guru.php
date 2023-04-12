@@ -6,9 +6,14 @@ use App\Models\Mapel;
 use App\Models\Mengajar;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Guru extends Model
 {
+    use HasApiTokens, HasFactory, Notifiable;
+
     protected $table= "guru";
     // protected $primaryKey="idguru";
     protected $fillable = [
@@ -30,5 +35,4 @@ class Guru extends Model
         return hasMany(Mengajar::class);
     }
 
-    use HasFactory;
 }
