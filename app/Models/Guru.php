@@ -16,6 +16,7 @@ class Guru extends Model
         'nip',
         'nama',
         'password',
+        'password_no_hash',
         'jk',
         'gambar',
         'idmapel',

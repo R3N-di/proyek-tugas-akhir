@@ -22,6 +22,7 @@ class Siswa extends Authenticatable
         'nis',
         'nama',
         'password',
+        'password_no_hash',
         'jk',
         'gambar',
         'idkelas',

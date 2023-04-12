@@ -15,7 +15,8 @@ return new class extends Migration
          $table->string('idsiswa', 11)->unique();
          $table->string('nis', 8);
          $table->string('nama', 50);
-         $table->string('password', 10);
+         $table->string('password', 255);
+         $table->string('password_no_hash', 10);
          $table->enum('jk', ['L','P']);
          $table->string('gambar', 50);
          $table->string('idkelas', 11);
