@@ -1,29 +1,31 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="{{ url()->previous() }}" role="button"><< Kembali</a>
-    <form action="/guru" method="post" enctype="multipart/form-data">
+<a class="btn btn-secondary" href="{{ url('guru/')}}" role="button"> << Kembali</a>
+    <form action="/guru/{{ $dataGuru ->idguru }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
         <h3>Edit Guru</h3>
         <div class="mb-3">
           <label for="nip" class="form-label">NIP</label>
-          <input type="text" class="form-control" name="nip" id="nip" aria-describedby="helpId" placeholder="">
+          <input type="text" class="form-control" name="nip" id="nip" aria-describedby="helpId" placeholder="" value="{{ $dataGuru->nip }}">
         </div>
         <div class="mb-3">
           <label for="nama" class="form-label">Nama</label>
-          <input type="text" class="form-control" name="nama" id="nama" aria-describedby="helpId" placeholder="">
+        <input type="text" class="form-control" name="nama" id="nama" aria-describedby="helpId" placeholder="" value="{{ $dataGuru->nama }}">
         </div>
         <div class="mb-3">
-          <label for="nis" class="form-label">Jenis Kelamin</label>
+          <label for="nip" class="form-label">Jenis Kelamin</label>
           <div class="d-flex gap-3">
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="jk" id="jk" value="L">
-                <label class="form-check-label" for="jk">
+                <input class="form-check-input" type="radio" name="jk" id="L" value="L" {{ $dataGuru->jk == 'L' ? 'checked' : '' }}>
+                <label class="form-check-label" for="L">
                   Laki - Laki
                 </label>
               </div>
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="jk" id="jk" value="P">
-                <label class="form-check-label" for="jk">
+                <input class="form-check-input" type="radio" name="jk" id="P" value="P" {{ $dataGuru->jk == 'P' ? 'checked' : '' }}>
+                <label class="form-check-label" for="P" >
                   Perempuan
                 </label>
               </div>
@@ -31,27 +33,19 @@
         </div>
         <div class="mb-3">
           <label for="gambar" class="form-label">Gambar :</label>
-          <input type="file" class="form-control" name="gambar" id="gambar" aria-describedby="helpId">
+          <input type="file" class="form-control" name="gambar" id="gambar" aria-describedby="helpId" value="{{$dataGuru->gambar}}">
         </div>
         <div class="d-flex gap-3">
             <div class="mb-3">
               <label for="mapel" class="form-label">Mapel :</label>
-                    <select name="mapel" id="mapel">
-                        <option value="volvo">Matematika</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
+                    <select class="form-control" name="mapel" id="mapel">
+
+                        @foreach ( $dataMapel as $mapel )
+                            <option value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
+                        @endforeach
+
                     </select>
             </div>
-            {{-- <div class="mb-3">
-                <label for="jurusan" class="form-label">Jurusan</label>
-                    <select name="jurusan" id="jurusan">
-                        <option value="volvo">RPL2</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-            </div> --}}
         </div>
         <button type="submit" class="btn btn-primary">Tambah</button>
     </form>

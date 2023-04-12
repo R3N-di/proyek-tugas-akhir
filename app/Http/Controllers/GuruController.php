@@ -64,7 +64,7 @@ class GuruController extends Controller
             'nama' => $request->nama,
             'password' => $faker->regexify('[A-Z]{10}'),
             'jk' => $request->jk,
-            'idmapel' => $request->idmapel
+            'idmapel' => $request->idmapel,
         ];
 
         if($request->has('gambar')){
@@ -105,7 +105,10 @@ class GuruController extends Controller
      */
     public function edit(string $id)
     {
-        return view('page.guru.edit');
+        $dataGuru = Guru::where('idguru', $id)->first();
+        $dataMapel = Mapel::all();
+
+        return view('page.guru.edit', compact('dataGuru', 'dataMapel'));
     }
 
     /**
