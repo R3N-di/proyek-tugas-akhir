@@ -2,7 +2,7 @@
 
 @section('konten')
 <a class="btn btn-secondary" href="{{ url('guru/')}}" role="button"> << Kembali</a>
-    <form action="/guru/{{ $dataGuru ->idguru }}" method="POST" enctype="multipart/form-data">
+    <form action="/guru/{{ $dataGuru->idguru }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <h3>Edit Guru</h3>
@@ -37,13 +37,11 @@
         </div>
         <div class="d-flex gap-3">
             <div class="mb-3">
-              <label for="mapel" class="form-label">Mapel :</label>
-                    <select class="form-control" name="mapel" id="mapel">
-
+              <label for="idmapel" class="form-label">Mapel :</label>
+                    <select class="form-control" name="idmapel" id="idmapel">
                         @foreach ( $dataMapel as $mapel )
                             <option value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
                         @endforeach
-
                     </select>
             </div>
         </div>

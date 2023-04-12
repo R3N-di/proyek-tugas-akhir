@@ -116,8 +116,7 @@ class GuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $dataGuru = Siswa::findOrFail($idguru);
-
+        
         $request->validate([
             'nip' => 'required|integer|min_digits:18|unique:guru,nip',
             'nama' => 'required|string',
@@ -131,17 +130,17 @@ class GuruController extends Controller
             'nama.required' => 'Nama harus dimasukan',
             'nama.string' => 'Nama harus berbentuk huruf',
             'jk.required' => 'Jenis Kelamin harus diisi',
-            'idmapel' => 'Mapel harus diisi'
+            'idmapel.required' => 'Mapel harus diisi'
         ]);
 
         $data = [
-            'nip' => $request->nis,
+            'nip' => $request->nip,
             'nama' => $request->nama,
             'jk' => $request->jk,
-            'idmapel' =>$request->mapel
+            'idmapel' =>$request->idmapel
         ];
 
-        $dataGuru -> update($data);
+        Guru::where('idguru', $id)->update($data);
         return redirect('/guru');
     }
 
