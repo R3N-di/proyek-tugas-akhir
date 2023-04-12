@@ -12,12 +12,12 @@ class SessionController extends Controller
     }
 
     public function login(Request $request){
-        $input = [
+        $user = [
             'nis' => $request->nis,
             'password' => $request->password,
         ];
 
-        if(Auth::guard('siswa')->attempt($input)){
+        if(Auth::guard('siswa')->attempt($user)){
             $request->session()->regenerate();
             return redirect('siswa/');
         }
