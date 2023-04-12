@@ -40,9 +40,7 @@ class SiswaSeeder extends Seeder
                     'TKR1',
                     'TKR2',
                     'TKR3',
-                    'TKR4',
-                    'TOI1',
-                    'TOI2'
+                    'TKR4'
                 )),
             ]);
         }
