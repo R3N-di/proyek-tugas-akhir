@@ -16,6 +16,7 @@ class GuruSeeder extends Seeder
     {
         $faker=Faker::create('id_ID');
         for($i=1;$i<=5;$i++){
+            $password = $faker->regexify('[A-Z]{10}');
             DB::table('guru')->insert([
                 "id"=>$faker->regexify('[A-Z]{11}'),
                 "nip"=>$faker->numerify('##################'),
