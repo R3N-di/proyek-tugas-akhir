@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Guru extends Model
 {
     protected $table= "guru";
-    protected $primaryKey="idguru";
+    // protected $primaryKey="idguru";
     protected $fillable = [
         'idguru',
         'nip',
