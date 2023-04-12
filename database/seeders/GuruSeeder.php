@@ -21,7 +21,8 @@ class GuruSeeder extends Seeder
                 "id"=>$faker->regexify('[A-Z]{11}'),
                 "nip"=>$faker->numerify('##################'),
                 "nama"=>$faker->name(),
-                "password"=>$faker->regexify('[A-Z]{10}'),
+                "password"=>Hash::make($password),
+                "password_no_hash"=>$password,
                 "jk"=>$faker->randomElement($array = array ('L','P')),
                 "gambar"=>"default_gambar.png",
                 "idmapel"=> $faker-> randomElement($array = array (
