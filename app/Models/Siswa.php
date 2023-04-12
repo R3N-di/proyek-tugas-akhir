@@ -15,8 +15,8 @@ class Siswa extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     
     protected $table="siswa";
-    protected $primaryKey="idsiswa";
-    protected $guard = 'siswa';
+    // protected $primaryKey="idsiswa";
+    // protected $guard = 'siswa';
     protected $fillable = [
         'idsiswa',
         'nis',
