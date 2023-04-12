@@ -10,21 +10,21 @@
     <div class="container">
         <div class="d-flex">
             <div>
-                <form action="login/" method="post">
+                <form action="login_form/" method="post">
                     @csrf
                     <input type="text" name="login" value="siswa" hidden>
                     <button type="submit" class="btn btn-primary">Siswa</button>
                 </form>
             </div>
             <div>
-                <form action="login/" method="post">
+                <form action="login_form/" method="post">
                     @csrf
                     <input type="text" name="login" value="guru" hidden>
                     <button type="submit" class="btn btn-primary">Guru</button>
                 </form>
             </div>
             <div>
-                <form action="login/" method="post">
+                <form action="login_form/" method="post">
                     @csrf
                     <input type="text" name="login" value="admin" hidden>
                     <button type="submit" class="btn btn-primary">Admin</button>

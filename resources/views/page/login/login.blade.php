@@ -10,10 +10,12 @@
     <div class="container">
         <form action="/login" method="post">
             @csrf
-            <div class="mb-3">
-              <label for="nis" class="form-label">NIS</label>
-              <input type="text" class="form-control" name="nis" aria-describedby="helpId" placeholder="Masukan NIS...">
-            </div>
+            @if ($user->login == 'siswa') 
+                <div class="mb-3">
+                    <label for="nis" class="form-label">NIS</label>
+                    <input type="text" class="form-control" name="nis" aria-describedby="helpId" placeholder="Masukan NIS...">
+                </div>
+            @endif
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input type="text" class="form-control" name="password" aria-describedby="helpId" placeholder="Masukan Password">

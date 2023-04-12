@@ -7,8 +7,14 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
-    public function index(){
-        return view('page.login.login');
+    public function login_form(Request $request){
+        $user = [
+            'login' => $request->login
+        ];
+        var_dump($user);
+        // return view('page.login.login', [
+        //     'user' => $user
+        // ]);
     }
 
     public function login(Request $request){
@@ -23,5 +29,9 @@ class SessionController extends Controller
         }
 
         return back();
+    }
+
+    public function beranda(){
+        return view('awal');
     }
 }
