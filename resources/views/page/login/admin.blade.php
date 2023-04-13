@@ -7,15 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
   </head>
   <body>
-    <div class="container">
+    <div class="container p-5">
+        @include('component.pesan')
+        <a class="btn btn-secondary mb-5" href="beranda/" role="button"><< Kembali</a>
         <form action="/login" method="post">
             @csrf
-            @if ($user->login == 'siswa') 
-                <div class="mb-3">
-                    <label for="nis" class="form-label">NIS</label>
-                    <input type="text" class="form-control" name="nis" aria-describedby="helpId" placeholder="Masukan NIS...">
-                </div>
-            @endif
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="email" aria-describedby="helpId" placeholder="Masukan NIP...">
+            </div>
             <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input type="text" class="form-control" name="password" aria-describedby="helpId" placeholder="Masukan Password">
