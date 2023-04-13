@@ -121,7 +121,7 @@ class SiswaController extends Controller
     public function update(Request $request, String $idsiswa)
     {
 
-        $dataSiswa = Siswa::findOrFail($idsiswa);
+        $dataSiswa = Siswa::where('idsiswa',$idsiswa);
 
         $request->validate([
             'nis'=> 'required|numeric|min_digits:8',
@@ -154,6 +154,9 @@ class SiswaController extends Controller
         ];
 
         if($request->has('gambar')){
+            if($dataSiswa->gambar != "default_gambar.png"){
+                File::delete(public_path('gambar/') . $dataSiswa->gambar);
+            }
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
             ], [
