@@ -143,10 +143,10 @@ class SiswaController extends Controller
         ]);
 
         $data = [
-            'idsiswa' => $request->idsiswa,
+            // 'idsiswa' => $request->idsiswa,
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'password' => $request->password,
+            // 'password' => $request->password,
             'jk' => $request->jk,
             'idkelas' => $request->idkelas,
             'idjurusan' => $request->idjurusan
