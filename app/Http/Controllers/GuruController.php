@@ -7,6 +7,7 @@ use App\Models\Mapel;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
@@ -42,6 +43,7 @@ class GuruController extends Controller
     public function store(Request $request)
     {
         $faker = Faker::create('id_ID');
+        $hash = Hash::make($request->password);
         $request->validate([
             'nip' => 'required|integer|min_digits:18|unique:guru,nip',
             'nama' => 'required|string',
@@ -62,7 +64,8 @@ class GuruController extends Controller
             'idguru' => $faker->regexify('[A-Z]{11}'),
             'nip' => $request->nip,
             'nama' => $request->nama,
-            'password' => $faker->regexify('[A-Z]{10}'),
+            'password' => $hash,
+            'password_no_hash' => $faker->regexify('[A-Z]{10}'),
             'jk' => $request->jk,
             'idmapel' => $request->idmapel,
         ];
@@ -116,9 +119,11 @@ class GuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        
+
+        $dataGuru = Guru::where('idguru',$id);
+
         $request->validate([
-            'nip' => 'required|integer|min_digits:18|unique:guru,nip',
+            'nip' => 'required|integer|min_digits:18,unique:guru,nip',
             'nama' => 'required|string',
             'jk' => 'required',
             'idmapel' => 'required'
@@ -140,8 +145,11 @@ class GuruController extends Controller
             'idmapel' =>$request->idmapel
         ];
 
-        Guru::where('idguru', $id)->update($data);
-        return redirect('/guru');
+        // Guru::where('idguru', $id)->update($data);
+        // return redirect('/guru');
+
+        $dataGuru = Guru::update($data);
+        return redirect('/guru')->withinfo('Berhasil Mengubah Data');
     }
 
     /**

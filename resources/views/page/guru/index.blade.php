@@ -41,7 +41,7 @@
         <td>{{$data->nip}}</td>
         <td>{{$data->nama}}</td>
         <td>{{$data->jk}}</td>
-        <td>{{$data->password}}</td>
+        <td>{{$data->password_no_hash}}</td>
         <td>
             <a class="btn btn-primary btn-sm" href="{{ url('guru/'.$data->idguru) }}" role="button">Detail</a>
             <a class="btn btn-warning btn-sm" href="/guru/{{ $data->idguru }}/edit" role="button">Edit</a>
