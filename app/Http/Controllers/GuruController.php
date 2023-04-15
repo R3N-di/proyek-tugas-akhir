@@ -145,6 +145,24 @@ class GuruController extends Controller
             'idmapel' =>$request->idmapel
         ];
 
+        if($request->has('gambar')){
+            if($dataGuru->gambar != "default_gambar.png"){
+                File::delete(public_path('gambar/') . $dataGuru->gambar);
+            }
+            $request->validate([
+                'gambar' => 'mimes:png,jpg,jpeg'
+            ], [
+                'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
+            ]);
+
+            $file_gambar = $request->file('gambar');
+            $gambar_ekstensi = $file_gambar->extension();
+            $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
+            $file_gambar->move(public_path('gambar'), $gambar_nama);
+
+            $data['gambar'] = $gambar_nama;
+        }
+
         // Guru::where('idguru', $id)->update($data);
         // return redirect('/guru');
 
