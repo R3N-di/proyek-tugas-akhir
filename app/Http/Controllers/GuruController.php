@@ -120,7 +120,7 @@ class GuruController extends Controller
     public function update(Request $request, string $id)
     {
 
-        $dataGuru = Guru::where('idguru',$id);
+        // $dataGuru = Guru::where('idguru',$id);
 
         $request->validate([
             'nip' => 'required|integer|min_digits:18,unique:guru,nip',
@@ -138,17 +138,7 @@ class GuruController extends Controller
             'idmapel.required' => 'Mapel harus diisi'
         ]);
 
-        $data = [
-            'nip' => $request->nip,
-            'nama' => $request->nama,
-            'jk' => $request->jk,
-            'idmapel' =>$request->idmapel
-        ];
-
         if($request->has('gambar')){
-            if($dataGuru->gambar != "default_gambar.png"){
-                File::delete(public_path('gambar/') . $dataGuru->gambar);
-            }
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
             ], [
@@ -160,15 +150,25 @@ class GuruController extends Controller
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
             $file_gambar->move(public_path('gambar'), $gambar_nama);
 
+            $data_gambar = Guru::where('idguru', $id)->first();
+
+            if($data_gambar->gambar != "default_gambar.png"){
+                File::delete(public_path('gambar/' . $data_gambar->gambar));
+        }
             $data['gambar'] = $gambar_nama;
         }
 
-        // Guru::where('idguru', $id)->update($data);
-        // return redirect('/guru');
+      $data = [
+        'nip' => $request->nip,
+        'nama' => $request->nama,
+        'jk' => $request->jk,
+        'gambar' => $request->gambar,
+        'idmapel' =>$request->idmapel
+    ];
 
-        $dataGuru = Guru::update($data);
+        Guru::where('idguru', $id)->update($data);
         return redirect('/guru')->withinfo('Berhasil Mengubah Data');
-    }
+}
 
     /**
      * Remove the specified resource from storage.

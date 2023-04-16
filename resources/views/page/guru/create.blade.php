@@ -37,8 +37,8 @@
         <div class="d-flex gap-3">
             <div class="mb-3">
               <label for="idmapel" class="form-label">Mapel :</label>
-                    <select name="idmapel" id="idmapel">
-                        @foreach ($dataMapel as $data) 
+                    <select class="form-control" name="idmapel" id="idmapel">
+                        @foreach ($dataMapel as $data)
                             <option value="{{ $data->mapel }}">{{ $data->mapel }}</option>
                         @endforeach
                     </select>
