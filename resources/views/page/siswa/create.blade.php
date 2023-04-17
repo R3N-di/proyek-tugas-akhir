@@ -37,15 +37,15 @@
         <div class="d-flex gap-3">
             <div class="mb-3">
               <label for="idkelas" class="form-label">Kelas :</label>
-                    <select name="idkelas" id="idkelas">
+                    <select class="form-control" name="idkelas" id="idkelas">
                         @foreach ($dataKelas as $data)
                             <option value="{{ $data->kelas }}">{{ $data->kelas }}</option>
                         @endforeach
                     </select>
             </div>
             <div class="mb-3">
-                <label for="idjurusan" class="form-label">Jurusan</label>
-                    <select name="idjurusan" id="idjurusan">
+                <label for="idjurusan" class="form-label">Jurusan :</label>
+                    <select class="form-control" name="idjurusan" id="idjurusan">
                         @foreach ($dataJurusan as $data)
                             <option value="{{ $data->jurusan }}">{{ $data->nama }}</option>
                         @endforeach

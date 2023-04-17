@@ -6,7 +6,7 @@
 <div class="d-flex justify-content-between">
     <div>
         <form class="d-flex" action="/guru" method="get">
-            <div class="mt-3">
+            <div class="mt-3 mb-3">
                 <label for="idmapel" class="form-label">Mapel :</label>
                 <select class="form-control" name="cari" id="idmapel">
                     @foreach ($dataMapel as $mapel)
@@ -21,14 +21,14 @@
         </form>
     </div>
 
-    <div>
+    <div class="mt-5">
         <form class="d-flex" action="/guru" method="get">
             <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
     </div>
     <div>
-        <a href="/guru" class="btn btn-warning">Daftar Guru</a>
+        <a href="/guru" class="btn btn-warning mt-5">Daftar Guru</a>
     </div>
 </div>
 <table class="table">
