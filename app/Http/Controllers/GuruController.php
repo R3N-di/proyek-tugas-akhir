@@ -138,6 +138,16 @@ class GuruController extends Controller
             'idmapel.required' => 'Mapel harus diisi'
         ]);
 
+        $data_gambar = Guru::where('idguru', $id)->first();
+        $gambar_lama = $data_gambar->gambar;
+
+      $data = [
+        'nip' => $request->nip,
+        'nama' => $request->nama,
+        'jk' => $request->jk,
+        'idmapel' =>$request->idmapel
+    ];
+
         if($request->has('gambar')){
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
@@ -150,21 +160,13 @@ class GuruController extends Controller
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
             $file_gambar->move(public_path('gambar'), $gambar_nama);
 
-            $data_gambar = Guru::where('idguru', $id)->first();
-
-            if($data_gambar->gambar != "default_gambar.png"){
-                File::delete(public_path('gambar/' . $data_gambar->gambar));
+            if($gambar_lama != "default_gambar.png"){
+                File::delete(public_path('gambar/' . $gambar_lama));
+            }
+        }else{
+            $data['gambar'] = $gambar_lama;
         }
-            $data['gambar'] = $gambar_nama;
-        }
 
-      $data = [
-        'nip' => $request->nip,
-        'nama' => $request->nama,
-        'jk' => $request->jk,
-        'gambar' => $request->gambar,
-        'idmapel' =>$request->idmapel
-    ];
 
         Guru::where('idguru', $id)->update($data);
         return redirect('/guru')->withinfo('Berhasil Mengubah Data');
