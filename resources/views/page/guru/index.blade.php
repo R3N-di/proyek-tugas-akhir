@@ -8,9 +8,9 @@
         <form class="d-flex" action="/guru" method="get">
             <div class="mt-3">
                 <label for="idmapel" class="form-label">Mapel :</label>
-                <select class="form-control" name="idmapel" id="idmapel">
+                <select class="form-control" name="cari" id="idmapel">
                     @foreach ($dataMapel as $mapel)
-                        <option name="mapel" value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
+                        <option value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
                     @endforeach
                 </select>
             </div>
