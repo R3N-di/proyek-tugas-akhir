@@ -2,8 +2,9 @@
 
 @section('konten')
 <a class="btn btn-secondary" href="{{ url('/mengajar') }}" role="button"><< Kembali</a>
-    <form action="/mengajar" method="post">
+    <form action="/mengajar/{{ $dataMengajar->idmengajar }}" method="post">
         @csrf
+        @method('PUT')
         <h3>Edit Mengajar</h3>
         <div class="mb-3">
           <label for="idguru" class="form-label">Guru :</label>
