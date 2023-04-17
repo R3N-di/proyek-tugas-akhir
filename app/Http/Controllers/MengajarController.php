@@ -17,8 +17,10 @@ class MengajarController extends Controller
      */
     public function index()
     {
-        $datamengajar=Mengajar::all();
-        return view('page.mengajar.index')->with('datamengajar',$datamengajar);
+        // $datamengajar=Mengajar::all();
+        return view('page.mengajar.index', [
+            'dataMengajar' => Mengajar::all()
+        ]);
     }
 
     /**
@@ -44,13 +46,14 @@ class MengajarController extends Controller
     public function store(Request $request)
     {
         $faker = Faker::create('id_ID');
-        
+
         $request->validate([
-            'masuk' => 'required',
-            'selesai' => 'required'
+            'masuk' => 'required|date_format:H:i',
+            'selesai' => 'required|date_format:H:i|after:masuk'
         ], [
             'masuk.required' => 'Waktu Mulai harus di isi',
             'selesai.required' => 'Waktu Selesai harus di isi',
+            'selesai.after' => 'Waktu Selesai harus lebih dari Waktu Masuk',
         ]);
 
         $data = [
@@ -80,7 +83,18 @@ class MengajarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dataMengajar = Mengajar::where('idmengajar', $id)->first();
+        $dataMapel = Mapel::all();
+        $dataKelas = Kelas::all();
+        $dataJurusan = Jurusan::all();
+        $dataGuru = Guru::all();
+        return view('page.mengajar.edit', [
+            'dataGuru' => $dataGuru,
+            'dataMapel' => $dataMapel,
+            'dataKelas' => $dataKelas,
+            'dataJurusan' => $dataJurusan,
+            'dataMengajar' => $dataMengajar,
+        ]);
     }
 
     /**
@@ -88,7 +102,21 @@ class MengajarController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'selesai' => 'after:masuk'
+        ], [
+            'selesai.after' => 'Waktu Selesai harus lebih dari Waktu Masuk',
+        ]);
+
+        $data = [
+            'masuk' => $request->masuk,
+            'selesai' => $request->selesai,
+            'hari' => $request->hari,
+            'idguru' => $request->idguru,
+            'idjurusan' => $request->idjurusan,
+            'idkelas' => $request->idkelas,
+        ];
+
     }
 
     /**

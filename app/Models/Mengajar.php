@@ -32,7 +32,7 @@ class Mengajar extends Model
     }
 
     public function guru(){
-        return $this->belongsToMany(Guru::class,'idguru');
+        return $this->belongsTo(Guru::class,'idguru');
     }
 
     public function absen(){

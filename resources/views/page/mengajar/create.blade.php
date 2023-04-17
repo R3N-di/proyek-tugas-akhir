@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="{{ url('/siswa') }}" role="button"><< Kembali</a>
+<a class="btn btn-secondary" href="{{ url('/mengajar') }}" role="button"><< Kembali</a>
     <form action="/mengajar" method="post">
         @csrf
         <h3>Tambah Mengajar</h3>
@@ -44,11 +44,11 @@
         <div class="d-flex gap-3">
             <div class="mb-3">
               <label for="masuk" class="form-label">Masuk :</label>
-              <input type="time" id="masuk" name="masuk">
+              <input type="time" id="masuk" name="masuk" value="{{ old('masuk') }}">
             </div>
             <div class="mb-3">
               <label for="selesai" class="form-label">Selesai :</label>
-              <input type="time" id="selesai" name="selesai">
+              <input type="time" id="selesai" name="selesai" value="{{ old('selesai') }}">
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Tambah</button>

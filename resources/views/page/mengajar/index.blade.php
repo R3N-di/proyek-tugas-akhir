@@ -30,21 +30,33 @@
         <th scope="col">#</th>
         <th scope="col">Masuk</th>
         <th scope="col">Selesai</th>
-        <th scope="col">Idkelas</th>
-        <th scope="col">Idjurusan</th>
-        <th scope="col">Idguru</th>
+        <th scope="col">Hari</th>
+        <th scope="col">Kelas</th>
+        <th scope="col">Jurusan</th>
+        <th scope="col">Guru</th>
         <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
-        @foreach($datamengajar as $data)
+        @php
+            $hari = [
+                'monday' => 'Senin', 
+                'tuesday' => 'Selasa', 
+                'wednesday' => 'Rabu', 
+                'thursday' => 'Kamis', 
+                'friday' => 'Jumat'
+            ];
+        @endphp
+        @foreach($dataMengajar as $data)
         <tr>
             <th scope="row">1</th>
             <th scope="row">{{ $data->masuk }}</th>
             <th scope="row">{{ $data->selesai }}</th>
+            <th scope="row">{{ $hari[$data->hari] }}</th>
             <th scope="row">{{ $data->idkelas }}</th>
             <th scope="row">{{ $data->idjurusan }}</th>
-            <th scope="row">{{ $data->idguru }}</th>
+            <td>{{ json_decode(json_encode(App\Models\Guru::where('idguru', $data->idguru)->get()->first()['nama']),true)}}</td>
+            {{-- <th scope="row">{{ $item->guru->nama }}</th> --}}
             <td>
                 <a class="btn btn-warning btn-sm" href="/mengajar/{{ $data->idmengajar }}/edit" role="button">Edit</a>
                 {{-- <a class="btn btn-danger btn-sm" href="/mengajar/{{ $data->idmengajar }}" role="button">delete</a>  --}}
