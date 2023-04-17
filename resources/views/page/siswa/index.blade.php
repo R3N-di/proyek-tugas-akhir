@@ -56,6 +56,7 @@
             <td>{{$data->jk}}</td>
             <td>{{$data->password_no_hash}}</td>
             <td>
+                <div class="d-flex gap-2">
                 <a class="btn btn-primary btn-sm" href="/siswa/{{ $data->idsiswa }}" role="button">Detail</a>
                 <a class="btn btn-warning btn-sm" href="/siswa/{{ $data->idsiswa }}/edit" role="button">Edit</a>
                 {{-- <a class="btn btn-danger btn-sm" href="/guru/{{ $data->id }}" role="button">delete</a>  --}}
@@ -64,6 +65,8 @@
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                 </form>
+                </div>
+
             </td>
         </tr>
         @endforeach
