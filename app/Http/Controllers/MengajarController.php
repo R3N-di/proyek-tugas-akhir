@@ -117,6 +117,9 @@ class MengajarController extends Controller
             'idkelas' => $request->idkelas,
         ];
 
+        Mengajar::where('idmengajar', $id)->update($data);
+        return redirect('/mengajar/')->withInfo('Berhasil Mengedit Data Baru');
+
     }
 
     /**
