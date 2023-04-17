@@ -7,6 +7,8 @@ use App\Models\Siswa;
 use App\Models\Jurusan;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class SiswaController extends Controller
 {
@@ -61,11 +63,14 @@ class SiswaController extends Controller
             'jk.required' => 'Jenis Kelamin Harus Diisi',
         ]);
 
+        $password = $faker->regexify('[A-Z]{10}');
+
         $data = [
             'idsiswa' => $faker->regexify('[A-Z]{11}'),
             'nis' => $request->nis,
             'nama' => $request->nama,
-            'password' => $faker->regexify('[A-Z]{10}'),
+            'password' => Hash::make($password),
+            "password_no_hash"=> $password,
             'jk' => $request->jk,
             'idkelas' => $request->idkelas,
             'idjurusan' => $request->idjurusan
@@ -121,7 +126,7 @@ class SiswaController extends Controller
     public function update(Request $request, String $idsiswa)
     {
 
-        $dataSiswa = Siswa::where('idsiswa',$idsiswa);
+        //$dataSiswa = Siswa::where('idsiswa',$idsiswa);
 
         $request->validate([
             'nis'=> 'required|numeric|min_digits:8',
@@ -142,6 +147,9 @@ class SiswaController extends Controller
 
         ]);
 
+        $data_gambar = Siswa::where('idsiswa', $idsiswa)->first();
+        $gambar_lama = $data_gambar->gambar;
+
         $data = [
             // 'idsiswa' => $request->idsiswa,
             'nis' => $request->nis,
@@ -154,9 +162,7 @@ class SiswaController extends Controller
         ];
 
         if($request->has('gambar')){
-            if($dataSiswa->gambar != "default_gambar.png"){
-                File::delete(public_path('gambar/') . $dataSiswa->gambar);
-            }
+            
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
             ], [
@@ -168,10 +174,15 @@ class SiswaController extends Controller
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
             $file_gambar->move(public_path('gambar'), $gambar_nama);
 
-            $data['gambar'] = $gambar_nama;
+            if($gambar_lama != "default_gambar.png"){
+                File::delete(public_path('gambar/') . $data_gambar->gambar);
+            }
+            $data['gambar']=$gambar_nama;
+        }else{
+            $data['gambar'] = $gambar_lama;
         }
 
-        $dataSiswa->update($data);
+        Siswa::where('idsiswa', $idsiswa)->update($data);;
         return redirect('/siswa')->withinfo('Berhasil Mengubah Data');
 
 
