@@ -18,8 +18,14 @@ class MengajarController extends Controller
     public function index()
     {
         // $datamengajar=Mengajar::all();
+        if(request('cari')){
+            $dataMengajar = Mengajar::where('idjurusan', 'like', '%'.request('cari').'%')->paginate(5);
+        }
+        else{
+            $dataMengajar = Mengajar::paginate(5);
+        }
         return view('page.mengajar.index', [
-            'dataMengajar' => Mengajar::all()
+            'dataMengajar' => $dataMengajar
         ]);
     }
 

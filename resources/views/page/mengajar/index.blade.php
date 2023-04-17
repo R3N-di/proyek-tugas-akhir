@@ -18,9 +18,9 @@
         </form>
     </div>
     <div>
-        <form class="d-flex" action="/absen" method="post">
-            <input class="form-control" type="search" name="cari">
-            <a class="btn btn-primary" href="#" role="button">Cari</a>
+        <form class="d-flex" action="/mengajar" method="get">
+            <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="cari jam pelajaran..." autocomplete="off">
+            <input class="btn btn-primary" type="submit" value="Cari">
         </form>
     </div>
 </div>
@@ -47,8 +47,11 @@
                 'friday' => 'Jumat'
             ];
         @endphp
-        @foreach($dataMengajar as $data)
+        @foreach($dataMengajar as $key => $data)
         <tr>
+            <th scope="row">
+                {{ $dataMengajar->firstitem() + $key }}
+           </th>
             <th scope="row">1</th>
             <th scope="row">{{ $data->masuk }}</th>
             <th scope="row">{{ $data->selesai }}</th>
