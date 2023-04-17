@@ -5,14 +5,22 @@
 
 <div class="d-flex justify-content-between">
     <div>
-        <form action="" method="">
-            <label for="idmapel" class="form-label">Mapel :</label>
-            <select name="idmapel" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-            <a class="btn btn-primary btn-sm" href="#" role="button">Cari</a>
+        <form class="d-flex" action="/guru" method="get">
+            <div class="mt-3">
+                <label for="idmapel" class="form-label">Mapel :</label>
+                <select class="form-control" name="idmapel" id="idmapel">
+                    @foreach ($dataMapel as $mapel)
+                        <option name="mapel" value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                    {{-- <a class="btn btn-primary btn-md ms-2 mt-5" href="cari" type="submit">Cari</a> --}}
+                    <input class="btn btn-primary mt-5 ms-1" type="submit" value="Cari">
+            </div>
         </form>
     </div>
+
     <div>
         <form class="d-flex" action="/guru" method="get">
             <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off">

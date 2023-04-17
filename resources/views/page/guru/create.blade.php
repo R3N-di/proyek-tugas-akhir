@@ -43,15 +43,6 @@
                         @endforeach
                     </select>
             </div>
-            {{-- <div class="mb-3">
-                <label for="jurusan" class="form-label">Jurusan</label>
-                    <select name="jurusan" id="jurusan">
-                        <option value="volvo">RPL2</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-            </div> --}}
         </div>
         <button type="submit" class="btn btn-primary">Tambah</button>
     </form>

@@ -14,7 +14,7 @@
                 <div class="">
                     @include('component.sidebar')
                 </div>
-                <div class="d-flex flex-column flex-fill p-5">
+                <div class="d-flex flex-column flex-fill ps-5 pt-4 pe-5">
                     <div>
                         @include('component.pesan')
                         @yield('konten')

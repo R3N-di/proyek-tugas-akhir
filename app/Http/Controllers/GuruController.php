@@ -16,16 +16,23 @@ class GuruController extends Controller
      */
     public function index(Request $request)
     {
+        $dataMapel = Mapel::all();
+
+        // if(request('mapel')){
+        //     $dataMapel = Mapel::orderBy('mapel',request('cari'))->paginate(5);
+        // }else{
+        //     $dataGuru = Guru::paginate(5);
+        // }
+
         if(request('cari')){
             $dataGuru = Guru::where('nama', 'like', '%'.request('cari').'%')->paginate(5);
+            $dataMapel = Guru::orderBy('mapel',request('cari'))->paginate(5);
         }
         else{
             $dataGuru = Guru::paginate(5);
         }
 
-        return view('page.guru.index', [
-            'dataGuru' => $dataGuru
-        ]);
+        return view('page.guru.index', compact('dataGuru', 'dataMapel'));
     }
 
     /**
@@ -123,7 +130,7 @@ class GuruController extends Controller
         // $dataGuru = Guru::where('idguru',$id);
 
         $request->validate([
-            'nip' => 'required|integer|min_digits:18,unique:guru,nip',
+            'nip' => 'required|integer|min_digits:18|unique:guru,nip',
             'nama' => 'required|string',
             'jk' => 'required',
             'idmapel' => 'required'
