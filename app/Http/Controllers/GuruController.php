@@ -155,14 +155,16 @@ class GuruController extends Controller
                 'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
             ]);
 
+            if($gambar_lama != "default_gambar.png"){
+                File::delete(public_path('gambar/' . $gambar_lama));
+            }
+
             $file_gambar = $request->file('gambar');
             $gambar_ekstensi = $file_gambar->extension();
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
             $file_gambar->move(public_path('gambar'), $gambar_nama);
 
-            if($gambar_lama != "default_gambar.png"){
-                File::delete(public_path('gambar/' . $gambar_lama));
-            }
+            $data['gambar'] = $gambar_nama;
         }else{
             $data['gambar'] = $gambar_lama;
         }

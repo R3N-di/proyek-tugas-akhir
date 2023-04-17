@@ -32,7 +32,7 @@ class Guru extends Authenticatable
     }
 
     public function mengajar(){
-        return hasMany(Mengajar::class);
+        return hasOne(Mengajar::class);
     }
 
 }
