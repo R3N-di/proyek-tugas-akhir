@@ -35,14 +35,14 @@ class SessionController extends Controller
                 'password.required' => 'Password Harus Diisi',
                 'password.string' => 'Password Harus Berbentuk Huruf',
             ]);
-            $user = [
-                'nis' => $request->nis,
-                'password' => $request->password,
-            ];
+            // $user = [
+            //     'nis' => $request->nis,
+            //     'password' => $request->password,
+            // ];
 
-            if(Auth::guard('siswa')->attempt($user)){
-                Auth::guard('siswa')->attempt($user);
-                $request->session()->regenerate();
+            if(Auth::guard('siswa')->attempt(['nis' => $request->nis, 'password' => $request->password,])){
+                // Auth::guard('siswa')->attempt($user);
+                // $request->session()->regenerate();
                 return redirect('absen/siswa');
             }
         }
