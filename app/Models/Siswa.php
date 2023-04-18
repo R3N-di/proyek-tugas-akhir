@@ -15,7 +15,7 @@ class Siswa extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     
     protected $table="siswa";
-    // protected $primaryKey="idsiswa";
+    protected $primaryKey="idsiswa";
     // protected $guard = 'siswa';
     protected $fillable = [
         'idsiswa',
@@ -28,6 +28,15 @@ class Siswa extends Authenticatable
         'idkelas',
         'idjurusan',
     ];
+
+    public function getIncrementing(){
+        return false;
+    }
+
+    public function getKeyType(){
+        return 'string';
+    }
+    
     public function kelas() {
         return $this->belongsTo(Kelas::class, 'kelas');
     }
