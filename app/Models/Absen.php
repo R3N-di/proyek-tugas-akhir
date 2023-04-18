@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Absen extends Model
 {
     protected $table="absen";
-    // protected $primaryKey="idabsen";
+    protected $primaryKey="idabsen";
     protected $fillable = [
         "idabsen",
         "idsiswa",
@@ -17,6 +17,14 @@ class Absen extends Model
         "status",
         "tanggal"
     ];
+
+    public function getIncrementing(){
+        return false;
+    }
+
+    public function getKeyType(){
+        return 'string';
+    }
 
     public function Mengajar(){
         return $this->belongsTo(Mengajar::class,'idmengajar');

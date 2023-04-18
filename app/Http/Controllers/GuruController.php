@@ -25,8 +25,10 @@ class GuruController extends Controller
         // }
 
         if(request('cari')){
-            $dataGuru = Guru::where('nama', 'like', '%'.request('cari').'%')->paginate(5);
-            $dataMapel = Guru::orderBy('mapel',request('cari'))->paginate(5);
+            $dataGuru = Guru::where('nama', 'like', '%'.request('cari').'%')
+                            ->orWhere('idmapel', 'like', '%'.request('cari').'%')
+                            ->paginate(5);
+            // $dataMapel = Guru::orderBy('mapel',request('cari'))->paginate(5);
         }
         else{
             $dataGuru = Guru::paginate(5);

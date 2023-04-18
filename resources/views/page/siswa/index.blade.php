@@ -3,30 +3,36 @@
 @section('konten')
 <a class="btn btn-success" href="{{ url('/siswa/create') }}" role="button">Tambah ++</a>
 <div class="d-flex justify-content-between">
-    <div>
-        <form action="" method="">
+    <div class="mb-3">
+        <form class="d-flex" action="" method="">
+         <div class="mt-3">
             <label for="idmapel" class="form-label">Kelas :</label>
-            <select name="idmapel" id="idmapel">
+            <select class="form-control" name="idmapel" id="idmapel">
                 <option value="Coba">Coba</option>
             </select>
-
+         </div>
+         <div class="ms-3 mt-3">
             <label for="idjurusan" class="form-label">Jurusan :</label>
-            <select name="idjurusan" id="idmapel">
+            <select class="form-control" name="idjurusan" id="idmapel">
                 <option value="Coba">Coba</option>
             </select>
-            <a class="btn btn-primary btn-sm" href="#" role="button">Cari</a>
+         </div>
+         <div>
+            <a class="btn btn-primary btn-md mt-5 ms-2" href="#" role="button">Cari</a>
+        </div>
         </form>
     </div>
-    <div>
+    <div class="mt-5">
         <form class="d-flex" action="/siswa" method="get">
             <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari siswa..." autocomplete="off">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
     </div>
     <div>
-        <a href="/siswa" class="btn btn-warning">Daftar Siswa</a>
+        <a href="/siswa" class="btn btn-warning mt-5">Daftar Siswa</a>
     </div>
 </div>
+
 <table class="table">
     <thead>
       <tr>
@@ -48,8 +54,9 @@
             <td>{{$data->nis}}</td>
             <td>{{$data->nama}}</td>
             <td>{{$data->jk}}</td>
-            <td>{{$data->password}}</td>
+            <td>{{$data->password_no_hash}}</td>
             <td>
+                <div class="d-flex gap-2">
                 <a class="btn btn-primary btn-sm" href="/siswa/{{ $data->idsiswa }}" role="button">Detail</a>
                 <a class="btn btn-warning btn-sm" href="/siswa/{{ $data->idsiswa }}/edit" role="button">Edit</a>
                 {{-- <a class="btn btn-danger btn-sm" href="/guru/{{ $data->id }}" role="button">delete</a>  --}}
@@ -58,6 +65,8 @@
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                 </form>
+                </div>
+
             </td>
         </tr>
         @endforeach

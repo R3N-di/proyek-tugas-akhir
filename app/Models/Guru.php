@@ -15,7 +15,7 @@ class Guru extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $table= "guru";
-    // protected $primaryKey="idguru";
+    protected $primaryKey="idguru";
     protected $fillable = [
         'idguru',
         'nip',
@@ -26,6 +26,14 @@ class Guru extends Authenticatable
         'gambar',
         'idmapel',
     ];
+
+    public function getIncrementing(){
+        return false;
+    }
+
+    public function getKeyType(){
+        return 'string';
+    }
 
     public function mapel(){
         return $this->belongsTo(Mapel::class, 'idmapel');

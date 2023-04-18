@@ -10,11 +10,19 @@ use Illuminate\Database\Eloquent\Model;
 class Jurusan extends Model
 {
     protected $table="jurusan";
-    // protected $primaryKey="jurusan";
+    protected $primaryKey="jurusan";
     protected $fillabel = [
         'jurusan',
         'nama',
     ];
+
+    public function getIncrementing(){
+        return false;
+    }
+
+    public function getKeyType(){
+        return 'string';
+    }
 
     public function siswa(){
         return hasOne(Siswa::class);

@@ -6,11 +6,11 @@
 <div class="d-flex justify-content-between">
     <div>
         <form class="d-flex" action="/guru" method="get">
-            <div class="mt-3">
+            <div class="mt-3 mb-3">
                 <label for="idmapel" class="form-label">Mapel :</label>
-                <select class="form-control" name="idmapel" id="idmapel">
+                <select class="form-control" name="cari" id="idmapel">
                     @foreach ($dataMapel as $mapel)
-                        <option name="mapel" value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
+                        <option value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
                     @endforeach
                 </select>
             </div>
@@ -21,14 +21,14 @@
         </form>
     </div>
 
-    <div>
+    <div class="mt-5">
         <form class="d-flex" action="/guru" method="get">
             <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
     </div>
     <div>
-        <a href="/guru" class="btn btn-warning">Daftar Guru</a>
+        <a href="/guru" class="btn btn-warning mt-5">Daftar Guru</a>
     </div>
 </div>
 <table class="table">
@@ -51,16 +51,19 @@
         <td>{{$data->jk}}</td>
         <td>{{$data->password_no_hash}}</td>
         <td>
-            <a class="btn btn-primary btn-sm" href="{{ url('guru/'.$data->idguru) }}" role="button">Detail</a>
-            <a class="btn btn-warning btn-sm" href="/guru/{{ $data->idguru }}/edit" role="button">Edit</a>
+            <div class="d-flex gap-2">
+                <a class="btn btn-primary btn-sm" href="{{ url('guru/'.$data->idguru) }}" role="button">Detail</a>
+                <a class="btn btn-warning btn-sm" href="/guru/{{ $data->idguru }}/edit" role="button">Edit</a>
             {{-- <a class="btn btn-danger btn-sm" href="/guru/{{ $data->id }}" role="button">delete</a>  --}}
             <form onsubmit="return confirm('Yakin Ingin Hapus Data?')" action="{{ url('guru/'.$data->idguru) }}" method="post">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>
             </form>
+        </div>
         </td>
       </tr>
+
       @endforeach
     </tbody>
   </table>

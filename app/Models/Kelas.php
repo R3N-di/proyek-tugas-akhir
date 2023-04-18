@@ -12,10 +12,18 @@ class Kelas extends Model
     use HasFactory;
 
     protected $table = 'kelas';
-    // protected $primaryKey="kelas";
+    protected $primaryKey="kelas";
     protected $fillable = [
         'kelas'
     ];
+
+    public function getIncrementing(){
+        return false;
+    }
+
+    public function getKeyType(){
+        return 'string';
+    }
 
     public function siswa(){
         return hasOne(Siswa::class);
