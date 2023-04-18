@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mengajar extends Model
 {
     protected $table="mengajar";
-    // protected $primaryKey="idmengajar";
+    protected $primaryKey="idmengajar";
     protected $fillable = [
         "idmengajar",
         "masuk",
@@ -23,6 +23,14 @@ class Mengajar extends Model
         "idguru"
     ];
 
+    public function getIncrementing(){
+        return false;
+    }
+
+    public function getKeyType(){
+        return 'string';
+    }
+
     public function kelas(){
         return $this->belongsTo(Kelas::class,'idkelas');
     }
@@ -32,7 +40,7 @@ class Mengajar extends Model
     }
 
     public function guru(){
-        return $this->belongsTo(Guru::class,'idguru');
+        return $this->belongsTo(Guru::class, 'idguru');
     }
 
     public function absen(){
