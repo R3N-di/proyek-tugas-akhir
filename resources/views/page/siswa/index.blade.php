@@ -5,21 +5,26 @@
 <div class="d-flex justify-content-between">
     <div class="mb-3">
         <form class="d-flex" action="" method="">
-         <div class="mt-3">
-            <label for="idmapel" class="form-label">Kelas :</label>
-            <select class="form-control" name="idmapel" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-         </div>
-         <div class="ms-3 mt-3">
-            <label for="idjurusan" class="form-label">Jurusan :</label>
-            <select class="form-control" name="idjurusan" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-         </div>
-         <div>
-            <a class="btn btn-primary btn-md mt-5 ms-2" href="#" role="button">Cari</a>
-        </div>
+            <div class="mt-3">
+                <label for="idmapel" class="form-label">Kelas :</label>
+                <select class="form-control" name="cari" id="idjurusan">
+                    @foreach ($dataKelas as $kelas)
+                        <option value="{{$kelas->kelas}}">{{$kelas->kelas}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="ms-3 mt-3">
+                <label for="idmapel" class="form-label">Jurusan :</label>
+                <select class="form-control" name="cari" id="idjurusan">
+                    @foreach ($dataJurusan as $jurusan)
+                        <option value="{{$jurusan->jurusan}}">{{$jurusan->jurusan}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                {{-- <a class="btn btn-primary btn-md ms-2 mt-5" href="cari" type="submit">Cari</a> --}}
+                <input class="btn btn-primary mt-5 ms-1" type="submit" value="Cari">
+            </div>
         </form>
     </div>
     <div class="mt-5">
