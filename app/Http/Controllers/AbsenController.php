@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Absen;
+use App\Models\Kelas;
+use App\Models\Siswa;
+use App\Models\Jurusan;
 use App\Models\Mengajar;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
@@ -15,15 +18,14 @@ class AbsenController extends Controller
         // $id = Auth::user();
         // dd($id);
 
-        
-        //Mengambil hari 
+
+        //Mengambil hari
         $date = date('Y-m-d');
         $day = Carbon::parse($date)->format('l');
-        
+
         // Mengambil data mengajar
         $dataMengajar = Mengajar::where('hari', $day)->get();
 
-        
         return view('page.absen.siswa', [
             'dataMengajar' => $dataMengajar,
         ]);
@@ -31,7 +33,7 @@ class AbsenController extends Controller
 
     public function absen_siswa_input(Request $request){
         $faker = Faker::create('id_ID');
-        
+
         $data = [
             'idabsen' => $faker->regexify('[A-Z]{11}'),
             'status' => $request->status,
@@ -48,7 +50,7 @@ class AbsenController extends Controller
             ], [
                 'keterangan.required' => 'Isi Keterangan bila ingin Izin'
             ]);
-            
+
             $data['keterangan'] = $request->keterangan;
         }
         else{
@@ -76,10 +78,54 @@ class AbsenController extends Controller
 
         Absen::insert($data);
         return redirect('absen/siswa')->withInfo('Berhasil Menambahkan Data Absen');
-        
+
     }
 
-    public function absen_guru(){
-        return view('page.absen.guru');
+    public function absen_guru(Request $request){
+        if($request->has('tanggal')){
+            $date = $request->tanggal;
+            $jurusan = $request->jurusan;
+            $kelas = $request->kelas;
+        }
+        else{
+            $date = date('Y-m-d');
+            $jurusan = 'RPL1';
+            $kelas = 12;
+        }
+
+        //Mengambil hari
+        $day = Carbon::parse($date)->format('l');
+
+        $idguru = "DBWXSXDFKZL";
+
+        $dataKelas = Kelas::all();
+        $dataJurusan = Jurusan::all();
+
+        $dataMengajar = Mengajar::where([
+                        ['hari', '=', $day],
+                        ['idkelas', '=', $kelas],
+                        ['idjurusan', '=', $jurusan],
+                        ['idguru', '=', $idguru],
+                    ])
+                    ->first();
+
+        $dataSiswa = Siswa::where([
+                        ['idkelas', '=', $kelas],
+                        ['idjurusan', '=', $jurusan],
+                    ])
+                    ->get();
+        
+        $dataAbsen = Absen::where([
+                        ['tanggal', '=', $date],
+                        ['idmengajar', '=', $dataMengajar->idmengajar],
+                    ])
+                    ->get();
+
+        return view('page.absen.guru', [
+            'dataSiswa' => $dataSiswa,
+            'dataAbsen' => $dataAbsen,
+            'dataJurusan' => $dataJurusan,
+            'dataKelas' => $dataKelas,
+        ]);
     }
 }
