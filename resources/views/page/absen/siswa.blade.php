@@ -1,28 +1,6 @@
 @extends('layout/app')
 
 @section('konten')
-<div class="d-flex justify-content-between">
-    <div>
-        <form action="" method="">
-            <label for="idmapel" class="form-label">Kelas :</label>
-            <select name="idmapel" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-
-            <label for="idmapel" class="form-label">Jurusan :</label>
-            <select name="idmapel" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-            <a class="btn btn-primary btn-sm" href="#" role="button">Cari</a>
-        </form>
-    </div>
-    <div>
-        <form class="d-flex" action="/absen" method="post">
-            <input class="form-control" type="search" name="cari">
-            <a class="btn btn-primary" href="#" role="button">Cari</a>
-        </form>
-    </div>
-</div>
 <table class="table">
     <thead>
       <tr>
@@ -38,26 +16,29 @@
     <tbody>
         @php
             $hari = [
-                'monday' => 'Senin', 
-                'tuesday' => 'Selasa', 
-                'wednesday' => 'Rabu', 
-                'thursday' => 'Kamis', 
-                'friday' => 'Jumat'
+                'Monday' => 'Senin',
+                'Tuesday' => 'Selasa',
+                'Wednesday' => 'Rabu',
+                'Thursday' => 'Kamis',
+                'Friday' => 'Jumat'
             ];
         @endphp
         @foreach ($dataMengajar as $data)
             <tr>
-                <th scope="row">1</th>
-                <th scope="row">{{ $hari[$data->hari] }}</th>
-                <th scope="row">{{ $data->guru->idmapel }}</th>
-                <th scope="row">{{ $data->guru->nama }}</th>
-                <th scope="row">{{ $data->masuk }}</th>
-                <th scope="row">{{ $data->selesai }}</th>
-                <th scope="row">
+                <td scope="row">1</td>
+                <td scope="row">{{ $hari[$data->hari] }}</td>
+                <td scope="row">{{ $data->guru->idmapel }}</td>
+                <td scope="row">{{ $data->guru->nama }}</td>
+                <td scope="row">{{ $data->masuk }}</td>
+                <td scope="row">{{ $data->selesai }}</td>
+                <td scope="row">
                     <div class="d-flex gap-1">
                         <form action="" method="POST">
                             @csrf
                             <input type="text" class="form-control" name="status" id="status" value="hadir" hidden>
+                            <input type="text" class="form-control" name="masuk" id="masuk" value="{{ $data->masuk }}" hidden>
+                            <input type="text" class="form-control" name="selesai" id="selesai" value="{{ $data->selesai }}" hidden>
+                            <input type="time" class="form-control" name="absen" id="absen" value="{{ date('H:i:s') }}" hidden>
                             <input type="text" class="form-control" name="idmengajar" id="idmengajar" value="{{ $data->idmengajar }}" hidden>
                             <input type="text" class="form-control" name="idguru" id="idguru" value="{{ $data->idguru }}" hidden>
                             <button class="btn btn-success btn-sm" type="submit">Absen</button>
@@ -67,7 +48,7 @@
                             Izin
                         </button>
                     </div>
-                    
+
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -81,6 +62,9 @@
                                     @csrf
                                     <div class="mb-3">
                                       <input type="text" class="form-control" name="status" id="status" value="Izin" hidden>
+                                      <input type="text" class="form-control" name="masuk" id="masuk" value="{{ $data->masuk }}" hidden>
+                                      <input type="text" class="form-control" name="selesai" id="selesai" value="{{ $data->selesai }}" hidden>
+                                      <input type="time" class="form-control" name="absen" id="absen" value="{{ date('H:i:s') }}" hidden>
                                       <input type="text" class="form-control" name="idmengajar" id="idmengajar" value="{{ $data->idmengajar }}" hidden>
                                       <input type="text" class="form-control" name="idguru" id="idguru" value="{{ $data->idguru }}" hidden>
 
@@ -101,7 +85,7 @@
                         </div>
                         </div>
                     </div>
-                </th>
+                </td>
             </tr>
         @endforeach
     </tbody>

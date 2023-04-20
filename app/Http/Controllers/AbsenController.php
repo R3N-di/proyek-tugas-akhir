@@ -34,6 +34,13 @@ class AbsenController extends Controller
     public function absen_siswa_input(Request $request){
         $faker = Faker::create('id_ID');
 
+        $request->validate([
+            'absen' => 'after:masuk|before:selesai'
+        ], [
+            'absen.after' => 'Belom Masuk Waktu Absen Mata Pelajaran',
+            'absen.before' => 'Belom Masuk Waktu Absen Mata Pelajaran',
+        ]);
+
         $data = [
             'idabsen' => $faker->regexify('[A-Z]{11}'),
             'status' => $request->status,
@@ -82,24 +89,37 @@ class AbsenController extends Controller
     }
 
     public function absen_guru(Request $request){
+
+        $idguru = "DBWXSXDFKZL";
+
         if($request->has('tanggal')){
             $date = $request->tanggal;
             $jurusan = $request->jurusan;
             $kelas = $request->kelas;
         }
         else{
+            $dataMengajar2 = Mengajar::where([
+                ['idguru', '=', $idguru],
+            ])
+            ->first();
+            
             $date = date('Y-m-d');
-            $jurusan = 'RPL1';
-            $kelas = 12;
+            $jurusan = $dataMengajar2->idjurusan;
+            $kelas = $dataMengajar2->idkelas;
         }
 
         //Mengambil hari
         $day = Carbon::parse($date)->format('l');
 
-        $idguru = "DBWXSXDFKZL";
-
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
+
+        $dataTitle = [
+            'kelas' => $kelas,
+            'jurusan' => $jurusan,
+            'tanggal' => $date,
+            'hari' => $day,
+        ];
 
         $dataMengajar = Mengajar::where([
                         ['hari', '=', $day],
@@ -114,10 +134,10 @@ class AbsenController extends Controller
                         ['idjurusan', '=', $jurusan],
                     ])
                     ->get();
-        
+
         $dataAbsen = Absen::where([
                         ['tanggal', '=', $date],
-                        ['idmengajar', '=', $dataMengajar->idmengajar],
+                        // ['idmengajar', '=', $dataMengajar->idmengajar],
                     ])
                     ->get();
 
@@ -126,6 +146,7 @@ class AbsenController extends Controller
             'dataAbsen' => $dataAbsen,
             'dataJurusan' => $dataJurusan,
             'dataKelas' => $dataKelas,
+            'dataTitle' => $dataTitle,
         ]);
     }
 }

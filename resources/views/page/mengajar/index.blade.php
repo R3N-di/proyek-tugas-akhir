@@ -40,11 +40,11 @@
     <tbody>
         @php
             $hari = [
-                'monday' => 'Senin', 
-                'tuesday' => 'Selasa', 
-                'wednesday' => 'Rabu', 
-                'thursday' => 'Kamis', 
-                'friday' => 'Jumat'
+                'Monday' => 'Senin', 
+                'Tuesday' => 'Selasa', 
+                'Wednesday' => 'Rabu', 
+                'Thursday' => 'Kamis', 
+                'Friday' => 'Jumat'
             ];
         @endphp
         @foreach($dataMengajar as $key => $data)

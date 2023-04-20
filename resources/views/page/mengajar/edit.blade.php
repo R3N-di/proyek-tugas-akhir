@@ -34,7 +34,7 @@
         </div>
         <div class="mb-3">
           @php
-            $day = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday',];
+            $day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',];
             $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
           @endphp
           <label for="hari">Pilih Hari</label>

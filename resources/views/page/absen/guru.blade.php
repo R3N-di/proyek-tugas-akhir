@@ -1,20 +1,42 @@
 @extends('layout/app')
 
 @section('konten')
+@php
+    $hari = [
+        'Monday' => 'Senin', 
+        'Tuesday' => 'Selasa', 
+        'Wednesday' => 'Rabu', 
+        'Thursday' => 'Kamis', 
+        'Friday' => 'Jumat'
+    ];
+@endphp
+@if ($dataTitle)
+    <div>
+        <h4>Kelas : {{ $dataTitle['kelas'] }}</h4>
+        <h4>Jurusan : {{ $dataTitle['jurusan'] }}</h4>
+        <h4>Tanggal : {{ $dataTitle['tanggal'] }} - {{ $hari[$dataTitle['hari']] }} </h4>
+    </div>
+@else
+    <div>
+        <h4>Kelas : -</h4>
+        <h4>Jurusan : -</h4>
+        <h4>Tanggal : -</h4>
+    </div>
+@endif
 <div class="d-flex justify-content-between">
     <div>
         <form action="" method="post">
             @csrf
             <label for="kelas" class="form-label">Kelas :</label>
             <select name="kelas" id="kelas">
-                @foreach ($dataKelas as $data) 
+                @foreach ($dataKelas as $data)
                     <option value="{{ $data->kelas }}">{{ $data->kelas }}</option>
                 @endforeach
             </select>
 
             <label for="jurusan" class="form-label">Jurusan :</label>
             <select name="jurusan" id="jurusan">
-                @foreach ($dataJurusan as $data) 
+                @foreach ($dataJurusan as $data)
                     <option value="{{ $data->jurusan }}">{{ $data->nama }}</option>
                 @endforeach
             </select>
@@ -49,7 +71,7 @@
                                 {{ $data2->status }}
                             </button>
                         @else
-                            
+
                         @endif
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal{{ $data2->idsiswa }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
