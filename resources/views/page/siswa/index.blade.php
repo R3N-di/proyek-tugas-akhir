@@ -5,6 +5,9 @@
 <div class="d-flex justify-content-between">
     <div class="mb-3">
         <form class="d-flex" action="" method="get">
+            @if (request('cari'))
+                <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..." value="{{ request('cari') }}">
+            @endif
             <div class="mt-3">
                 <label for="kelas" class="form-label">Kelas :</label>
                 <select class="form-control" name="kelas" id="kelas">
@@ -28,7 +31,7 @@
     </div>
     <div class="mt-5">
         <form class="d-flex" action="/siswa" method="get">
-        @if (request('jurusan')) 
+        @if (request('jurusan'))
             <input type="hidden" class="form-control" name="kelas" value="{{ request('kelas') }}">
             <input type="hidden" class="form-control" name="jurusan" value="{{ request('jurusan') }}">
         @endif

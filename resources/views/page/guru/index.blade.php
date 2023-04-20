@@ -6,6 +6,9 @@
 <div class="d-flex justify-content-between">
     <div>
         <form class="d-flex" action="/guru" method="get">
+            @if (request('cari'))
+                <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..." value="{{ request('cari') }}">
+            @endif
             <div class="mt-3 mb-3">
                 <label for="idmapel" class="form-label">Mapel :</label>
                 <select class="form-control" name="mapel" id="idmapel">
