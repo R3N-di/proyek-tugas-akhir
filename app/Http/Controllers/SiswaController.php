@@ -19,20 +19,8 @@ class SiswaController extends Controller
     {
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
-        // $dataSiswa=Siswa::paginate(5);
-        // $pagination = 5;
-        // return view('page.siswa.index')->with('dataSiswa',$dataSiswa)->with('i', ($request->input('page', 1)-1)*$pagination);
 
-        if(request('cari')){
-            $dataSiswa = Siswa::where('nama', 'like', '%'.request('cari').'%')
-            ->orWhere('idkelas', 'like', '%'.request('cari').'%')
-            ->orwhere('idjurusan', 'like', '%'.request('cari').'%')
-            ->paginate(5)
-            ->withQueryString();
-        }
-        else{
-            $dataSiswa = Siswa::paginate(5);
-        }
+        $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->paginate(5)->withQueryString();
 
         return view('page.siswa.index', compact('dataSiswa', 'dataKelas', 'dataJurusan'));
     }

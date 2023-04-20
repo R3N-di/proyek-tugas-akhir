@@ -29,6 +29,24 @@ class Siswa extends Authenticatable
         'idjurusan',
     ];
 
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['cari'] ?? false, function ($query, $search) {
+            return $query->where('nama','like', '%'.$search.'%');
+        });
+
+        $query->when($filters['kelas'] ?? false, function ($query, $kelas) {
+            return $query->whereHas('kelas', function($query) use ($kelas){
+                $query->where('kelas', $kelas);
+            });
+        });
+
+        $query->when($filters['jurusan'] ?? false, function ($query, $jurusan) {
+            return $query->whereHas('jurusan', function($query) use ($jurusan){
+                $query->where('jurusan', $jurusan);
+            });
+        });
+    }
+
     public function getIncrementing(){
         return false;
     }
@@ -38,10 +56,10 @@ class Siswa extends Authenticatable
     }
     
     public function kelas() {
-        return $this->belongsTo(Kelas::class, 'kelas');
+        return $this->belongsTo(Kelas::class, 'idkelas');
     }
     public function jurusan() {
-        return $this->belongsTo(Jurusan::class, 'jurusan');
+        return $this->belongsTo(Jurusan::class, 'idjurusan');
     }
 
     public function absen(){
