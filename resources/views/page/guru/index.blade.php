@@ -8,7 +8,7 @@
         <form class="d-flex" action="/guru" method="get">
             <div class="mt-3 mb-3">
                 <label for="idmapel" class="form-label">Mapel :</label>
-                <select class="form-control" name="cari" id="idmapel">
+                <select class="form-control" name="mapel" id="idmapel">
                     @foreach ($dataMapel as $mapel)
                         <option value="{{$mapel->mapel}}">{{$mapel->mapel}}</option>
                     @endforeach
@@ -16,14 +16,17 @@
             </div>
             <div>
                     {{-- <a class="btn btn-primary btn-md ms-2 mt-5" href="cari" type="submit">Cari</a> --}}
-                    <input class="btn btn-primary mt-5 ms-1" type="submit" value="Cari">
+                    <input class="btn btn-primary mt-5 ms-1" type="submit" value="mapel">
             </div>
         </form>
     </div>
 
     <div class="mt-5">
         <form class="d-flex" action="/guru" method="get">
-            <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off">
+        @if (request('mapel')) 
+            <input type="hidden" name="mapel" placeholder="Cari guru..." value="{{ request('mapel') }}">
+        @endif
+            <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off" value="{{ request('cari') }}">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
     </div>

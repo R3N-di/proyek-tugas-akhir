@@ -27,7 +27,8 @@ class SiswaController extends Controller
             $dataSiswa = Siswa::where('nama', 'like', '%'.request('cari').'%')
             ->orWhere('idkelas', 'like', '%'.request('cari').'%')
             ->orwhere('idjurusan', 'like', '%'.request('cari').'%')
-            ->paginate(5);;
+            ->paginate(5)
+            ->withQueryString();
         }
         else{
             $dataSiswa = Siswa::paginate(5);

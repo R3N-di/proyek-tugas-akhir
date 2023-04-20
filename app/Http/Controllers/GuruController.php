@@ -18,14 +18,18 @@ class GuruController extends Controller
     {
         $dataMapel = Mapel::all();
 
-        if(request('cari')){
-            $dataGuru = Guru::where('nama', 'like', '%'.request('cari').'%')
-                            ->orWhere('idmapel', 'like', '%'.request('cari').'%')
-                            ->paginate(5);
-        }
-        else{
-            $dataGuru = Guru::paginate(5);
-        }
+        // if(request('cari')){
+        //     $dataGuru = Guru::where('nama', 'like', '%'.request('cari').'%')
+        //                     ->orWhere('idmapel', 'like', '%'.request('cari').'%')
+        //                     ->paginate(5)
+        //                     ->withQueryString();
+        //                 }
+        // else{
+        //     $dataGuru = Guru::paginate(5);
+        // }
+
+        $dataGuru = Guru::filter(request(['cari', 'mapel']))->paginate(5)->withQueryString();
+
 
         return view('page.guru.index', compact('dataGuru', 'dataMapel'));
     }

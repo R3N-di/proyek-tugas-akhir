@@ -27,6 +27,24 @@ class Guru extends Authenticatable
         'idmapel',
     ];
 
+    public function scopefilter($query, array $filters){
+
+        $query->when($filters['cari'] ?? false, function ($query, $search) {
+            return $query->where('nama','like', '%'.$search.'%');
+        });
+
+        $query->when($filters['mapel'] ?? false, function ($query, $mapel) {
+            return $query->whereHas('mapel', function($query) use ($mapel){
+                $query->where('mapel', $mapel);
+            });
+        });
+        
+        // if (request('mapel'))
+        // {
+        //     $q->where('idmapel', 'like', '%'.request('mapel').'%');
+        // }
+    }
+
     public function getIncrementing(){
         return false;
     }
