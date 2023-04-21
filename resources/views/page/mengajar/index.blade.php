@@ -4,21 +4,39 @@
 <div class="d-flex justify-content-between">
     <div>
     <a class="btn btn-success" href="{{ url('/mengajar/create') }}" role="button">Tambah ++</a>
-        <form action="" method="">
-            <label for="idmapel" class="form-label">Kelas :</label>
-            <select name="idmapel" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-            
-            <label for="idmapel" class="form-label">Jurusan :</label>
-            <select name="idmapel" id="idmapel">
-                <option value="Coba">Coba</option>
-            </select>
-            <a class="btn btn-primary btn-sm" href="#" role="button">Cari</a>
+        <form class="d-flex" action="" method="">
+            @if (request('cari'))
+                <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..." value="{{ request('cari') }}">
+            @endif
+            <div class="mt-3">
+                <label for="kelas" class="form-label">Kelas :</label>
+                <select class="form-control" name="kelas" id="kelas">
+                    @foreach ($dataKelas as $kelas)
+                        <option value="{{$kelas->kelas}}">{{$kelas->kelas}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="ms-3 mt-3">
+                <label for="jurusan" class="form-label">Jurusan :</label>
+                <select class="form-control" name="jurusan" id="jurusan">
+                    @foreach ($dataJurusan as $jurusan)
+                        <option value="{{$jurusan->jurusan}}">{{$jurusan->jurusan}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div>
+                <a class="btn btn-primary mt-5 ms-1" href="#" role="button">Cari</a>
+            </div>
         </form>
     </div>
     <div>
         <form class="d-flex" action="/mengajar" method="get">
+            @if (request('jurusan'))
+                <input type="hidden" class="form-control" name="kelas" value="{{ request('kelas') }}">
+                <input type="hidden" class="form-control" name="jurusan" value="{{ request('jurusan') }}">
+            @endif
             <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="cari jam pelajaran..." autocomplete="off">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
@@ -40,26 +58,25 @@
     <tbody>
         @php
             $hari = [
-                'Monday' => 'Senin', 
-                'Tuesday' => 'Selasa', 
-                'Wednesday' => 'Rabu', 
-                'Thursday' => 'Kamis', 
+                'Monday' => 'Senin',
+                'Tuesday' => 'Selasa',
+                'Wednesday' => 'Rabu',
+                'Thursday' => 'Kamis',
                 'Friday' => 'Jumat'
             ];
         @endphp
         @foreach($dataMengajar as $key => $data)
         <tr>
-            <th scope="row">
+            <td scope="row">
                 {{ $dataMengajar->firstitem() + $key }}
-           </th>
-            <th scope="row">1</th>
-            <th scope="row">{{ $data->masuk }}</th>
-            <th scope="row">{{ $data->selesai }}</th>
-            <th scope="row">{{ $hari[$data->hari] }}</th>
-            <th scope="row">{{ $data->idkelas }}</th>
-            <th scope="row">{{ $data->idjurusan }}</th>
-            <td>{{ json_decode(json_encode(App\Models\Guru::where('idguru', $data->idguru)->get()->first()['nama']),true)}}</td>
-            {{-- <th scope="row">{{ $item->guru->nama }}</th> --}}
+            </td>
+            <td scope="row">{{ $data->masuk }}</td>
+            <td scope="row">{{ $data->selesai }}</td>
+            <td scope="row">{{ $hari[$data->hari] }}</td>
+            <td scope="row">{{ $data->idkelas }}</td>
+            <td scope="row">{{ $data->idjurusan }}</td>
+            {{-- <td>{{ json_decode(json_encode(App\Models\Guru::where('idguru', $data->idguru)->get()->first()['nama']),true)}}</td> --}}
+            <td scope="row">{{ $data->guru->nama }}</td>
             <td>
                 <a class="btn btn-warning btn-sm" href="/mengajar/{{ $data->idmengajar }}/edit" role="button">Edit</a>
                 {{-- <a class="btn btn-danger btn-sm" href="/mengajar/{{ $data->idmengajar }}" role="button">delete</a>  --}}

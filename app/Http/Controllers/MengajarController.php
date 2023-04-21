@@ -17,15 +17,23 @@ class MengajarController extends Controller
      */
     public function index()
     {
+        $dataKelas = Kelas::all();
+        $dataJurusan = Jurusan::all();
+
         // $datamengajar=Mengajar::all();
-        if(request('cari')){
-            $dataMengajar = Mengajar::where('idjurusan', 'like', '%'.request('cari').'%')->paginate(5);
-        }
-        else{
-            $dataMengajar = Mengajar::paginate(5);
-        }
+        // if(request('cari')){
+        //     $dataMengajar = Mengajar::where('idjurusan', 'like', '%'.request('cari').'%')->paginate(5);
+        // }
+        // else{
+        //     $dataMengajar = Mengajar::paginate(5);
+        // }
+
+        $dataMengajar = Mengajar::filter(request(['cari', 'kelas', 'jurusan']))->paginate(5)->withQueryString();
+        
         return view('page.mengajar.index', [
-            'dataMengajar' => $dataMengajar
+            'dataMengajar' => $dataMengajar,
+            'dataKelas' => $dataKelas,
+            'dataJurusan' => $dataJurusan,
         ]);
     }
 

@@ -23,6 +23,27 @@ class Mengajar extends Model
         "idguru"
     ];
 
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['cari'] ?? false, function ($query, $search){
+            return $query->whereHas('guru', function($query) use ($search) {
+                $query->where('nama','like', '%'.$search.'%');
+            });
+        });
+
+        $query->when($filters['kelas'] ?? false, function ($query, $kelas){
+            return $query->whereHas('kelas', function($query) use ($kelas) {
+                $query->where('kelas', $kelas);
+            });
+        });
+
+        $query->when($filters['jurusan'] ?? false, function ($query, $jurusan) {
+            return $query->whereHas('jurusan', function($query) use ($jurusan){
+                $query->where('jurusan', $jurusan);
+            });
+        });
+        
+    }
+
     public function getIncrementing(){
         return false;
     }
