@@ -133,7 +133,8 @@ class AbsenController extends Controller
                         ['idkelas', '=', $kelas],
                         ['idjurusan', '=', $jurusan],
                     ])
-                    ->get();
+                    ->get()
+                    ->sortBy('nama');
 
         $dataAbsen = Absen::where([
                         ['tanggal', '=', $date],

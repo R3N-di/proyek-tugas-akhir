@@ -7,22 +7,12 @@
         'Tuesday' => 'Selasa', 
         'Wednesday' => 'Rabu', 
         'Thursday' => 'Kamis', 
-        'Friday' => 'Jumat'
+        'Friday' => "Jum'at",
+        'Saturday' => 'Sabtu',
+        'Sunday' => 'Minggu',
     ];
 @endphp
-@if ($dataTitle)
-    <div>
-        <h4>Kelas : {{ $dataTitle['kelas'] }}</h4>
-        <h4>Jurusan : {{ $dataTitle['jurusan'] }}</h4>
-        <h4>Tanggal : {{ $dataTitle['tanggal'] }} - {{ $hari[$dataTitle['hari']] }} </h4>
-    </div>
-@else
-    <div>
-        <h4>Kelas : -</h4>
-        <h4>Jurusan : -</h4>
-        <h4>Tanggal : -</h4>
-    </div>
-@endif
+<h4>{{ $hari[$dataTitle['hari']] }} </h4>
 <div class="d-flex justify-content-between">
     <div>
         <form action="" method="post">
@@ -30,19 +20,19 @@
             <label for="kelas" class="form-label">Kelas :</label>
             <select name="kelas" id="kelas">
                 @foreach ($dataKelas as $data)
-                    <option value="{{ $data->kelas }}">{{ $data->kelas }}</option>
+                    <option value="{{ $data->kelas }}" {{ $dataTitle['kelas'] == $data->kelas ? 'selected' : '' ; }}>{{ $data->kelas }}</option>
                 @endforeach
             </select>
 
             <label for="jurusan" class="form-label">Jurusan :</label>
             <select name="jurusan" id="jurusan">
                 @foreach ($dataJurusan as $data)
-                    <option value="{{ $data->jurusan }}">{{ $data->nama }}</option>
+                    <option value="{{ $data->jurusan }}" {{ $dataTitle['jurusan'] == $data->jurusan ? 'selected' : '' ; }}>{{ $data->nama }}</option>
                 @endforeach
             </select>
 
             <label for="tanggal" class="form-label">Tanggal:</label>
-            <input type="date" id="tanggal" name="tanggal">
+            <input type="date" id="tanggal" name="tanggal" value="{{ $dataTitle['tanggal'] }}">
             <button type="submit" class="btn btn-primary">Cari</button>
         </form>
     </div>
