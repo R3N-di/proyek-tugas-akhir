@@ -34,8 +34,8 @@
         </div>
         <div class="mb-3">
           @php
-            $day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',];
-            $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat'];
+            $day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            $hari = ['Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu', 'Minggu'];
           @endphp
           <label for="hari">Pilih Hari</label>
           <select name="hari" id="hari">

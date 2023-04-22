@@ -16,11 +16,9 @@ class isGuru
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if(Auth::guard('guru')->check()){
-            return redirect('absen/guru')->withInfo('Berhasil Login Sebagai Guru');
-            // return $next($request);
+        if (!Auth::guard('guru')->check()) {
+            return redirect('/beranda')->withErrors('Silahkan Login terlebih dahulu');
         }
-        return redirect('beranda/')->withErrors('Silahkan Login Terlebih dahulu');
+        return $next($request);
     }
 }

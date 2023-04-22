@@ -20,7 +20,9 @@
                 'Tuesday' => 'Selasa',
                 'Wednesday' => 'Rabu',
                 'Thursday' => 'Kamis',
-                'Friday' => 'Jumat'
+                'Friday' => "Jum'at",
+                'Saturday' => 'Sabtu',
+                'Sunday' => 'Minggu',
             ];
         @endphp
         @foreach ($dataMengajar as $data)

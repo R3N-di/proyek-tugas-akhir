@@ -19,7 +19,7 @@ class SiswaController extends Controller
     {
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
-
+        
         $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->paginate(5)->withQueryString();
 
         return view('page.siswa.index', compact('dataSiswa', 'dataKelas', 'dataJurusan'));

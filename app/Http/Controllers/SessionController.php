@@ -35,14 +35,12 @@ class SessionController extends Controller
                 'password.required' => 'Password Harus Diisi',
                 'password.string' => 'Password Harus Berbentuk Huruf',
             ]);
-            // $user = [
-            //     'nis' => $request->nis,
-            //     'password' => $request->password,
-            // ];
+            $user = [
+                'nis' => $request->nis,
+                'password' => $request->password,
+            ];
 
-            if(Auth::guard('siswa')->attempt(['nis' => $request->nis, 'password' => $request->password,])){
-                // Auth::guard('siswa')->attempt($user);
-                // $request->session()->regenerate();
+            if(Auth::guard('siswa')->attempt($user)){
                 return redirect('absen/siswa');
             }
         }
@@ -54,9 +52,9 @@ class SessionController extends Controller
             ], [
                 'nip.required' => 'NIP Harus Diisi',
                 'nip.integer' => 'NIP Harus Berupa Angka',
-                'nip.min_digits' => 'NIP Harus Memiliki 8 Angka',
+                'nip.min_digits' => 'NIP Harus Memiliki 18 Angka',
                 'password.required' => 'Password Harus Diisi',
-                'password.string' => 'Password Harus Berbentuk Huruf',
+                'password.string' => 'Password Harus Huruf',
             ]);
             $user = [
                 'nip' => $request->nip,
@@ -64,8 +62,6 @@ class SessionController extends Controller
             ];
 
             if(Auth::guard('guru')->attempt($user)){
-                Auth::guard('guru')->attempt($user);
-                $request->session()->regenerate();
                 return redirect('absen/guru');
             }
         }
@@ -85,8 +81,6 @@ class SessionController extends Controller
             ];
 
             if(Auth::attempt($user)){
-                Auth::attempt($user);
-                $request->session()->regenerate();
                 return redirect('siswa/');
             }
         }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsSiswa
+class isLoginGuru
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,10 @@ class IsSiswa
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('siswa')->check()) {
-            return redirect('/beranda')->withErrors('Silahkan Login terlebih dahulu');
+        if (Auth::guard('guru')->check()) {
+            $dataGuru = Auth::guard('guru')->user();
+            return redirect('/absen/guru')
+                    ->withInfo('Anda Sudah Login Sebagai Guru : ' . $dataGuru->nama . ' Mapel ' . $dataGuru->idmapel);
         }
         return $next($request);
     }

@@ -15,16 +15,25 @@ use Illuminate\Support\Facades\Auth;
 class AbsenController extends Controller
 {
     public function absen_siswa(){
-        // $id = Auth::user();
-        // dd($id);
-
+        $idsiswa = Auth::guard('siswa')->user()->idsiswa;
 
         //Mengambil hari
         $date = date('Y-m-d');
         $day = Carbon::parse($date)->format('l');
 
+        // Mengambil data siswa
+        $dataSiswa = Siswa::where([
+                        ['idsiswa', '=', $idsiswa],
+                        ])
+                        ->first();
+
         // Mengambil data mengajar
-        $dataMengajar = Mengajar::where('hari', $day)->get();
+        $dataMengajar = Mengajar::where([
+                        ['hari', '=', $day],
+                        ['idkelas', '=', $dataSiswa->idkelas],
+                        ['idjurusan', '=', $dataSiswa->idjurusan],
+                        ])
+                        ->get();
 
         return view('page.absen.siswa', [
             'dataMengajar' => $dataMengajar,
@@ -89,8 +98,9 @@ class AbsenController extends Controller
     }
 
     public function absen_guru(Request $request){
-
-        $idguru = "DBWXSXDFKZL";
+        $dataGuru = Auth::guard('guru')->user();
+        
+        $idguru = $dataGuru->idguru;
 
         if($request->has('tanggal')){
             $date = $request->tanggal;
@@ -102,7 +112,7 @@ class AbsenController extends Controller
                 ['idguru', '=', $idguru],
             ])
             ->first();
-            
+
             $date = date('Y-m-d');
             $jurusan = $dataMengajar2->idjurusan;
             $kelas = $dataMengajar2->idkelas;
@@ -121,13 +131,13 @@ class AbsenController extends Controller
             'hari' => $day,
         ];
 
-        $dataMengajar = Mengajar::where([
-                        ['hari', '=', $day],
-                        ['idkelas', '=', $kelas],
-                        ['idjurusan', '=', $jurusan],
-                        ['idguru', '=', $idguru],
-                    ])
-                    ->first();
+        // $dataMengajar = Mengajar::where([
+        //                 ['hari', '=', $day],
+        //                 ['idkelas', '=', $kelas],
+        //                 ['idjurusan', '=', $jurusan],
+        //                 ['idguru', '=', $idguru],
+        //             ])
+        //             ->first();
 
         $dataSiswa = Siswa::where([
                         ['idkelas', '=', $kelas],

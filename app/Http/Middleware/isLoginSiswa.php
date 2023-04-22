@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsSiswa
+class isLoginSiswa
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,10 @@ class IsSiswa
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::guard('siswa')->check()) {
-            return redirect('/beranda')->withErrors('Silahkan Login terlebih dahulu');
+        if (Auth::guard('siswa')->check()) {
+            $dataSiswa = Auth::guard('siswa')->user();
+            return redirect('/absen/siswa')
+                    ->withInfo('Anda Sudah Login Sebagai Siswa : ' . $dataSiswa->nama . ' Kelas ' . $dataSiswa->idkelas . ' Jurusan ' . $dataSiswa->idjurusan);
         }
         return $next($request);
     }
