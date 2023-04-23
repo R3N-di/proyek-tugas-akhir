@@ -121,9 +121,7 @@ class AbsenController extends Controller
         //Mengambil hari
         $day = Carbon::parse($date)->format('l');
 
-        $dataKelas = Kelas::all();
-        $dataJurusan = Jurusan::all();
-
+        
         $dataTitle = [
             'kelas' => $kelas,
             'jurusan' => $jurusan,
@@ -131,14 +129,33 @@ class AbsenController extends Controller
             'hari' => $day,
         ];
 
-        // $dataMengajar = Mengajar::where([
-        //                 ['hari', '=', $day],
-        //                 ['idkelas', '=', $kelas],
-        //                 ['idjurusan', '=', $jurusan],
-        //                 ['idguru', '=', $idguru],
-        //             ])
-        //             ->first();
-
+        $dataMengajar = Mengajar::where([
+                        ['idguru', '=', $idguru],
+                    ])
+                    ->distinct()
+                    ->get([
+                        'idkelas',
+                        'idjurusan'
+                    ]);
+        
+        $jumlahMengajar = count($dataMengajar);
+        
+        for($i=0;$i<3;$i++){
+            
+            $kelas = $dataMengajar[$i]->idkelas;
+            
+            $dataKelas = array();
+            if(in_array($kelas, $dataKelas)){
+                continue;
+            }
+            else{
+                $dataKelas[] = $kelas;
+            }
+            
+            $jurusan = Jurusan::all();
+        }
+        dd($dataKelas);
+        
         $dataSiswa = Siswa::where([
                         ['idkelas', '=', $kelas],
                         ['idjurusan', '=', $jurusan],
