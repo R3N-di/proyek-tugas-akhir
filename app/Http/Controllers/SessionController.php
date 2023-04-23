@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SessionController extends Controller
 {
@@ -41,6 +42,8 @@ class SessionController extends Controller
             ];
 
             if(Auth::guard('siswa')->attempt($user)){
+                // $user = Auth::guard('siswa')->user();
+                // dd($user);
                 return redirect('absen/siswa');
             }
         }
@@ -88,16 +91,13 @@ class SessionController extends Controller
         return back()->withErrors('Tidak Berhasil Login, ada yang salah dari yang Anda masukan');
     }
 
-    public function logout(Request $request){
-        $guards = array_key(config('auth.guards'));
-        foreach($guards as $guard){
-            if(Auth::guard($guard)->check()){
-                Auth::guard($guard)->logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-                return redirect('/beranda');
-            }
-        }
+    public function logout(){
+        Session::flush();
+        Session::invalidate();
+        Session::regenerateToken();
+
+        Auth::logout();
+        return redirect('/beranda');
     }
 
 }
