@@ -19,10 +19,10 @@ use App\Http\Controllers\MengajarController;
 */
 
 //Route siswa
-Route::resource('/siswa',SiswaController::class);
+Route::resource('/siswa',SiswaController::class)->middleware('isAdmin');
 
 //Route guru
-Route::resource('/guru', GuruController::class);
+Route::resource('/guru', GuruController::class)->middleware('isAdmin');
 
 // Route Absen
 Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa'])->middleware('isSiswa');
@@ -32,7 +32,7 @@ Route::get('/absen/guru', [AbsenController::class, 'absen_guru'])->middleware('i
 Route::post('/absen/guru', [AbsenController::class, 'absen_guru']);
 
 // Route Login
-Route::get('login_admin/', [SessionController::class, 'login_admin']);
+Route::get('login_admin/', [SessionController::class, 'login_admin'])->middleware('isLoginAdmin');
 Route::get('login_siswa/', [SessionController::class, 'login_siswa'])->middleware('isLoginSiswa');
 Route::get('login_guru/', [SessionController::class, 'login_guru'])->middleware('isLoginGuru');
 Route::post('login/', [SessionController::class, 'login']);

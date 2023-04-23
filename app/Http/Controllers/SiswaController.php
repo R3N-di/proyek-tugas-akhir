@@ -7,6 +7,7 @@ use App\Models\Siswa;
 use App\Models\Jurusan;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 

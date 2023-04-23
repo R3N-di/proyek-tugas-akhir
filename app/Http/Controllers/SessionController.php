@@ -80,7 +80,7 @@ class SessionController extends Controller
                 'password' => $request->password,
             ];
 
-            if(Auth::attempt($user)){
+            if(Auth::guard('web')->attempt($user)){
                 return redirect('siswa/');
             }
         }
