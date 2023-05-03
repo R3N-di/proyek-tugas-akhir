@@ -13,7 +13,7 @@
             <strong>NIP</strong> <br>
             <p>{{ $dataGuru->nip }}</p>
             <strong>Password</strong> <br>
-            <p>{{ $dataGuru->password }}</p>
+            <p>{{ $dataGuru->password_no_hash }}</p>
             <strong>Jenis Kelamin</strong> <br>
             <p>{{ $dataGuru->jk == "P" ? "Perempuan" : "Laki-Laki" ; }}</p>
             <a class="btn btn-secondary" href="{{ url('guru/') }}" role="button"><< Kembali</a>
