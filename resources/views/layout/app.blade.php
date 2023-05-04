@@ -14,11 +14,12 @@
                 <div class="">
                     @include('component.sidebar')
                 </div>
-                <div class="d-flex flex-column flex-fill dps-5 pt-4 pe-5 w-100" style="position: fixed; ">
+                <div class="d-flex flex-column flex-fill dps-5 pt-2 pe-5 w-100" style="position: fixed; ">
                     <div class="sticky-top" style="position: relative; left: 25%; width: 75%;">
                         @include('component.pesan')
                         @yield('konten')
                     </div>
+
                     <div class="">
                         <div class="container">
                             <footer class="py-3 my-4" style="position: relative; left: 25%; bottom: 0; width: 75%;">
@@ -29,7 +30,7 @@
                                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
                                 <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
                               </ul> --}}
-                              <p class="text-center text-muted border-top fixed-bottom" style="width: 81%; left: 19%;">&copy; 2022 Company, Inc</p>
+                              <p class="text-center text-muted border-top fixed-bottom mt-5" style="width: 81%; left: 19%;">&copy; 2022 Company, Inc</p>
                             </footer>
                           </div>
                     </div>

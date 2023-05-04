@@ -1,8 +1,7 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-secondary" href="{{ url('/siswa') }}" role="button"><< Kembali</a>
-    <form action="/siswa" method="post" enctype="multipart/form-data">
+    <form action="/siswa" class="" method="post" enctype="multipart/form-data">
         @csrf
         <h3>Tambah Siswa</h3>
         <div class="mb-3">
@@ -52,6 +51,7 @@
                     </select>
             </div>
         </div>
+        <a class="btn btn-secondary" href="{{ url('/siswa') }}" role="button"><< Kembali</a>
         <button type="submit" class="btn btn-primary">Tambah</button>
     </form>
 @endsection
