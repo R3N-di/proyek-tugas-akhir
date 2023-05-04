@@ -82,15 +82,17 @@
                     {{-- <td>{{ json_decode(json_encode(App\Models\Guru::where('idguru', $data->idguru)->get()->first()['nama']),true)}}</td> --}}
                     <td scope="row">{{ $data->guru->nama }}</td>
                     <td>
-                        <a class="btn btn-warning btn-sm" href="/mengajar/{{ $data->idmengajar }}/edit"
-                            role="button">Edit</a>
-                        {{-- <a class="btn btn-danger btn-sm" href="/mengajar/{{ $data->idmengajar }}" role="button">delete</a>  --}}
-                        <form onsubmit="return confirm('Yakin Ingin Hapus Data?')"
-                            action="{{ url('mengajar/' . $data->idmengajar) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                        </form>
+                        <div class="d-flex gap-1">
+                            <a class="btn btn-warning btn-sm" href="/mengajar/{{ $data->idmengajar }}/edit"
+                                role="button">Edit</a>
+                            {{-- <a class="btn btn-danger btn-sm" href="/mengajar/{{ $data->idmengajar }}" role="button">delete</a>  --}}
+                            <form onsubmit="return confirm('Yakin Ingin Hapus Data?')"
+                                action="{{ url('mengajar/' . $data->idmengajar) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

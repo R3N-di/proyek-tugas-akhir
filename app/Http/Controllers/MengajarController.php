@@ -28,8 +28,8 @@ class MengajarController extends Controller
         //     $dataMengajar = Mengajar::paginate(5);
         // }
 
-        $dataMengajar = Mengajar::filter(request(['cari', 'kelas', 'jurusan']))->paginate(5)->withQueryString();
-        
+        $dataMengajar = Mengajar::filter(request(['cari', 'kelas', 'jurusan']))->paginate(4)->withQueryString();
+
         return view('page.mengajar.index', [
             'dataMengajar' => $dataMengajar,
             'dataKelas' => $dataKelas,
@@ -133,7 +133,6 @@ class MengajarController extends Controller
 
         Mengajar::where('idmengajar', $id)->update($data);
         return redirect('/mengajar/')->withInfo('Berhasil Mengedit Data Baru');
-
     }
 
     /**
