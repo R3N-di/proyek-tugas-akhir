@@ -4,11 +4,11 @@
     <div class="d-flex justify-content-between">
         <div>
             <a class="btn btn-success" href="{{ url('/mengajar/create') }}" role="button">Tambah ++</a>
-            <form class="d-flex" action="" method="">
-                @if (request('cari'))
-                    <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..."
-                        value="{{ request('cari') }}">
-                @endif
+            <form class="d-flex" action="/mengajar" method="get">
+            @if (request('cari'))
+                <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..."
+                    value="{{ request('cari') }}">
+            @endif
                 <div class="mt-3">
                     <label for="kelas" class="form-label">Kelas :</label>
                     <select class="form-control" name="kelas" id="kelas">
@@ -26,9 +26,8 @@
                         @endforeach
                     </select>
                 </div>
-
                 <div>
-                    <a class="btn btn-primary mt-5 ms-1" href="#" role="button">Cari</a>
+                    <input type="submit" class="btn btn-primary mt-5 ms-1" role="button" value="Cari">
                 </div>
             </form>
         </div>
@@ -99,5 +98,4 @@
         </tbody>
     </table>
     {{ $dataMengajar->links() }}
->>>>>>> 6dcbd97e353a1db388ad1afa8a9ed9ff629596a0
 @endsection
