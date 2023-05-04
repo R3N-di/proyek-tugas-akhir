@@ -1,4 +1,4 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sticky-top" style="width: 250px; height: 100%;">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sticky-top" style="width: 250px; max-height: 100%; position: fixed; top: 0; bottom: 0;">
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-4">Web Absen</span>
@@ -45,7 +45,7 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="{{ url('gambar/' . $user->gambar) }}" alt="" width="48" height="48" class="rounded-circle me-2">
-        @if (Auth::guard('web')->check()) 
+        @if (Auth::guard('web')->check())
           <strong class="text-truncate" style="max-width: 150px;">{{ $user->name }}</strong>
         @else
           <strong class="text-truncate" style="max-width: 150px;">{{ $user->nama }}</strong>
@@ -57,11 +57,11 @@
           <li class="ms-3">Kelas : {{ $user->idkelas }}</li>
           <li class="ms-3">Jurusan : {{ $user->idjurusan }}</li>
         @endif
-        @if (Auth::guard('guru')->check()) 
+        @if (Auth::guard('guru')->check())
           <li class="ms-3">Nama : {{ $user->nama }}</li>
           <li class="ms-3">Mapel : {{ $user->idmapel }}</li>
         @endif
-        @if (Auth::guard('web')->check()) 
+        @if (Auth::guard('web')->check())
         <li class="ms-3">Nama : {{ $user->name }}</li>
         <li class="ms-3">Email : {{ $user->email }}</li>
         @endif
