@@ -6,6 +6,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Jurusan;
 use Faker\Factory as Faker;
+use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -24,6 +25,17 @@ class SiswaController extends Controller
         $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->paginate(5)->withQueryString();
 
         return view('page.siswa.index', compact('dataSiswa', 'dataKelas', 'dataJurusan'));
+    }
+
+    public function cetak_pdf(){
+        $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->get();
+
+    	$pdf = PDF::loadview('page.siswa.pdf',[
+            'dataSiswa' => $dataSiswa,
+            'no' => 1,
+        ]);
+
+    	return $pdf->stream("Daftar Siswa");
     }
 
     /**

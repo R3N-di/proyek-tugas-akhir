@@ -32,27 +32,29 @@
   </head>
   <body>
       <div class="container">
-        <h3>Daftar Guru</h3>
+        <h3>Daftar Siswa</h3>
         <table class="table" id="customers">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">NIP</th>
+                    <th scope="col">NIS</th>
                     <th scope="col">Nama</th>
                     <th scope="col">JK</th>
                     <th scope="col">Password</th>
-                    <th scope="col">Mapel</th>
+                    <th scope="col">Kelas</th>
+                    <th scope="col">Jurusan</th>
                   </tr>
             </thead>
             <tbody>
-                @foreach ($dataGuru as $data)
+                @foreach ($dataSiswa as $data)
                     <tr>
                         <td scope="row">{{ $no++ }}</td>
-                        <td>{{ $data->nip }}</td>
+                        <td>{{ $data->nis }}</td>
                         <td>{{ $data->nama }}</td>
                         <td>{{ $data->jk }}</td>
                         <td>{{ $data->password_no_hash }}</td>
-                        <td>{{ $data->idmapel }}</td>
+                        <td>{{ $data->idkelas }}</td>
+                        <td>{{ $data->idjurusan }}</td>
                     </tr>
                 @endforeach
             </tbody>

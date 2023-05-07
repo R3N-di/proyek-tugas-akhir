@@ -29,7 +29,8 @@ class GuruController extends Controller
         $dataGuru = Guru::filter(request(['cari', 'mapel']))->get();
 
     	$pdf = PDF::loadview('page.guru.pdf',[
-            'dataGuru' => $dataGuru
+            'dataGuru' => $dataGuru,
+            'no' => 1,
         ]);
 
     	return $pdf->stream("Daftar Guru");
