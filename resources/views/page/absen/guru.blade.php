@@ -61,7 +61,7 @@
                                 {{ $data2->status }}
                             </button>
                         @else
-
+                            
                         @endif
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal{{ $data2->idsiswa }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

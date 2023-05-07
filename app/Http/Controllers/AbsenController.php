@@ -99,7 +99,7 @@ class AbsenController extends Controller
 
     public function absen_guru(Request $request){
         $dataGuru = Auth::guard('guru')->user();
-        
+
         $idguru = $dataGuru->idguru;
 
         if($request->has('tanggal')){
@@ -114,12 +114,25 @@ class AbsenController extends Controller
             ->first();
 
             $date = date('Y-m-d');
+
+            if($dataMengajar2 == NULL){
+                redirect('beranda/')->withErrors('Tidak dapat Login, Guru tersebut tidak memiliki jadwal mengajar');
+            }
+
             $jurusan = $dataMengajar2->idjurusan;
             $kelas = $dataMengajar2->idkelas;
         }
 
         //Mengambil hari
         $day = Carbon::parse($date)->format('l');
+
+        $dataMengajar = Mengajar::where([
+                        ['hari', '=', $day],
+                        ['idkelas', '=', $kelas],
+                        ['idjurusan', '=', $jurusan],
+                        ['idguru', '=', $idguru],
+                    ])
+                    ->first();
 
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
@@ -131,13 +144,6 @@ class AbsenController extends Controller
             'hari' => $day,
         ];
 
-        // $dataMengajar = Mengajar::where([
-        //                 ['hari', '=', $day],
-        //                 ['idkelas', '=', $kelas],
-        //                 ['idjurusan', '=', $jurusan],
-        //                 ['idguru', '=', $idguru],
-        //             ])
-        //             ->first();
 
         $dataSiswa = Siswa::where([
                         ['idkelas', '=', $kelas],
@@ -148,7 +154,8 @@ class AbsenController extends Controller
 
         $dataAbsen = Absen::where([
                         ['tanggal', '=', $date],
-                        // ['idmengajar', '=', $dataMengajar->idmengajar],
+                        ['idguru', '=', $dataGuru->idguru],
+                        ['tanggal', '=', $date],
                     ])
                     ->get();
 

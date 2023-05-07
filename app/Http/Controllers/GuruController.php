@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use App\Models\Mapel;
+// use Barryvdh\DomPDF\PDF;
+use PDF;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -21,6 +23,16 @@ class GuruController extends Controller
         $dataGuru = Guru::filter(request(['cari', 'mapel']))->paginate(5)->withQueryString();
 
         return view('page.guru.index', compact('dataGuru', 'dataMapel'));
+    }
+
+    public function cetak_pdf(){
+        $dataGuru = Guru::filter(request(['cari', 'mapel']))->get();
+
+    	$pdf = PDF::loadview('page.guru.pdf',[
+            'dataGuru' => $dataGuru
+        ]);
+
+    	return $pdf->stream("Daftar Guru");
     }
 
     /**

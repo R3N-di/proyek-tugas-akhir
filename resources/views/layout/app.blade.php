@@ -14,8 +14,8 @@
                 <div class="">
                     @include('component.sidebar')
                 </div>
-                <div class="d-flex flex-column flex-fill dps-5 pt-2 pe-5 w-100" style="position: fixed; ">
-                    <div class="sticky-top" style="position: relative; left: 25%; width: 75%;">
+                <div class="d-flex flex-column flex-fill dps-5 pt-2 pe-5 w-100" style="">
+                    <div class="" style="position: relative; left: 25%; width: 75%;">
                         @include('component.pesan')
                         @yield('konten')
                     </div>

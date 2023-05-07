@@ -22,6 +22,7 @@ use App\Http\Controllers\MengajarController;
 Route::resource('/siswa',SiswaController::class)->middleware('isAdmin');
 
 //Route guru
+Route::get('/guru/cetak_pdf', [GuruController::class, 'cetak_pdf'])->middleware('isAdmin');
 Route::resource('/guru', GuruController::class)->middleware('isAdmin');
 
 // Route Absen

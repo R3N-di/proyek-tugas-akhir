@@ -7,7 +7,7 @@
     <div>
         <form class="d-flex" action="/guru" method="get">
             @if (request('cari'))
-                <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..." value="{{ request('cari') }}">
+                <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
             @endif
             <div class="mt-3 mb-3">
                 <label for="idmapel" class="form-label">Mapel :</label>
@@ -26,15 +26,25 @@
 
     <div class="mt-5">
         <form class="d-flex" action="/guru" method="get">
-        @if (request('mapel')) 
-            <input type="hidden" name="mapel" placeholder="Cari guru..." value="{{ request('mapel') }}">
-        @endif
-            <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off" value="{{ request('cari') }}">
-            <input class="btn btn-primary" type="submit" value="Cari">
+            @if (request('mapel')) 
+                <input type="hidden" name="mapel" value="{{ request('mapel') }}">
+            @endif
+                <input type="text" class="form-control" name="cari" aria-describedby="helpId" placeholder="Cari guru..." autocomplete="off" value="{{ request('cari') }}">
+                <input class="btn btn-primary" type="submit" value="Cari">
         </form>
     </div>
     <div>
         <a href="/guru" class="btn btn-warning mt-5">Daftar Guru</a>
+        {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
+        <form action="/guru/cetak_pdf" method="get">
+            @if (request('mapel')) 
+                <input type="hidden" name="mapel" value="{{ request('mapel') }}">
+            @endif
+            @if (request('cari'))
+                <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
+            @endif
+                <input class="btn btn-success" type="submit" value="Cetak PDF">
+        </form>
     </div>
 </div>
 <table class="table">
