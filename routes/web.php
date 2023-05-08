@@ -26,6 +26,10 @@ Route::resource('/siswa',SiswaController::class)->middleware('isAdmin');
 Route::get('/guru/cetak_pdf', [GuruController::class, 'cetak_pdf'])->middleware('isAdmin');
 Route::resource('/guru', GuruController::class)->middleware('isAdmin');
 
+// Route Mengajar
+Route::get('/mengajar/cetak_pdf', [MengajarController::class, 'cetak_pdf'])->middleware('isAdmin');
+Route::resource('/mengajar', MengajarController::class)->middleware('isAdmin');
+
 // Route Absen
 Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa'])->middleware('isSiswa');
 Route::post('/absen/siswa', [AbsenController::class, 'absen_siswa_input'])->middleware('isSiswa');
@@ -41,5 +45,3 @@ Route::post('login/', [SessionController::class, 'login']);
 Route::get('/logout', [SessionController::class, 'logout']);
 Route::get('/beranda', [SessionController::class, 'beranda']);
 
-// Route Mengajar
-Route::resource('/mengajar', MengajarController::class);

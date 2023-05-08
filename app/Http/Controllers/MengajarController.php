@@ -7,6 +7,7 @@ use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\Jurusan;
 use App\Models\Mengajar;
+use PDF;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,17 @@ class MengajarController extends Controller
             'dataKelas' => $dataKelas,
             'dataJurusan' => $dataJurusan,
         ]);
+    }
+
+    public function cetak_pdf(){
+        $dataMengajar = Mengajar::filter(request(['cari', 'kelas', 'jurusan']))->get();
+
+    	$pdf = PDF::loadview('page.mengajar.pdf',[
+            'dataMengajar' => $dataMengajar,
+            'no' => 1,
+        ]);
+
+    	return $pdf->stream("Daftar Mengajar");
     }
 
     /**

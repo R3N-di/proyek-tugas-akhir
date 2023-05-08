@@ -42,6 +42,22 @@
                 <input class="btn btn-primary" type="submit" value="Cari">
             </form>
         </div>
+        <div>
+            <a href="/mengajar" class="btn btn-warning mt-5">Daftar Mengajar</a>
+            {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
+            <form action="/mengajar/cetak_pdf" method="get">
+                @if (request('kelas')) 
+                    <input type="hidden" name="kelas" value="{{ request('kelas') }}">
+                @endif
+                @if (request('jurusan')) 
+                    <input type="hidden" name="jurusan" value="{{ request('jurusan') }}">
+                @endif
+                @if (request('cari'))
+                    <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
+                @endif
+                    <input class="btn btn-success" type="submit" value="Cetak PDF">
+            </form>
+        </div>
     </div>
     <table class="table">
         <thead>
