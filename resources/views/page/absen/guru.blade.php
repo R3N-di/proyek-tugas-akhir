@@ -15,8 +15,7 @@
 <h4>{{ $hari[$dataTitle['hari']] }} </h4>
 <div class="d-flex justify-content-between">
     <div>
-        <form action="" method="post">
-            @csrf
+        <form action="" method="get">
             <label for="kelas" class="form-label">Kelas :</label>
             <select name="kelas" id="kelas">
                 @foreach ($dataKelas as $data)
@@ -39,12 +38,15 @@
     <div>
         {{-- <a href="/guru" class="btn btn-warning mt-5">Daftar Guru</a> --}}
         {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
-        <form action="/guru/cetak_pdf" method="get">
-            @if (request('mapel')) 
-                <input type="hidden" name="mapel" value="{{ request('mapel') }}">
+        <form action="/absenGuru/cetak_pdf" method="get">
+            @if (request('kelas')) 
+                <input type="hidden" name="kelas" value="{{ request('kelas') }}">
             @endif
-            @if (request('cari'))
-                <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
+            @if (request('jurusan')) 
+                <input type="hidden" name="jurusan" value="{{ request('jurusan') }}">
+            @endif
+            @if (request('tanggal')) 
+                <input type="hidden" name="tanggal" value="{{ request('tanggal') }}">
             @endif
                 <input class="btn btn-success" type="submit" value="Cetak PDF">
         </form>

@@ -34,6 +34,7 @@ Route::resource('/mengajar', MengajarController::class)->middleware('isAdmin');
 Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa'])->middleware('isSiswa');
 Route::post('/absen/siswa', [AbsenController::class, 'absen_siswa_input'])->middleware('isSiswa');
 
+Route::get('/absenGuru/cetak_pdf', [AbsenController::class, 'cetak_pdf_guru'])->middleware('isGuru');
 Route::get('/absen/guru', [AbsenController::class, 'absen_guru'])->middleware('isGuru');
 Route::post('/absen/guru', [AbsenController::class, 'absen_guru'])->middleware('isGuru');
 
