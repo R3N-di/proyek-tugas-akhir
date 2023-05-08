@@ -32,7 +32,7 @@
   </head>
   <body>
       <div class="container">
-        <h3>Daftar Guru</h3>
+        <h3>Daftar Mengajar</h3>
         <table class="table" id="customers">
             <thead>
                 <tr>
@@ -43,12 +43,18 @@
                   </tr>
             </thead>
             <tbody>
-                @foreach ($dataGuru as $data)
+                @foreach ($dataSiswa as $data)
                     <tr>
                         <td scope="row">{{ $no++ }}</td>
                         <td>{{ $data->nama }}</td>
                         <td>{{ $data->jk }}</td>
-                        <td>{{ $data->status }}</td>
+                        @foreach ($dataAbsen as $data2) 
+                            @if ($data->idsiswa == $data2->idsiswa)
+                                <td>{{ $data2->status }}</td>
+                            @else
+                                
+                            @endif
+                        @endforeach
                     </tr>
                 @endforeach
             </tbody>

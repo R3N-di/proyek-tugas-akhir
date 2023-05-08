@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Jurusan;
 use App\Models\Mengajar;
+use PDF;
 use Faker\Factory as Faker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -155,7 +156,6 @@ class AbsenController extends Controller
         $dataAbsen = Absen::where([
                         ['tanggal', '=', $date],
                         ['idguru', '=', $dataGuru->idguru],
-                        ['tanggal', '=', $date],
                     ])
                     ->get();
 
@@ -168,8 +168,11 @@ class AbsenController extends Controller
         ]);
     }
 
-    public function cetak_pdf_guru(){
+    public function cetak_pdf_guru(Request $request){
         $dataGuru = Auth::guard('guru')->user();
+        $kelas = $request->kelas;
+        $jurusan = $request->jurusan;
+        $date = $request->tanggal;
         
         $dataSiswa = Siswa::where([
                         ['idkelas', '=', $kelas],
@@ -181,7 +184,6 @@ class AbsenController extends Controller
         $dataAbsen = Absen::where([
                         ['tanggal', '=', $date],
                         ['idguru', '=', $dataGuru->idguru],
-                        ['tanggal', '=', $date],
                     ])
                     ->get();
 
