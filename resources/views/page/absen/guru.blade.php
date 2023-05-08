@@ -36,6 +36,19 @@
             <button type="submit" class="btn btn-primary">Cari</button>
         </form>
     </div>
+    <div>
+        {{-- <a href="/guru" class="btn btn-warning mt-5">Daftar Guru</a> --}}
+        {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
+        <form action="/guru/cetak_pdf" method="get">
+            @if (request('mapel')) 
+                <input type="hidden" name="mapel" value="{{ request('mapel') }}">
+            @endif
+            @if (request('cari'))
+                <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
+            @endif
+                <input class="btn btn-success" type="submit" value="Cetak PDF">
+        </form>
+    </div>
 </div>
 <table class="table">
     <thead>

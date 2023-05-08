@@ -126,13 +126,13 @@ class AbsenController extends Controller
         //Mengambil hari
         $day = Carbon::parse($date)->format('l');
 
-        $dataMengajar = Mengajar::where([
-                        ['hari', '=', $day],
-                        ['idkelas', '=', $kelas],
-                        ['idjurusan', '=', $jurusan],
-                        ['idguru', '=', $idguru],
-                    ])
-                    ->first();
+        // $dataMengajar = Mengajar::where([
+        //                 ['hari', '=', $day],
+        //                 ['idkelas', '=', $kelas],
+        //                 ['idjurusan', '=', $jurusan],
+        //                 ['idguru', '=', $idguru],
+        //             ])
+        //             ->first();
 
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
@@ -166,5 +166,31 @@ class AbsenController extends Controller
             'dataKelas' => $dataKelas,
             'dataTitle' => $dataTitle,
         ]);
+    }
+
+    public function cetak_pdf_guru(){
+        $dataGuru = Auth::guard('guru')->user();
+        
+        $dataSiswa = Siswa::where([
+                        ['idkelas', '=', $kelas],
+                        ['idjurusan', '=', $jurusan],
+                    ])
+                    ->get()
+                    ->sortBy('nama');
+
+        $dataAbsen = Absen::where([
+                        ['tanggal', '=', $date],
+                        ['idguru', '=', $dataGuru->idguru],
+                        ['tanggal', '=', $date],
+                    ])
+                    ->get();
+
+    	$pdf = PDF::loadview('page.absen.pdfGuru',[
+            'dataSiswa' => $dataSiswa,
+            'dataAbsen' => $dataAbsen,
+            'no' => 1,
+        ]);
+
+    	return $pdf->stream("Daftar Absen Siswa Kelas " . $kelas . " Jurusan " . $jurusan);
     }
 }
