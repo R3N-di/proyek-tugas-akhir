@@ -64,7 +64,7 @@ Itulah mengapa dibuatnya aplikasi ini untuk mencegah terjadinya hal - hal yang t
 
 ### Dibuat dengan
 
-Project ini tidak hanya dibuat oleh satu orang saja tetapi terdapat beberapa orag yang iikut serta dalam membuat project ini dan tentu saja framework pemrogramman yang digunakan tidak hanya satu tetapi terdapat beberapa framework yang kita gunakan.
+Project ini tidak hanya dibuat oleh satu orang saja tetapi terdapat beberapa orang yang ikut serta dalam membuat project ini dan tentu saja framework pemrogramman yang digunakan tidak hanya satu tetapi terdapat beberapa framework yang kita gunakan.
 
 -   [![Laravel][Laravel.com]][Laravel-url]
 -   [![Bootstrap][Bootstrap.com]][Bootstrap-url]
