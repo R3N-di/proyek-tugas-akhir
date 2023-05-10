@@ -1,4 +1,5 @@
-[![Contributors][contributors-shield]][contributors-url]
+[<a name="atas"></a>
+![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
@@ -12,13 +13,13 @@
   <p align="center">
    Sistem untuk mengelola absen siswa agar lebih efisien!
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/R3N-di/proyek-tugas-akhir"><strong>Explore the docs »</strong></a>
     <br />
     <br />
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
+<!-- DAFTAR KONTENT -->
 <details>
   <summary>Daftar Konten</summary>
   <ol>
@@ -44,7 +45,7 @@
   </ol>
 </details>
 
-<!-- ABOUT THE PROJECT -->
+<!--TENTANG PROJECT -->
 
 ## Tentang Project
 
@@ -60,7 +61,7 @@ Diantaranya :
 
 Itulah mengapa dibuatnya aplikasi ini untuk mencegah terjadinya hal - hal yang tidak diinginkan.
 
-<p align="right">(<a href="#readme-top">Kembali ke atas</a>)</p>
+<p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 ### Dibuat dengan
 
@@ -69,71 +70,45 @@ Project ini tidak hanya dibuat oleh satu orang saja tetapi terdapat beberapa ora
 -   [![Laravel][Laravel.com]][Laravel-url]
 -   [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+## Mulai
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Dikarenakan kami menggunakan menggunakan framework laravel saat membuat project ini makan di bawah ini adalah beberapa cara untuk menginstal laravel.
 
-### Prerequisites
+### Prasyarat
 
-This is an example of how to list things you need to use the software and how to install them.
+Di bawah ini adalah prasyarat sebelum menginstal laravel
+-   XAMPP
+-   Composer
 
--   npm
-    ```sh
-    npm install npm@latest -g
-    ```
+### Instalasi
 
-### Installation
+_Di bawah ini adalah langkah - langkah dalam menginstal laravel_
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-    ```sh
-    git clone https://github.com/your_username_/Project-Name.git
-    ```
-3. Install NPM packages
-    ```sh
-    npm install
-    ```
-4. Enter your API in `config.js`
+1. Masuk Command Prompt
+2. Langkah pertama dalam install Laravel adalah masuk Command Prompt. Caranya adalah klik Win+R lalu ketik cmd dan klik OK
+3.  Masuk ke Folder XAMPP
     ```js
-    const API_KEY = "ENTER YOUR API";
+    cd \xampp\htdocs
     ```
+4. Mulai Proses Install Laravel
+    ```js
+   composer create-project laravel/laravel example-app
+    ```
+5. Cek Instalasi Laravel di Web Browser
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
-<!-- USAGE EXAMPLES -->
+<!-- PENGGUNAAN -->
 
-## Usage
+## Penggunaan
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Website ini digunakan untuk siswa dan guru dapat mengabsen dengan mudah dan dimana saja, melalui website yang sudah disediakan serta tampilkan yang simple dan mudah untuk dipahami.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- ROADMAP -->
-
-## Roadmap
-
--   [x] Add Changelog
--   [x] Add back to top links
--   [ ] Add Additional Templates w/ Examples
--   [ ] Add "components" document to easily copy & paste sections of the readme
--   [ ] Multi-language Support
-    -   [ ] Chinese
-    -   [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- CONTRIBUTING -->
+<p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 ## Contributing
 
@@ -154,19 +129,21 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Website ini di distribusikan dibawah Lisensi MIT
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 <!-- CONTACT -->
 
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Rendi - rendi@gmail.com
+Mun'im - munimsudrajat22@gmail.com
+Cakra - cakra@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/R3N-di/proyek-tugas-akhire](https://github.com/R3N-di/proyek-tugas-akhir)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 
