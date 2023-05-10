@@ -137,9 +137,9 @@ Website ini di distribusikan dibawah Lisensi MIT
 
 ## Contact
 
-Rendi - rendi@gmail.com
-Mun'im - munimsudrajat22@gmail.com
-Cakra - cakra@gmail.com
+1. Rendi - rendi@gmail.com
+2. Mun'im - munimsudrajat22@gmail.com
+3. Cakra - cakra@gmail.com
 
 Project Link: [https://github.com/R3N-di/proyek-tugas-akhire](https://github.com/R3N-di/proyek-tugas-akhir)
 
