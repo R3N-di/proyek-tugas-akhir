@@ -39,6 +39,12 @@
             <li class="nav-item">
             <a href="/mengajar" class="nav-link" aria-current="page">CRUD Mengajar</a>
             </li>
+            <li class="nav-item">
+            <a href="/jurusan" class="nav-link" aria-current="page">CRUD Jurusan</a>
+            </li>
+            <li class="nav-item">
+            <a href="/mapel" class="nav-link" aria-current="page">CRUD Mapel</a>
+            </li>
         @endif
     </ul>
     <hr>

@@ -1,8 +1,8 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-success" href="{{ url('/siswa/create') }}" role="button">Tambah ++</a>
-<div class="d-flex justify-content-between">
+<a class="btn btn-success" href="{{ url('/jurusan/create') }}" role="button">Tambah ++</a>
+{{-- <div class="d-flex justify-content-between">
     <div class="mb-3">
         <form class="d-flex" action="" method="get">
             @if (request('cari'))
@@ -38,11 +38,11 @@
             <input type="text" class="form-control" name="cari" placeholder="Cari siswa..." autocomplete="off">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
-    </div>
+    </div> --}}
     <div>
         <a href="/siswa" class="btn btn-warning mt-5">Daftar Siswa</a>
         {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
-        <form action="/siswa/cetak_pdf" method="get">
+        {{-- <form action="/siswa/cetak_pdf" method="get">
             @if (request('kelas')) 
                 <input type="hidden" name="kelas" value="{{ request('kelas') }}">
             @endif
@@ -54,41 +54,36 @@
             @endif
                 <input class="btn btn-success" type="submit" value="Cetak PDF">
         </form>
-    </div>
+    </div> --}}
 </div>
 
 <table class="table">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">NIS</th>
+        <th scope="col">Singkatan</th>
         <th scope="col">Nama</th>
-        <th scope="col">JK</th>
-        <th scope="col">Password</th>
         <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
 
-        @foreach ( $dataSiswa as $key => $data )
+        @foreach ( $dataJurusan as $key => $data )
         <tr>
             <th scope="row">
-                {{ $dataSiswa->firstitem() + $key }}
+                {{ $dataJurusan->firstitem() + $key }}
            </th>
-            <td>{{$data->nis}}</td>
+            <td>{{$data->jurusan}}</td>
             <td>{{$data->nama}}</td>
-            <td>{{$data->jk}}</td>
-            <td>{{$data->password_no_hash}}</td>
             <td>
                 <div class="d-flex gap-2">
-                <a class="btn btn-primary btn-sm" href="/siswa/{{ $data->idsiswa }}" role="button">Detail</a>
-                <a class="btn btn-warning btn-sm" href="/siswa/{{ $data->idsiswa }}/edit" role="button">Edit</a>
-                {{-- <a class="btn btn-danger btn-sm" href="/guru/{{ $data->id }}" role="button">delete</a>  --}}
-                <form onsubmit="return confirm('Yakin Ingin Hapus Data?')" action="{{ url('siswa/'.$data->idsiswa) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                </form>
+                    {{-- <a class="btn btn-primary btn-sm" href="/jurusan/{{ $data->jurusan }}" role="button">Detail</a> --}}
+                    <a class="btn btn-warning btn-sm" href="/jurusan/{{ $data->jurusan }}/edit" role="button">Edit</a>
+                    <form onsubmit="return confirm('Yakin Ingin Hapus Data?')" action="{{ url('jurusan/'.$data->jurusan) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    </form>
                 </div>
 
             </td>
@@ -96,5 +91,5 @@
         @endforeach
     </tbody>
   </table>
-  {{$dataSiswa -> links() }}
+  {{$dataJurusan -> links() }}
 @endsection

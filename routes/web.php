@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\MengajarController;
 
@@ -29,6 +31,12 @@ Route::resource('/guru', GuruController::class)->middleware('isAdmin');
 // Route Mengajar
 Route::get('/mengajar/cetak_pdf', [MengajarController::class, 'cetak_pdf'])->middleware('isAdmin');
 Route::resource('/mengajar', MengajarController::class)->middleware('isAdmin');
+
+// Route Jurusan
+Route::resource('/jurusan', JurusanController::class)->middleware('isAdmin');
+
+// Route Mapel
+Route::resource('/mapel', MapelController::class)->middleware('isAdmin');
 
 // Route Absen
 Route::get('/absen/siswa', [AbsenController::class, 'absen_siswa'])->middleware('isSiswa');
