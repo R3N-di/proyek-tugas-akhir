@@ -42,6 +42,8 @@ class AbsenController extends Controller
     }
 
     public function absen_siswa_input(Request $request){
+        $idsiswa = Auth::guard('siswa')->user()->idsiswa;
+        
         $faker = Faker::create('id_ID');
 
         $request->validate([
@@ -56,7 +58,7 @@ class AbsenController extends Controller
             'status' => $request->status,
             'tanggal' => date('Y-m-d'),
             'idmengajar' => $request->idmengajar,
-            'idsiswa' => 'XESBWDTOHRG',
+            'idsiswa' => $idsiswa,
             'idguru' => $request->idguru
         ];
 
@@ -91,6 +93,19 @@ class AbsenController extends Controller
         }
         else{
             $data['gambar'] = NULL;
+        }
+
+        $tanggal = date('Y-m-d');
+
+        $dataAbsen = Absen::where([
+                    ['tanggal', '=', $tanggal],
+                    ['idmengajar', '=', $request->idmengajar],
+                    ['idsiswa', '=', $idsiswa],
+                    ])
+                    ->first();
+
+        if($dataAbsen != NULL){
+            return redirect('/absen/siswa')->withErrors('Siswa ini sudah absen pada mapel tersebut hari ini');
         }
 
         Absen::insert($data);
@@ -170,10 +185,17 @@ class AbsenController extends Controller
 
     public function cetak_pdf_guru(Request $request){
         $dataGuru = Auth::guard('guru')->user();
-        $kelas = $request->kelas;
-        $jurusan = $request->jurusan;
-        $date = $request->tanggal;
-        
+        if($request->has('tanggal')){
+            $kelas = $request->kelas;
+            $jurusan = $request->jurusan;
+            $date = $request->tanggal;
+        }
+        else{
+            $kelas = 12;
+            $jurusan = 'RPL1';
+            $date = date('Y-m-d');
+        }
+
         $dataSiswa = Siswa::where([
                         ['idkelas', '=', $kelas],
                         ['idjurusan', '=', $jurusan],
@@ -190,6 +212,8 @@ class AbsenController extends Controller
     	$pdf = PDF::loadview('page.absen.pdfGuru',[
             'dataSiswa' => $dataSiswa,
             'dataAbsen' => $dataAbsen,
+            'kelas' => $kelas,
+            'jurusan' => $jurusan,
             'no' => 1,
         ]);
 
