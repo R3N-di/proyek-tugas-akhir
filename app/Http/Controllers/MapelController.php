@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mapel;
 use Illuminate\Http\Request;
 
 class MapelController extends Controller
@@ -11,7 +12,11 @@ class MapelController extends Controller
      */
     public function index()
     {
-        //
+
+        $dataMapel = Mapel::all();
+        // $dataMapel = Mapel::filter(request(['cari', 'mapel']))->paginate(5)->withQueryString();
+
+        return view('page.mapel.index', compact('dataMapel'));
     }
 
     /**
@@ -19,7 +24,8 @@ class MapelController extends Controller
      */
     public function create()
     {
-        //
+        $dataMapel = Mapel::all();
+        return view('page.mapel.create', compact('dataMapel'));
     }
 
     /**
@@ -27,7 +33,35 @@ class MapelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'mapel' => 'required|string',
+        ], [
+            'mapel.required' => 'Mapel Harus Diisi',
+            'mapel.string' => 'Mapel Harus Berbentuk Huruf',
+        ]);
+        $data = [
+            'mapel' => $request->mapel
+
+        ];
+        // if($request->has('gambar')){
+        //     $request->validate([
+        //         'gambar' => 'mimes:png,jpg,jpeg'
+        //     ], [
+        //         'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
+        //     ]);
+        //     $file_gambar = $request->file('gambar');
+        //     $gambar_ekstensi = $file_gambar->extension();
+        //     $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
+        //     $file_gambar->move(public_path('gambar'), $gambar_nama);
+
+        //     $data['gambar'] = $gambar_nama;
+        // }
+        // else{
+        //     $data['gambar'] = "default_gambar.png";
+        // }
+
+        Mapel::create($data);
+        return redirect('/mapel')->withInfo('Berhasil Menambahkan ' . $request->mapel);
     }
 
     /**
