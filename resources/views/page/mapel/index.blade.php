@@ -18,7 +18,7 @@
                     </select>
                 </div>
                 <div>
-                    <input class="btn btn-primary mt-5 ms-1" type="submit" value="mapel">
+                    <input class="btn btn-primary mt-5 ms-1" type="submit" value="Cari">
                 </div>
             </form>
         </div>
@@ -29,7 +29,7 @@
                     <input type="hidden" name="mapel" value="{{ request('mapel') }}">
                 @endif
                 <input type="text" class="form-control" name="cari" aria-describedby="helpId"
-                    placeholder="Cari guru..." autocomplete="off" value="{{ request('cari') }}">
+                    placeholder="Cari mapel..." autocomplete="off" value="{{ request('cari') }}">
                 <input class="btn btn-primary" type="submit" value="Cari">
             </form>
         </div>
@@ -52,6 +52,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Mapel</th>
+                <th scope="col">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -63,7 +64,7 @@
                         <div class="d-flex gap-2">
                             <a class="btn btn-warning btn-sm" href="/mapel/{{ $data->mapel }}/edit" role="button">Edit</a>
                             <form onsubmit="return confirm('Yakin Ingin Hapus Data?')"
-                                action="{{ url('guru/' . $data->mapel) }}" method="post">
+                                action="{{ url('mapel/' . $data->mapel) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>

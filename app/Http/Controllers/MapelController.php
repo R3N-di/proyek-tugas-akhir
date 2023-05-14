@@ -43,22 +43,6 @@ class MapelController extends Controller
             'mapel' => $request->mapel
 
         ];
-        // if($request->has('gambar')){
-        //     $request->validate([
-        //         'gambar' => 'mimes:png,jpg,jpeg'
-        //     ], [
-        //         'gambar.mimes' => 'Gambar harus ber-format : PNG | JPG | JPEG'
-        //     ]);
-        //     $file_gambar = $request->file('gambar');
-        //     $gambar_ekstensi = $file_gambar->extension();
-        //     $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
-        //     $file_gambar->move(public_path('gambar'), $gambar_nama);
-
-        //     $data['gambar'] = $gambar_nama;
-        // }
-        // else{
-        //     $data['gambar'] = "default_gambar.png";
-        // }
 
         Mapel::create($data);
         return redirect('/mapel')->withInfo('Berhasil Menambahkan ' . $request->mapel);
@@ -83,16 +67,31 @@ class MapelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, String $mapel)
     {
-        //
+        $request->validate([
+            'mapel' => 'required|string',
+        ], [
+            'mapel.required' => 'Mapel Harus Diisi',
+            'mapel.string' => 'Mapel Harus Berbentuk Huruf',
+        ]);
+        $data = [
+            'mapel' => $request->mapel
+
+        ];
+
+        Mapel::where('mapel', $mapel)->update($data);;
+        return redirect('/mapel')->withinfo('Berhasil Mengubah Data');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $mapel)
     {
-        //
+        $dataMapel = Mapel::where('mapel', $mapel)->first();
+
+        Mapel::where('mapel', $mapel)->delete();
+        return redirect('/mapel')->withInfo('Berhasil Menghapus Data');
     }
 }
