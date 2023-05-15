@@ -1,8 +1,8 @@
 @extends('layout.app')
 
 @section('konten')
-<a class="btn btn-success" href="{{ url('/jurusan/create') }}" role="button">Tambah ++</a>
-{{-- <div class="d-flex justify-content-between">
+    <a class="btn btn-success" href="{{ url('/jurusan/create') }}" role="button">Tambah ++</a>
+    {{-- <div class="d-flex justify-content-between">
     <div class="mb-3">
         <form class="d-flex" action="" method="get">
             @if (request('cari'))
@@ -40,13 +40,13 @@
         </form>
     </div> --}}
     <div>
-        <a href="/siswa" class="btn btn-warning mt-5">Daftar Siswa</a>
+        <a href="/siswa" class="btn btn-warning mt-5">Daftar Jurusan</a>
         {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
         {{-- <form action="/siswa/cetak_pdf" method="get">
-            @if (request('kelas')) 
+            @if (request('kelas'))
                 <input type="hidden" name="kelas" value="{{ request('kelas') }}">
             @endif
-            @if (request('jurusan')) 
+            @if (request('jurusan'))
                 <input type="hidden" name="jurusan" value="{{ request('jurusan') }}">
             @endif
             @if (request('cari'))
@@ -55,41 +55,43 @@
                 <input class="btn btn-success" type="submit" value="Cetak PDF">
         </form>
     </div> --}}
-</div>
+    </div>
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Singkatan</th>
-        <th scope="col">Nama</th>
-        <th scope="col">Aksi</th>
-      </tr>
-    </thead>
-    <tbody>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Singkatan</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
 
-        @foreach ( $dataJurusan as $key => $data )
-        <tr>
-            <th scope="row">
-                {{ $dataJurusan->firstitem() + $key }}
-           </th>
-            <td>{{$data->jurusan}}</td>
-            <td>{{$data->nama}}</td>
-            <td>
-                <div class="d-flex gap-2">
-                    {{-- <a class="btn btn-primary btn-sm" href="/jurusan/{{ $data->jurusan }}" role="button">Detail</a> --}}
-                    <a class="btn btn-warning btn-sm" href="/jurusan/{{ $data->jurusan }}/edit" role="button">Edit</a>
-                    <form onsubmit="return confirm('Yakin Ingin Hapus Data?')" action="{{ url('jurusan/'.$data->jurusan) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                    </form>
-                </div>
+            @foreach ($dataJurusan as $key => $data)
+                <tr>
+                    <th scope="row">
+                        {{ $dataJurusan->firstitem() + $key }}
+                    </th>
+                    <td>{{ $data->jurusan }}</td>
+                    <td>{{ $data->nama }}</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            {{-- <a class="btn btn-primary btn-sm" href="/jurusan/{{ $data->jurusan }}" role="button">Detail</a> --}}
+                            <a class="btn btn-warning btn-sm" href="/jurusan/{{ $data->jurusan }}/edit"
+                                role="button">Edit</a>
+                            <form onsubmit="return confirm('Yakin Ingin Hapus Data?')"
+                                action="{{ url('jurusan/' . $data->jurusan) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </div>
 
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-  </table>
-  {{$dataJurusan -> links() }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    {{ $dataJurusan->links() }}
 @endsection

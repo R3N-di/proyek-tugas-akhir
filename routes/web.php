@@ -22,7 +22,7 @@ use App\Http\Controllers\MengajarController;
 
 //Route siswa
 Route::get('/siswa/cetak_pdf', [SiswaController::class, 'cetak_pdf'])->middleware('isAdmin');
-Route::resource('/siswa',SiswaController::class)->middleware('isAdmin');
+Route::resource('/siswa', SiswaController::class)->middleware('isAdmin');
 
 //Route guru
 Route::get('/guru/cetak_pdf', [GuruController::class, 'cetak_pdf'])->middleware('isAdmin');
@@ -53,4 +53,3 @@ Route::get('login_guru/', [SessionController::class, 'login_guru'])->middleware(
 Route::post('login/', [SessionController::class, 'login']);
 Route::get('/logout', [SessionController::class, 'logout']);
 Route::get('/beranda', [SessionController::class, 'beranda']);
-

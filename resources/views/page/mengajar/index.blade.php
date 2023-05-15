@@ -5,10 +5,10 @@
         <div>
             <a class="btn btn-success" href="{{ url('/mengajar/create') }}" role="button">Tambah ++</a>
             <form class="d-flex" action="/mengajar" method="get">
-            @if (request('cari'))
-                <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..."
-                    value="{{ request('cari') }}">
-            @endif
+                @if (request('cari'))
+                    <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..."
+                        value="{{ request('cari') }}">
+                @endif
                 <div class="mt-3">
                     <label for="kelas" class="form-label">Kelas :</label>
                     <select class="form-control" name="kelas" id="kelas">
@@ -38,7 +38,7 @@
                     <input type="hidden" class="form-control" name="jurusan" value="{{ request('jurusan') }}">
                 @endif
                 <input type="text" class="form-control" name="cari" aria-describedby="helpId"
-                    placeholder="Cari Guru..." autocomplete="off">
+                    placeholder="Cari Jurusan..." autocomplete="off">
                 <input class="btn btn-primary" type="submit" value="Cari">
             </form>
         </div>
@@ -46,16 +46,16 @@
             <a href="/mengajar" class="btn btn-warning mt-5">Daftar Mengajar</a>
             {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
             <form action="/mengajar/cetak_pdf" method="get">
-                @if (request('kelas')) 
+                @if (request('kelas'))
                     <input type="hidden" name="kelas" value="{{ request('kelas') }}">
                 @endif
-                @if (request('jurusan')) 
+                @if (request('jurusan'))
                     <input type="hidden" name="jurusan" value="{{ request('jurusan') }}">
                 @endif
                 @if (request('cari'))
                     <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
                 @endif
-                    <input class="btn btn-success" type="submit" value="Cetak PDF">
+                <input class="btn btn-success" type="submit" value="Cetak PDF">
             </form>
         </div>
     </div>

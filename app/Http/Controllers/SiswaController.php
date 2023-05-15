@@ -21,21 +21,22 @@ class SiswaController extends Controller
     {
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
-        
+
         $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->paginate(5)->withQueryString();
 
         return view('page.siswa.index', compact('dataSiswa', 'dataKelas', 'dataJurusan'));
     }
 
-    public function cetak_pdf(){
+    public function cetak_pdf()
+    {
         $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->get();
-
-    	$pdf = PDF::loadview('page.siswa.pdf',[
+m
+        $pdf = PDF::loadview('page.siswa.pdf', [
             'dataSiswa' => $dataSiswa,
             'no' => 1,
         ]);
 
-    	return $pdf->stream("Daftar Siswa");
+        return $pdf->stream("Daftar Siswa");
     }
 
     /**
@@ -45,7 +46,7 @@ class SiswaController extends Controller
     {
         $dataKelas = Kelas::all();
         $dataJurusan = Jurusan::all();
-        return view('page.siswa.create', compact('dataKelas','dataJurusan'));
+        return view('page.siswa.create', compact('dataKelas', 'dataJurusan'));
     }
 
     /**
@@ -75,13 +76,13 @@ class SiswaController extends Controller
             'nis' => $request->nis,
             'nama' => $request->nama,
             'password' => Hash::make($password),
-            "password_no_hash"=> $password,
+            "password_no_hash" => $password,
             'jk' => $request->jk,
             'idkelas' => $request->idkelas,
             'idjurusan' => $request->idjurusan
 
         ];
-        if($request->has('gambar')){
+        if ($request->has('gambar')) {
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
             ], [
@@ -93,8 +94,7 @@ class SiswaController extends Controller
             $file_gambar->move(public_path('gambar'), $gambar_nama);
 
             $data['gambar'] = $gambar_nama;
-        }
-        else{
+        } else {
             $data['gambar'] = "default_gambar.png";
         }
 
@@ -133,24 +133,26 @@ class SiswaController extends Controller
 
         //$dataSiswa = Siswa::where('idsiswa',$idsiswa);
 
-        $request->validate([
-            'nis'=> 'required|numeric|min_digits:8',
-            'nama' => 'required',
-            'jk'=> 'required',
-            'idkelas' => 'required',
-            'idjurusan' => 'required'
+        $request->validate(
+            [
+                'nis' => 'required|numeric|min_digits:8',
+                'nama' => 'required',
+                'jk' => 'required',
+                'idkelas' => 'required',
+                'idjurusan' => 'required'
 
-        ],
-        [
-            'nis.required' => 'Nisa Harus Diisi',
-            'nis.numeric' => 'Nis Harus Berupa Angka',
-            'nis.min_digits' => 'Nis Harus 8 Angka',
-            'nama.required' => 'Nama Harus Diisi',
-            'jk.required' => 'Jenis Kelamin Harus Diisi',
-            'idjurusan.required' => 'Jurusan Harus Diisi',
-            'idkelas.required' => 'Kelas Harus Diisi',
+            ],
+            [
+                'nis.required' => 'Nisa Harus Diisi',
+                'nis.numeric' => 'Nis Harus Berupa Angka',
+                'nis.min_digits' => 'Nis Harus 8 Angka',
+                'nama.required' => 'Nama Harus Diisi',
+                'jk.required' => 'Jenis Kelamin Harus Diisi',
+                'idjurusan.required' => 'Jurusan Harus Diisi',
+                'idkelas.required' => 'Kelas Harus Diisi',
 
-        ]);
+            ]
+        );
 
         $data_gambar = Siswa::where('idsiswa', $idsiswa)->first();
         $gambar_lama = $data_gambar->gambar;
@@ -166,8 +168,8 @@ class SiswaController extends Controller
 
         ];
 
-        if($request->has('gambar')){
-            
+        if ($request->has('gambar')) {
+
             $request->validate([
                 'gambar' => 'mimes:png,jpg,jpeg'
             ], [
@@ -179,18 +181,16 @@ class SiswaController extends Controller
             $gambar_nama = date('ymdhis') . '.' . $gambar_ekstensi;
             $file_gambar->move(public_path('gambar'), $gambar_nama);
 
-            if($gambar_lama != "default_gambar.png"){
+            if ($gambar_lama != "default_gambar.png") {
                 File::delete(public_path('gambar/') . $data_gambar->gambar);
             }
-            $data['gambar']=$gambar_nama;
-        }else{
+            $data['gambar'] = $gambar_nama;
+        } else {
             $data['gambar'] = $gambar_lama;
         }
 
-        Siswa::where('idsiswa', $idsiswa)->update($data);;
+        Siswa::where('idsiswa', $idsiswa)->update($data);
         return redirect('/siswa')->withinfo('Berhasil Mengubah Data');
-
-
     }
 
     /**
@@ -200,7 +200,7 @@ class SiswaController extends Controller
     {
         $dataSiswa = Siswa::where('idsiswa', $id)->first();
 
-        if($dataSiswa->gambar != "default_gambar.png"){
+        if ($dataSiswa->gambar != "default_gambar.png") {
             File::delete(public_path('gambar/') . $dataSiswa->gambar);
         }
 
