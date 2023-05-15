@@ -12,8 +12,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $dataJurusan = Jurusan::paginate(10);
-        
+        $dataJurusan = Jurusan::filter(request(['cari']))->paginate(5);
+
         return view('page.jurusan.index', [
             'dataJurusan' => $dataJurusan,
         ]);
@@ -38,53 +38,55 @@ class JurusanController extends Controller
             'jurusan.required' => 'jurusan harus di isi',
         ]);
 
-        $jurusan = $_POST['jurusan'];
-        $angkatan = $_POST['angkatan'];
+        $jurusan = $request->jurusan;
 
         $awalKalimat = $jurusan;
-    
+
             $jurusan = preg_replace("/dan/", "", $jurusan);
-    
+
             for($i=0; $i<10; $i++){
                 if(strpos($jurusan, "$i")){
                     $jumlahJurusan = $i;
                     $jurusan = preg_replace("/$i/", "", $jurusan);
                 }
             }
-    
+
             if(!isset($jumlahJurusan)){
                 $jumlahJurusan = 1;
             }
-    
+
             $kumpulanKalimat = explode(' ', $jurusan);
             $jumlahKalimat = count($kumpulanKalimat);
-    
+
             for($j=0; $j<$jumlahKalimat ; $j++){
                 $kumpulanKalimat[$j] = substr( $kumpulanKalimat[$j], 0, 1 );
             }
-    
+
             $singkatan = implode("", $kumpulanKalimat);
             $singkatan .= "-" . $jumlahJurusan;
-    
+
             $singkatan = strtoupper($singkatan);
             $awalKalimat = ucwords($awalKalimat);
-    
+
             $awalKalimat = preg_replace("/$jumlahJurusan/", " $jumlahJurusan", $awalKalimat);
-    
+
             // CEK APAKAH SUDAH ADA DATA JURUSAN NYA ATAU BELOM
-            $row = mysqli_query($link, "SELECT * FROM jurusan WHERE kode_jurusan='$singkatan'");
-            if(mysqli_num_rows($row) > 0){
-                header("Location: admin/$halamanAsal?paramStatusAksi=gagalTambahJurusan");
-                exit;
+            $cekJurusan = Jurusan::where('jurusan', $singkatan)->first();
+            if(!is_null($cekJurusan)){
+                return redirect('/jurusan')->withErrors('Sudah terdapat jurusan tersebut');
             }
             //!! CEK APAKAH SUDAH ADA DATA JURUSAN NYA ATAU BELOM
-            
-            $qry = "INSERT INTO jurusan VALUES ('$singkatan', '$awalKalimat')";
-            mysqli_query($link, $qry);
 
-            $query = "INSERT INTO $table VALUES (NULL, '$angkatan', '$singkatan')";
-    
-    }
+            // dd(!is_null($cekJurusan));
+
+            $data = [
+                'jurusan' => $singkatan,
+                'nama' => $awalKalimat,
+            ];
+
+            Jurusan::create($data);
+            return redirect('/jurusan')->withInfo('Berhasil Menambahkan ' . $awalKalimat);
+        }
 
     /**
      * Display the specified resource.
@@ -100,7 +102,7 @@ class JurusanController extends Controller
     public function edit(string $id)
     {
         $dataJurusan = Jurusan::where('jurusan', $id)->first();
-        
+
         return view('page.jurusan.edit', [
             'dataJurusan' => $dataJurusan,
         ]);
@@ -111,7 +113,58 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'jurusan' => 'required|string'
+        ], [
+            'jurusan.required' => 'jurusan harus di isi',
+        ]);
+
+        $jurusan = $request->jurusan;
+
+        $awalKalimat = $jurusan;
+
+            $jurusan = preg_replace("/dan/", "", $jurusan);
+
+            for($i=0; $i<10; $i++){
+                if(strpos($jurusan, "$i")){
+                    $jumlahJurusan = $i;
+                    $jurusan = preg_replace("/$i/", "", $jurusan);
+                }
+            }
+
+            if(!isset($jumlahJurusan)){
+                $jumlahJurusan = 1;
+            }
+
+            $kumpulanKalimat = explode(' ', $jurusan);
+            $jumlahKalimat = count($kumpulanKalimat);
+
+            for($j=0; $j<$jumlahKalimat ; $j++){
+                $kumpulanKalimat[$j] = substr( $kumpulanKalimat[$j], 0, 1 );
+            }
+
+            $singkatan = implode("", $kumpulanKalimat);
+            $singkatan .= "-" . $jumlahJurusan;
+
+            $singkatan = strtoupper($singkatan);
+            $awalKalimat = ucwords($awalKalimat);
+
+            $awalKalimat = preg_replace("/$jumlahJurusan/", " $jumlahJurusan", $awalKalimat);
+
+            // CEK APAKAH SUDAH ADA DATA JURUSAN NYA ATAU BELOM
+            $cekJurusan = Jurusan::where('jurusan', $singkatan)->first();
+            if(!is_null($cekJurusan)){
+                return redirect('/jurusan')->withErrors('Sudah terdapat jurusan tersebut');
+            }
+            //!! CEK APAKAH SUDAH ADA DATA JURUSAN NYA ATAU BELOM
+
+            $data = [
+                'jurusan' => $singkatan,
+                'nama' => $awalKalimat,
+            ];
+
+            Jurusan::where('jurusan', $id)->update($data);
+            return redirect('/jurusan')->withInfo('Berhasil Menambahkan ' . $awalKalimat);
     }
 
     /**
@@ -121,7 +174,13 @@ class JurusanController extends Controller
     {
         $dataJurusan = Jurusan::where('jurusan', $id)->first();
 
-        Jurusan::where('jurusan', $id)->delete();
-        return redirect('/jurusan')->withInfo('Berhasil Menghapus Data');
+        if(!is_null($dataJurusan)){
+            return redirect('/jurusan')->withErrors('Tidak dapat menghapus Jurusan tersebut, Jurusan tersebut sudah dipakai oleh Siswa');
+        }
+        else{
+            Jurusan::where('jurusan', $id)->delete();
+            return redirect('/jurusan')->withInfo('Berhasil Menghapus Data');
+        }
+
     }
 }

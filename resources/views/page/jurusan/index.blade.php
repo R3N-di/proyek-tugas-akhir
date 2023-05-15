@@ -2,8 +2,8 @@
 
 @section('konten')
 <a class="btn btn-success" href="{{ url('/jurusan/create') }}" role="button">Tambah ++</a>
-{{-- <div class="d-flex justify-content-between">
-    <div class="mb-3">
+<div class="d-flex justify-content-between">
+    {{-- <div class="mb-3">
         <form class="d-flex" action="" method="get">
             @if (request('cari'))
                 <input type="hidden" class="form-control" name="cari" placeholder="Cari siswa..." value="{{ request('cari') }}">
@@ -28,33 +28,33 @@
                 <input class="btn btn-primary mt-5 ms-1" type="submit" value="Cari">
             </div>
         </form>
-    </div>
+    </div> --}}
     <div class="mt-5">
-        <form class="d-flex" action="/siswa" method="get">
-        @if (request('jurusan'))
+        <form class="d-flex" action="/jurusan" method="get">
+        {{-- @if (request('jurusan'))
             <input type="hidden" class="form-control" name="kelas" value="{{ request('kelas') }}">
             <input type="hidden" class="form-control" name="jurusan" value="{{ request('jurusan') }}">
-        @endif
+        @endif --}}
             <input type="text" class="form-control" name="cari" placeholder="Cari siswa..." autocomplete="off">
             <input class="btn btn-primary" type="submit" value="Cari">
         </form>
-    </div> --}}
+    </div>
     <div>
-        <a href="/siswa" class="btn btn-warning mt-5">Daftar Siswa</a>
-        {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
-        {{-- <form action="/siswa/cetak_pdf" method="get">
-            @if (request('kelas')) 
+        {{-- <a href="/siswa" class="btn btn-warning mt-5">Daftar Siswa</a>
+        <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a>
+        <form action="/siswa/cetak_pdf" method="get">
+            @if (request('kelas'))
                 <input type="hidden" name="kelas" value="{{ request('kelas') }}">
             @endif
-            @if (request('jurusan')) 
+            @if (request('jurusan'))
                 <input type="hidden" name="jurusan" value="{{ request('jurusan') }}">
             @endif
             @if (request('cari'))
                 <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
             @endif
                 <input class="btn btn-success" type="submit" value="Cetak PDF">
-        </form>
-    </div> --}}
+        </form> --}}
+    </div>
 </div>
 
 <table class="table">

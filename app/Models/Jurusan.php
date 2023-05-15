@@ -11,10 +11,16 @@ class Jurusan extends Model
 {
     protected $table="jurusan";
     protected $primaryKey="jurusan";
-    protected $fillabel = [
+    protected $fillable = [
         'jurusan',
         'nama',
     ];
+
+    public function scopeFilter($query, array $filters){
+        $query->when($filters['cari'] ?? false, function ($query, $search) {
+            return $query->where('nama','like', '%'.$search.'%');
+        });
+    }
 
     public function getIncrementing(){
         return false;
