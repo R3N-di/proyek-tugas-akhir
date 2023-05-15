@@ -13,9 +13,8 @@ class MapelController extends Controller
     public function index()
     {
 
-        $dataMapel = Mapel::all();
-        // $dataMapel = Mapel::filter(request(['cari', 'mapel']))->paginate(5)->withQueryString();
-
+        $dataMapel = Mapel::paginate(5);
+        $dataMapel = Mapel::filter(request(['cari']))->paginate(5)->withQueryString();
         return view('page.mapel.index', compact('dataMapel'));
     }
 
@@ -59,9 +58,11 @@ class MapelController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $mapel)
     {
-        //
+        $dataMapel = Mapel::where('mapel', $mapel)->first();
+
+        return view('page.mapel.edit', compact('dataMapel'));
     }
 
     /**

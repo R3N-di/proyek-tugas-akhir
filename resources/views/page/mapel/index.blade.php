@@ -9,19 +9,9 @@
                 @if (request('cari'))
                     <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
                 @endif
-                <div class="mt-3 mb-3">
-                    <label for="idmapel" class="form-label">Mapel :</label>
-                    <select class="form-control" name="mapel" id="idmapel">
-                        @foreach ($dataMapel as $mapel)
-                            <option value="{{ $mapel->mapel }}">{{ $mapel->mapel }}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div>
-                    <input class="btn btn-primary mt-5 ms-1" type="submit" value="Cari">
-                </div>
             </form>
         </div>
+
 
         <div class="mt-5">
             <form class="d-flex" action="/mapel" method="get">
@@ -31,19 +21,6 @@
                 <input type="text" class="form-control" name="cari" aria-describedby="helpId"
                     placeholder="Cari mapel..." autocomplete="off" value="{{ request('cari') }}">
                 <input class="btn btn-primary" type="submit" value="Cari">
-            </form>
-        </div>
-        <div>
-            <a href="/mapel" class="btn btn-warning mt-5">Daftar Mapel</a>
-            {{-- <a href="/guru/cetak_pdf" class="btn btn-success mt-5">Cetak PDF</a> --}}
-            <form action="/guru/cetak_pdf" method="get">
-                @if (request('mapel'))
-                    <input type="hidden" name="mapel" value="{{ request('mapel') }}">
-                @endif
-                @if (request('cari'))
-                    <input type="hidden" class="form-control" name="cari" value="{{ request('cari') }}">
-                @endif
-                <input class="btn btn-success" type="submit" value="Cetak PDF">
             </form>
         </div>
     </div>
@@ -56,13 +33,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($dataMapel as $data)
+            @foreach ($dataMapel as $key => $data)
                 <tr>
-                    {{-- <th scope="row">{{ $dataMapel->firstitem() + $key }}</th> --}}
+                    <th scope="row">
+                        {{ $dataMapel->firstitem() + $key }}</th>
                     <td>{{ $data->mapel }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            <a class="btn btn-warning btn-sm" href="/mapel/{{ $data->mapel }}/edit" role="button">Edit</a>
+                            <a class="btn btn-warning btn-sm" href="mapel/{{ $data->mapel }}/edit" role="button">Edit</a>
                             <form onsubmit="return confirm('Yakin Ingin Hapus Data?')"
                                 action="{{ url('mapel/' . $data->mapel) }}" method="post">
                                 @csrf
@@ -75,5 +53,5 @@
             @endforeach
         </tbody>
     </table>
-    {{-- {{ $dataMapel->links() }} --}}
+    {{ $dataMapel->links() }}
 @endsection

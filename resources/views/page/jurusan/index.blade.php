@@ -57,39 +57,41 @@
     </div>
 </div>
 
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Singkatan</th>
-        <th scope="col">Nama</th>
-        <th scope="col">Aksi</th>
-      </tr>
-    </thead>
-    <tbody>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Singkatan</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
 
-        @foreach ( $dataJurusan as $key => $data )
-        <tr>
-            <th scope="row">
-                {{ $dataJurusan->firstitem() + $key }}
-           </th>
-            <td>{{$data->jurusan}}</td>
-            <td>{{$data->nama}}</td>
-            <td>
-                <div class="d-flex gap-2">
-                    {{-- <a class="btn btn-primary btn-sm" href="/jurusan/{{ $data->jurusan }}" role="button">Detail</a> --}}
-                    <a class="btn btn-warning btn-sm" href="/jurusan/{{ $data->jurusan }}/edit" role="button">Edit</a>
-                    <form onsubmit="return confirm('Yakin Ingin Hapus Data?')" action="{{ url('jurusan/'.$data->jurusan) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                    </form>
-                </div>
+            @foreach ($dataJurusan as $key => $data)
+                <tr>
+                    <th scope="row">
+                        {{ $dataJurusan->firstitem() + $key }}
+                    </th>
+                    <td>{{ $data->jurusan }}</td>
+                    <td>{{ $data->nama }}</td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            {{-- <a class="btn btn-primary btn-sm" href="/jurusan/{{ $data->jurusan }}" role="button">Detail</a> --}}
+                            <a class="btn btn-warning btn-sm" href="/jurusan/{{ $data->jurusan }}/edit"
+                                role="button">Edit</a>
+                            <form onsubmit="return confirm('Yakin Ingin Hapus Data?')"
+                                action="{{ url('jurusan/' . $data->jurusan) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </div>
 
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-  </table>
-  {{$dataJurusan -> links() }}
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    {{ $dataJurusan->links() }}
 @endsection
