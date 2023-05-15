@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Mapel;
 use Illuminate\Http\Request;
 
@@ -33,14 +34,14 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'mapel' => 'required|string',
+            'mapel' => 'required|string|unique:Mapel,mapel'
         ], [
             'mapel.required' => 'Mapel Harus Diisi',
+            'mapel.unique' => 'Mapel Sudah pernah digunakan',
             'mapel.string' => 'Mapel Harus Berbentuk Huruf',
         ]);
         $data = [
             'mapel' => $request->mapel
-
         ];
 
         Mapel::create($data);
@@ -71,9 +72,10 @@ class MapelController extends Controller
     public function update(Request $request, String $mapel)
     {
         $request->validate([
-            'mapel' => 'required|string',
+            'mapel' => 'required|string|unique:Mapel,mapel',
         ], [
             'mapel.required' => 'Mapel Harus Diisi',
+            'mapel.unique' => 'Mapel Sudah pernah digunakan',
             'mapel.string' => 'Mapel Harus Berbentuk Huruf',
         ]);
         $data = [
@@ -92,7 +94,15 @@ class MapelController extends Controller
     {
         $dataMapel = Mapel::where('mapel', $mapel)->first();
 
-        Mapel::where('mapel', $mapel)->delete();
-        return redirect('/mapel')->withInfo('Berhasil Menghapus Data');
+        $cekMapel = Guru::where('idmapel', $mapel)->first();
+
+        if(!is_null($cekMapel)){
+            return redirect('/mapel')->withErrors('Tidak dapat menghapus Mapel tersebut, Mapel tersebut sudah dipakai oleh Guru');
+        }
+        else{
+            Mapel::where('mapel', $mapel)->delete();
+            return redirect('/mapel')->withInfo('Berhasil Menghapus Data');
+        }
+
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
@@ -174,7 +175,9 @@ class JurusanController extends Controller
     {
         $dataJurusan = Jurusan::where('jurusan', $id)->first();
 
-        if(!is_null($dataJurusan)){
+        $cekJurusan = Siswa::where('idjurusan', $id)->first();
+
+        if(!is_null($cekJurusan)){
             return redirect('/jurusan')->withErrors('Tidak dapat menghapus Jurusan tersebut, Jurusan tersebut sudah dipakai oleh Siswa');
         }
         else{

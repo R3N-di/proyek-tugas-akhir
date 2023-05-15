@@ -30,7 +30,7 @@ class SiswaController extends Controller
     public function cetak_pdf()
     {
         $dataSiswa = Siswa::filter(request(['cari', 'kelas', 'jurusan']))->get();
-m
+
         $pdf = PDF::loadview('page.siswa.pdf', [
             'dataSiswa' => $dataSiswa,
             'no' => 1,
