@@ -26,7 +26,7 @@
     <li>
       <a href="#about-the-project">Tentang Proyek</a>
       <ul>
-        <li><a href="#built-with">Dibuat Oleh</a></li>
+        <li><a href="#built-with">Dibuat Dengan</a></li>
       </ul>
     </li>
     <li>
