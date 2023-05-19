@@ -79,8 +79,8 @@
                     'Tuesday' => 'Selasa',
                     'Wednesday' => 'Rabu',
                     'Thursday' => 'Kamis',
-                    'Friday' => 'Jumat',
-                    'Saturday' => "Jum'at",
+                    'Friday' => "Jum'at",
+                    'Saturday' => "Sabtu",
                     'Sunday' => 'Minggu',
                 ];
             @endphp
