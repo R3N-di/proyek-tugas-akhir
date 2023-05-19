@@ -110,7 +110,7 @@ Website ini digunakan untuk siswa dan guru dapat mengabsen dengan mudah dan dima
 
 <p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
-## Contributing
+## Kontribusi
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
@@ -127,7 +127,7 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- LICENSE -->
 
-## License
+## Lisensi
 
 Website ini di distribusikan dibawah Lisensi MIT
 
@@ -135,32 +135,30 @@ Website ini di distribusikan dibawah Lisensi MIT
 
 <!-- CONTACT -->
 
-## Contact
+## Kontak
 
 1. Rendi - rendi@gmail.com
 2. Mun'im - munimsudrajat22@gmail.com
 3. Cakra - cakra@gmail.com
 
-Project Link: [https://github.com/R3N-di/proyek-tugas-akhire](https://github.com/R3N-di/proyek-tugas-akhir)
+Project Link: [https://github.com/R3N-di/proyek-tugas-akhir](https://github.com/R3N-di/proyek-tugas-akhir)
 
 <p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
 
-## Acknowledgments
+## Terimakasih
+Berikut ini adalah alat - alat yang kami gunakan untuk mendukung membuat project ini
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+-   [Bootstrap](https://getbootstrap.com/)
+-   [Laravel](https://laravel.com/)
+-   [Xampp](https://www.apachefriends.org/download.html)
+-   [Github](https://github.com/)
+-   [Git](https://git-scm.com/)
+-   [Composer]([https://pages.github.com](https://getcomposer.org/))
+-   [VScode]([https://fontawesome.com](https://code.visualstudio.com/)
 
--   [Choose an Open Source License](https://choosealicense.com)
--   [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
--   [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
--   [Malven's Grid Cheatsheet](https://grid.malven.co/)
--   [Img Shields](https://shields.io)
--   [GitHub Pages](https://pages.github.com)
--   [Font Awesome](https://fontawesome.com)
--   [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">Kembali ke atas</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
