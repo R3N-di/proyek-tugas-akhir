@@ -24,9 +24,9 @@
   <summary>Daftar Konten</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Tentang Proyek</a>
+      <a href="#tentang-project">Tentang Proyek</a>
       <ul>
-        <li><a href="#built-with">Dibuat Dengan</a></li>
+        <li><a href="#Dibuat">Dibuat Dengan</a></li>
       </ul>
     </li>
     <li>
@@ -44,7 +44,7 @@
 </details>
 
 <!--TENTANG PROJECT -->
-
+[<a name="tantang-project"></a>
 ## Tentang Project
 
 [![Product Name Screen Shot][product-screenshot]](http://localhost:8000/siswa)
