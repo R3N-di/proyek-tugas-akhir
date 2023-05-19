@@ -74,7 +74,7 @@ Project ini tidak hanya dibuat oleh satu orang saja tetapi terdapat beberapa ora
 <!-- GETTING STARTED -->
 
 ## Mulai
-[<a name="mulai"></a>
+<a name="mulai"></a>
 
 Dikarenakan kami menggunakan menggunakan framework laravel saat membuat project ini makan di bawah ini adalah beberapa cara untuk menginstal laravel.
 
