@@ -1,4 +1,4 @@
-[<a name="atas"></a>
+<a name="atas"></a>
 ![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -44,7 +44,7 @@
 </details>
 
 <!--TENTANG PROJECT -->
-[<a name="tantang-project"></a>
+<a name="tantang-project"></a>
 ## Tentang Project
 
 [![Product Name Screen Shot][product-screenshot]](http://localhost:8000/siswa)
@@ -62,7 +62,7 @@ Itulah mengapa dibuatnya aplikasi ini untuk mencegah terjadinya hal - hal yang t
 <p align="right">(<a href="#atas">Kembali ke atas</a>)</p>
 
 ### Dibuat dengan
-[<a name="dibuat-dengan"></a>
+<a name="dibuat-dengan"></a>
 
 Project ini tidak hanya dibuat oleh satu orang saja tetapi terdapat beberapa orang yang ikut serta dalam membuat project ini dan tentu saja framework pemrogramman yang digunakan tidak hanya satu tetapi terdapat beberapa framework yang kita gunakan.
 
@@ -79,14 +79,14 @@ Project ini tidak hanya dibuat oleh satu orang saja tetapi terdapat beberapa ora
 Dikarenakan kami menggunakan menggunakan framework laravel saat membuat project ini makan di bawah ini adalah beberapa cara untuk menginstal laravel.
 
 ### Prasyarat
-[<a name="prasyarat"></a>
+<a name="prasyarat"></a>
 
 Di bawah ini adalah prasyarat sebelum menginstal laravel
 -   XAMPP
 -   Composer
 
 ### Instalasi
-[<a name="instalasi"></a>
+<a name="instalasi"></a>
 
 _Di bawah ini adalah langkah - langkah dalam menginstal laravel_
 
@@ -107,7 +107,7 @@ _Di bawah ini adalah langkah - langkah dalam menginstal laravel_
 <!-- PENGGUNAAN -->
 
 ## Penggunaan
-[<a name="penggunaan"></a>
+<a name="penggunaan"></a>
 
 Website ini digunakan untuk siswa dan guru dapat mengabsen dengan mudah dan dimana saja, melalui website yang sudah disediakan serta tampilkan yang simple dan mudah untuk dipahami.
 
@@ -116,7 +116,7 @@ Website ini digunakan untuk siswa dan guru dapat mengabsen dengan mudah dan dima
 <!-- LICENSE -->
 
 ## Lisensi
-[<a name="lisensi"></a>
+<a name="lisensi"></a>
 
 Website ini di distribusikan dibawah Lisensi MIT
 
@@ -125,7 +125,7 @@ Website ini di distribusikan dibawah Lisensi MIT
 <!-- CONTACT -->
 
 ## Kontak
-[<a name="kontak"></a>
+<a name="kontak"></a>
 
 1. Rendi - rendi@gmail.com
 2. Mun'im - munimsudrajat22@gmail.com
@@ -138,7 +138,7 @@ Project Link: [https://github.com/R3N-di/proyek-tugas-akhir](https://github.com/
 <!-- ACKNOWLEDGMENTS -->
 
 ## Terimakasih
-[<a name="terimakasih"></a>
+<a name="terimakasih"></a>
 Berikut ini adalah alat - alat yang kami gunakan untuk mendukung membuat project ini
 
 -   [Bootstrap](https://getbootstrap.com/)
