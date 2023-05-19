@@ -48,6 +48,8 @@
 ## Tentang Project
 
 [![Product Name Screen Shot][product-screenshot]](http://localhost:8000/siswa)
+[![screenshoot_TugasAkhir](https://github.com/R3N-di/proyek-tugas-akhir/assets/129575783/699ea584-4138-473f-9e31-dae0feca1586)
+
 
 Project ini dibuat untuk memudahkan para siswa dan guru untuk dapat mengisi absen secara online dan tidak perlu repot - repot untuk mengisi buku absen yang disediakan di sekolah. Terdapat beberapa keunggulan yang didapat dari dibuatnya project ini
 
