@@ -155,8 +155,8 @@ Berikut ini adalah alat - alat yang kami gunakan untuk mendukung membuat project
 -   [Xampp](https://www.apachefriends.org/download.html)
 -   [Github](https://github.com/)
 -   [Git](https://git-scm.com/)
--   [Composer]([https://pages.github.com](https://getcomposer.org/))
--   [VScode]([https://fontawesome.com](https://code.visualstudio.com/)
+-   [Composer](https://pages.github.com](https://getcomposer.org/)
+-   [VScode](https://fontawesome.com](https://code.visualstudio.com/)
 
 <p align="right">(<a href="#readme-top">Kembali ke atas</a>)</p>
 
