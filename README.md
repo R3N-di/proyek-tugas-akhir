@@ -1,5 +1,5 @@
 <a name="atas"></a>
-![Contributors][contributors-shield][contributors-url]
+![Contributors][contributors-shield]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
